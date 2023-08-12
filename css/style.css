@@ -1,0 +1,51 @@
+div nav{
+font-family:Raleway;
+font-size: 15px;
+font-weight:300px;
+
+}
+@font-face {
+    font-family: Raleway;
+    src: url(https://fonts.google.com/specimen/Raleway);
+}
+.logo{
+    display:flex;
+    justify-content: center;
+    background-color: #173258;
+    height: 501px;
+}
+.logo img {
+  height: 501px;
+  width: 501px;
+
+}
+.connect {
+    display:grid;
+    justify-content: end;
+}
+.connection{
+    width: 50px;
+    height: 50px;
+    justify-self: center;
+}
+.nav{
+    font-size: 40px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.nav a:hover{
+    text-decoration:underline#be1e2d 2px;
+}
+a{
+    color: #173258;
+    text-decoration: none;
+}
+.buttonConnect{
+    font-size: 15px;
+    font-weight: bold;
+}
+hr{
+    height: 2px;
+    background-color: #173258;
+    border: none;
+}
