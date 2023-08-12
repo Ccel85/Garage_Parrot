@@ -1,51 +1,110 @@
+@font-face {
+    font-family: 'Raleway', sans-serif;
+    src: url(https://fonts.googleapis.com/css2?family=Raleway&display=swap);
+}  
+html{
+    color: #173258;
+}
 div nav{
 font-family:Raleway;
 font-size: 15px;
 font-weight:300px;
+}
 
-}
-@font-face {
-    font-family: Raleway;
-    src: url(https://fonts.google.com/specimen/Raleway);
-}
 .logo{
     display:flex;
     justify-content: center;
     background-color: #173258;
     height: 501px;
+
 }
 .logo img {
-  height: 501px;
-  width: 501px;
+    height: 501px;
+    width: 501px;
 
 }
 .connect {
     display:grid;
     justify-content: end;
 }
+
 .connection{
     width: 50px;
     height: 50px;
     justify-self: center;
 }
+
 .nav{
     font-size: 40px;
     display: flex;
     justify-content: space-evenly;
 }
+
 .nav a:hover{
     text-decoration:underline#be1e2d 2px;
 }
+
 a{
     color: #173258;
     text-decoration: none;
 }
+
 .buttonConnect{
     font-size: 15px;
     font-weight: bold;
 }
+
 hr{
     height: 2px;
     background-color: #173258;
     border: none;
+}
+
+p{
+    font-family: Raleway;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 50px;
+}
+span{
+    color:#be1e2d;
+    font-weight: bolder;
+    }
+.navButton{
+    display: flex;
+    flex-direction: column;
+}
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 32px;
+    align-self: center;
+    padding: 10px;
+    background-color:#be1e2d ;
+    width: 530px;
+    height: 130px;
+    margin: 20px;
+    }
+.button a{
+    color: white;
+}
+footer{
+    display: flex;
+    flex-direction: column;
+    background-color: #173258;
+    color: white;
+}
+.footer{
+    display: flex;
+    justify-content: flex-start;
+}
+.footer img{
+    margin: 20px;
+}
+.menu a{
+    color: white;
+    font-size: 20px;
+
 }

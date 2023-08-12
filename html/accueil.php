@@ -8,10 +8,37 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
 <link rel="stylesheet" href="../css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
 </head>
 <body>
 <?php include_once 'header.html';?>
 <div>
-    <h1>hello</h1>
+    <img src="../assets/img/img_accueil.png"  alt="image_accueil">
 </div>
+<section>
+    <p>Le <span>Garage V.Parrot</span> vous propose une large gamme<span> de services</span>
+        afin de garantir la <span>performance</span> et la <span>sécurité</span> de votre véhicule.      
+        Nous vous proposons aussi des <span>véhicules d’occasion</span> à la vente .      
+        Le garage V.Parrot vous assure un <span> traitement personnalisé</span> de vos besoins et demandes .</p>
+</section>
+<section class="navButton">
+    <div class="button">
+        <a href="reparation.php">Réparation et entretien</a>
+    </div>
+    <div class="button">
+        <a href="services.php">Nos services</a>
+    </div>
+    <div class="button">
+        <a href="occasion.php">Nos occasions</a>
+    </div>
+</section>
+<section>
+    <h2>Avis client </h2>
+    <div class="avis">
+
+    </div>
+</section>
 </body>
+<?php include_once 'footer.html' ?>
