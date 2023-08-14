@@ -13,32 +13,32 @@
 <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
 </head>
 <body>
-<?php include_once 'header.html';?>
+<?php include'header.html';?>
 <div>
     <img src="../assets/img/img_accueil.png"  alt="image_accueil">
 </div>
 <section>
-    <p>Le <span>Garage V.Parrot</span> vous propose une large gamme<span> de services</span>
-        afin de garantir la <span>performance</span> et la <span>sécurité</span> de votre véhicule.      
-        Nous vous proposons aussi des <span>véhicules d’occasion</span> à la vente .      
-        Le garage V.Parrot vous assure un <span> traitement personnalisé</span> de vos besoins et demandes .</p>
+    <p class="promesse">Le <span>Garage V.Parrot</span> vous propose une large gamme<span> de services</span>
+        afin de garantir la <span>performance</span> et la <span>sécurité</span> de votre véhicule.<br>     
+        Nous vous proposons aussi des <span>véhicules d’occasion</span> à la vente .<br>    
+        Le garage V.Parrot vous assure un <span> traitement personnalisé</span> de vos besoins et demandes.</p>
 </section>
 <section class="navButton">
     <div class="button">
-        <a href="reparation.php">Réparation et entretien</a>
+        <a href="nos_services.php">Réparation et entretien</a>
     </div>
     <div class="button">
-        <a href="services.php">Nos services</a>
+        <a href="nos_occasions.php">Nos occasions</a>
     </div>
     <div class="button">
-        <a href="occasion.php">Nos occasions</a>
+        <a href="contact.php">Contact</a>
     </div>
 </section>
 <section>
-    <h2>Avis client </h2>
+    <h2>Avis client:</h2>
     <div class="avis">
 
     </div>
 </section>
 </body>
-<?php include_once 'footer.html' ?>
+<?php include 'footer.html' ?>
