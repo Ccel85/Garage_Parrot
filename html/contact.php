@@ -19,7 +19,7 @@
             Tel:  09.66.34.56.12</span><br>
             ou à l’aide du formulaire de contact. </p>
     </div>
-<form>
+<form action="submit_message.php" method="GET">
 <div class="formulaire">
     <div class="form-group">
         <label for="exampleFormControlInput1">Votre nom et prénom</label>
