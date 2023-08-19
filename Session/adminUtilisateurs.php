@@ -14,28 +14,24 @@
 </head>
     <body>
         <?php
+        //creation utilisateur
             $servname = 'localhost';
             $dbname = 'garageparrot';
-            $user = 'admin';
+            $user = 'garageparrot@gmail.com';
             $pass = 'admin';
 
-            try{
 
                 $dbco = new PDO("mysql : host=$servname;dbname=$dbname", $user,$pass);
 
                 $dbco-> setAttribute(PDO :: ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 $sql = " INSERT INTO 
-                utilisateurs('login',pass_md5)
+                utilisateur('email','mdp')
                 VALUES('admin','admin')";
 
                 $dbco->exec($sql);
                 echo 'Entrée ajoutée à la table';
-            }
 
-            catch (PDOException $e) {
-                echo "Erreur : ". $e->getMessage();
-            }
         ?>
     </body>
 </html>

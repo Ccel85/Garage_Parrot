@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<?php include'header.html';?>
+<?php include'header.php';?>
 <div class="contact" >
     <div class="cardInfo">
         <p>Vous pouvez nous contacter :<br>

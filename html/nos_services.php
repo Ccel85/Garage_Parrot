@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<?php include'header.html';?>
+<?php include'header.php';?>
     <div class="nosServices">
             <div class="mecanique">
                 <img src="../assets/img/img_service_mecanique.png" alt="image mecanique">
