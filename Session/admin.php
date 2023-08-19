@@ -1,7 +1,4 @@
-<?php
-session_start();
-//include('connexion.php');
-?>
+<?php session_start();?>
 
 <!DOCTYPE html>
 <html>
@@ -18,7 +15,7 @@ session_start();
    // if (isset($_SESSION['admin']) AND $_SESSION['admin'] == true) {  ?>
 
     <nav>
-    <h1>Bonjour <?php  echo ($_SESSION['nom']) ?></h1>
+    <h1>Bonjour <?php  echo ($_SESSION['LOGGED_USER']) ?></h1>
         <ul>
             <a href="#"><li>Gestion des utilisateurs</li></a>
             <a href="#"><li>Gestion des services</li></a>
@@ -26,7 +23,7 @@ session_start();
             <a href="#"><li>Gestion des vehicules</li></a>
             <a href="#"><li>Message clients</li></a>
             <a href="deconnection.php"><li>Déconnexion</li></a>
-            <p> Vous êtes connecté en tant qu'<?php echo ($_SESSION['nom'])?> </p>
+            <p> Vous êtes connecté en tant qu'<?php echo ($_SESSION['LOGGED_USER'])?> </p>
         </ul>
     </nav>
 
