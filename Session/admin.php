@@ -20,7 +20,7 @@ include('../config/configsql.php');?>
             <a href="adminUtilisateurs.php"><li>Gestion des utilisateurs</li></a>
             <a href="#"><li>Gestion des services</li></a>
             <a href="#"><li>Gestion des infos</li></a>
-            <a href="#"><li>Gestion des vehicules</li></a>
+            <a href="adminVehicule.php"><li>Gestion des vehicules</li></a>
             <a href="#"><li>Message clients</li></a>
             <a href="deconnection.php"><li>Déconnexion</li></a>
             <p> Vous êtes connecté en tant qu'<?php echo ($_SESSION['LOGGED_USER'])?> </p>

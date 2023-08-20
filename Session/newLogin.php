@@ -22,7 +22,7 @@ include('variable.php');?>
                 } else { //insertion données du formulaire adminUtilisateur.php
                         $sql = " INSERT INTO  utilisateur (nom,prenom,email,mdp,type) VALUES ('$userName','$userSurname','$userMail','$userMdp','$userType')";
 
-                        $mysqlUser-> exec($sql);
+                        $mysql-> exec($sql);
 
                         echo 'Le compte utilisateur'." ".$_POST['User_name']." ".$_POST['User_surname']." ".'est créé.';// avec le profil'." ".$_POST['User_type'];
                 }

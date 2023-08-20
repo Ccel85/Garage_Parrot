@@ -8,7 +8,7 @@ $bdd='garageparrot';
 try
 {
 	// On se connecte à MySQL
-	$mysqlUser = new PDO ("mysql:host=$servername;dbname=garageparrot",'admin','admin' );
+	$mysql = new PDO ("mysql:host=$servername;dbname=garageparrot",'admin','admin' );
 }
 catch(Exception $e)
 {
@@ -17,3 +17,6 @@ catch(Exception $e)
 }
 
 ?>
+
+
+
