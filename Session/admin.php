@@ -1,12 +1,12 @@
-<?php session_start();?>
+<?php session_start();
+include('variable.php');
+include('../config/configsql.php');?>
 
 <!DOCTYPE html>
 <html>
     <head>
         <link href="../html/style.css" rel="stylesheet">
     </head>
-
-
     <?php 
 
 
@@ -17,7 +17,7 @@
     <nav>
     <h1>Bonjour <?php  echo ($_SESSION['LOGGED_USER']) ?></h1>
         <ul>
-            <a href="#"><li>Gestion des utilisateurs</li></a>
+            <a href="adminUtilisateurs.php"><li>Gestion des utilisateurs</li></a>
             <a href="#"><li>Gestion des services</li></a>
             <a href="#"><li>Gestion des infos</li></a>
             <a href="#"><li>Gestion des vehicules</li></a>
