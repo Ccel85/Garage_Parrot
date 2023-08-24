@@ -2,10 +2,6 @@
 include('../Session/variable.php');
 include('../config/configsql.php');
 
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -41,32 +37,13 @@ include('../config/configsql.php');
     </div>
     </div>
   </div>
-  <div class="container">
-    <!--card-->
-  <div class="card" style="width: 18rem;">
-  <img src="../assets/img/img_occasion_captur.png" class="card-img-top" alt="Renault Captur">
-  <div class="card-body">
-    <h5 class="card-title"><?php echo $carModel ?>
-       </h5>
-    <div class="logo-card">
-      <div class="logos">
-        <img src="../assets/logo/logo_carburant.svg">
-        <!--<p class=""><?php echo $carGasoil ?></p>-->
-      </div>
-      <div class="logos">
-        <img src="../assets/logo/logo_compteur_vitesse.svg">
-        <!--<p class=""><?php echo $carKilometers ?></p>-->
-      </div>
-      <div class="logos">
-        <img src="../assets/logo/logo_calendrier.svg">
-        <!--<p class=""><?php echo $carYear ?></p>-->
-      </div>
-    </div>
-    <div>
-      <h2 class="prix"><?php echo $carPrice ?></h2>  
-      </div>
-    <button class="button-occasions">Plus de détails</button>
-  </div>
+  <?php $cars = getcars($pdo);?>
+  <div>  
+    <?php foreach ($cars as $key => $car) {
+    include('cars.php');
+  }
+  ?>
+  </div>  
 </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
