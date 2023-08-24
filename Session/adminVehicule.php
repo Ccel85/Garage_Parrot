@@ -1,4 +1,4 @@
-<?php session_start(); 
+<?php //session_start(); 
 include('variable.php');
 include('../config/configsql.php');
 ?>
@@ -14,12 +14,11 @@ include('../config/configsql.php');
     <!--feuille CSS -->
     <link rel="stylesheet" href="../html/style.css">
 </head>
-    <body>    
-                
+    <body>                
         <form action="newVehicule.php" method="POST">
         <h2>Création d'annonce de véhicule d'occasion</h2> 
             <div class="formulaire">
-            <div class="form-group">
+            <div enctype="multipart/form-data" class="form-group">
                 <label for="exampleFormControlInput1" >Photos</label>
                 <input class="form-control" type="file" name="Car_file" id="exampleFormControlInput1" required>
             </div>

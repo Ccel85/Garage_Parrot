@@ -1,7 +1,8 @@
+  
 <div class="container">
     <!--card-->
   <div class="card" style="width: 18rem;">
-    <img src=<?= $car['image']?> class="card-img-top" alt="Renault Captur">
+    <img src="../assets/img/img_occasion_captur.png" class="card-img-top" alt="Renault Captur">
     <div class="card-body">
       <h5 class="card-title"><?=$car['modele']; ?></h5>
       <div class="logo-card">

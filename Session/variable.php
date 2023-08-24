@@ -51,11 +51,13 @@ $row = $stmt->fetch();
         $query->execute();
         return $query->fetchAll();
     }
+
+    function getCarImage(string|null $image) {
+        if ($image === null) {
+            return '../img/img_clio_1.png';
+        } else {
+            return $image['image'];
+        }
+    }
 ?>
 
-<?php  
-//$id=(INT)$_POST['id'];
-
-//$getcar = $pdo->query("SELECT * FROM vehicule ORDER BY id=$carId ");
-//$cars = $getcar->fetchall();
-?>

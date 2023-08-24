@@ -1,8 +1,5 @@
 <?php
 include('../config/configsql.php');
-?>
-
-<?php
 session_start();
 ?>
 
@@ -18,6 +15,8 @@ session_start();
 <!--feuille CSS -->
 <link rel="stylesheet" href="../html/style.css">
 </head>
+<body>
+<html>
 <body>
 <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalSignin">
   <div class="modal-dialog" role="document">
@@ -44,6 +43,7 @@ session_start();
     </div>
   </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 
