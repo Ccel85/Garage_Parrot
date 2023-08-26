@@ -15,7 +15,7 @@ session_start();
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<?php include'header.html';?>
+<?php include'header.php';?>
 <div>
     <img class="imageAccueil" src="../assets/img/img_accueil.png"  alt="image_accueil">
 </div>

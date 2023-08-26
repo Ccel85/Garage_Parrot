@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<?php include'header.html';?>
+<?php include'header.php';?>
   <div class="filtres">
     <h3>Filtres:</h3>
     <div class="filter">

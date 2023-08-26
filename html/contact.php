@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<?php include'header.html';?>
+<?php include'header.php';?>
 <div class="contact" >
     <div class="cardInfo">
         <p>Vous pouvez nous contacter :<br>
@@ -19,7 +19,7 @@
             Tel:  09.66.34.56.12</span><br>
             ou à l’aide du formulaire de contact. </p>
     </div>
-<form action="submit_message.php" method="GET">
+<form action="submit_message.php" method="POST">
 <div class="formulaire">
     <div class="form-group">
         <label for="exampleFormControlInput1">Votre nom et prénom</label>

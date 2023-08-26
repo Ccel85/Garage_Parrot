@@ -229,7 +229,9 @@ button:focus {
     align-items: center;
     flex-direction: column;
 }
-
+.form-group{
+    text-align: center;
+}
 /*nos_occasions*/
 .filter{
     display: flex;

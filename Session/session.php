@@ -1,4 +1,8 @@
 <?php
+include('../config/configsql.php');
+?>
+
+<?php
 session_start();
 ?>
 
@@ -24,17 +28,17 @@ session_start();
       </div>
 
       <div class="modal-body p-5 pt-0">
-        <form class="modalSession" method="POST" action="<?php echo $_SERVER['PHP_SELF']?>">
+        <form class="modalSession" method="POST" action="connexion.php">
           <div class="">
-            <label for="username">Identifiant</label>
-            <input type="text" name="username" class="form-control rounded-3" id="username" >
+            <label for="email">Email</label>
+            <input type="email" name="email" class="form-control rounded-3" id="email" >
           </div>
           <div class="">
-            <label for="password">Mot de passe</label>
-            <input type="password" name="password" class="form-control rounded-3" id="password" placeholder="Mot de passe">
+            <label for="mdp">Mot de passe</label>
+            <input type="password" name="mdp" class="form-control rounded-3" id="mdp" placeholder="Mot de passe">
             
           </div>
-          <button class="connectSession" type="submit">Valider</button>
+          <button class="connectSession" name="connexion" type="submit">Connection</button>
         </form>
       </div>
     </div>
@@ -44,27 +48,3 @@ session_start();
 </html>
 
 
-<?php
-if($_SERVER['REQUEST_METHOD']=== "POST"){
-
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    if ( $username === 'admin' AND $password = 'admin'){
-
-        $_SESSION['admin'] = true;
-
-        setcookie('user' , 'admin' , time() +3600,'/');
-
-        header("location:admin.php");
-    }
-    
-        if ( $username === 'user' AND $password = 'user'){
-    
-            $_SESSION['admin'] = false;
-    
-            setcookie('user' , 'user' , time() +3600,'/');
-    
-            header("location:admin.php");
-        }
-}
