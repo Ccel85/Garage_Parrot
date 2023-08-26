@@ -18,7 +18,7 @@ include('../config/configsql.php');?>
     <h1>Bonjour <?php  echo ($_SESSION['LOGGED_USER']) ?></h1>
         <ul>
             <a href="adminUtilisateurs.php"><li>Gestion des utilisateurs</li></a>
-            <a href="#"><li>Gestion des services</li></a>
+            <a href="adminServices.php"><li>Gestion des services</li></a>
             <a href="#"><li>Gestion des infos</li></a>
             <a href="adminVehicule.php"><li>Gestion des vehicules</li></a>
             <a href="#"><li>Message clients</li></a>

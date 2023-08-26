@@ -1,4 +1,4 @@
-<?php include'header.php';?>
+<?php include ('header.php');?>
 <div>
     <img class="imageAccueil" src="../assets/img/img_accueil.png"  alt="image_accueil">
 </div>
