@@ -8,12 +8,15 @@ $bdd='garageparrot';
 try
 {
 	// On se connecte à MySQL
-	$mysqlUser = new PDO ("mysql:host=$servername;dbname=garageparrot",'admin','admin' );
+	$pdo = new PDO ("mysql:host=$servername;dbname=garageparrot",'admin','admin' );
 }
-catch(Exception $e)
+catch(PDOException $e)
 {
 	// En cas d'erreur, on affiche un message et on arrête tout
         die('Erreur : '.$e->getMessage());
 }
 
 ?>
+
+
+
