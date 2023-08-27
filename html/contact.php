@@ -1,4 +1,5 @@
-<?php include'header.php';?>
+<?php include('header.php');
+include('../config/sessionStart.php');?>
 <div class="contact" >
     <div class="cardInfo">
         <p>Vous pouvez nous contacter :<br>

@@ -7,3 +7,4 @@ CREATE TABLE `garageparrot`.`vehicule` (`id` INT NOT NULL AUTO_INCREMENT PRIMARY
 ALTER TABLE `garageparrot`.`vehicule` ADD COLUMN `Prix` VARCHAR(6) NOT NULL;
 ALTER TABLE `garageparrot`.`vehicule`ADD COLUMN `image` BLOB NOT NULL;
 ALTER TABLE `garageparrot`.`vehicule`ADD COLUMN (`image1` BLOB NOT NULL,`image2` BLOB NOT NULL);
+CREATE TABLE `garageparrot`.`service`(`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY , `title` VARCHAR(20) NOT NULL,`description` VARCHAR(250) NOT NULL,`image` BLOB NOT NULL) ENGINE = MyISAM;

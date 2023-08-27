@@ -1,6 +1,6 @@
 <?php
 include('../config/configsql.php');
-session_start();
+include('../config/sessionStart.php');
 ?>
 
 <!DOCTYPE html>

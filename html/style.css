@@ -166,12 +166,11 @@ span{
     color: white;
 }
 /* nos services */
-
-.mecanique{
+.service{
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: row;
     align-items: center;
-    }
+}
 
 .nosServices p{
     text-align: center;
@@ -184,12 +183,6 @@ h2{
     text-align: center;
     font-weight: bold;
 }
-
-.carrosserie{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    }
 /* contact*/
 
 .cardInfo,form{

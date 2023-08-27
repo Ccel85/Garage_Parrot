@@ -1,4 +1,5 @@
-<?php session_start(); 
+<?php 
+include('../config/sessionStart.php') ;
 include('variable.php');
 include('../config/configsql.php');
 ?>

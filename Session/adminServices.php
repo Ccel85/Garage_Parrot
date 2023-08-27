@@ -1,4 +1,4 @@
-<?php //session_start(); 
+<?php  
 include('variable.php');
 include('../config/configsql.php');
 ?>
@@ -16,24 +16,24 @@ include('../config/configsql.php');
 </head>
     <body>                
         <form action="newService.php" method="POST">
-        <h2>Gestion page services</h2> 
-            <div class="formulaire">
-            <div enctype="multipart/form-data" class="form-group">
-                <label for="exampleFormControlInput1" >Images</label>
-                <input class="form-control" type="file" name="service_file" id="exampleFormControlInput1" required>
+            <h2>Gestion page services</h2> 
+                <div class="formulaire">
+                <div enctype="multipart/form-data" class="form-group">
+                    <label for="service_file" >Images</label>
+                    <input class="form-control" type="file" name="service_file" id="exampleFormControlInput1" required>
+                </div>
+                <div class="form-group">
+                    <label for="service_title" >Entrée titre du service</label>
+                    <input class="form-control" type="text" name="service_title" id="exampleFormControlInput1" required>
+                </div>
+                <div class="form-group">
+                    <label for="service_description">Description du service</label>
+                    <textarea rows="10" class="form-control" type="text" name="service_description" id="exampleFormControlInput1" required></textarea>
+                </div>
+                <div class="form-group">
+                <button type="submit">Valider</button>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="exampleFormControlInput1" >Entrée titre du service</label>
-                <input class="form-control" type="text" name="titre_service" id="exampleFormControlInput1" autofocus required>
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlInput1">Déscription du service</label>
-                <textarea class="form-control" type="text" name="service_Detail" id="exampleFormControlInput1" required>
-            </div>
-            <div class="form-group">
-            <button type="submit">Valider</button>
-            </div>
-        </div>
         </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>

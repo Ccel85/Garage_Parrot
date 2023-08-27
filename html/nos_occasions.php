@@ -1,6 +1,7 @@
 <?php include('header.php');
 include('../Session/variable.php');
 include('../config/configsql.php');
+include('../config/sessionStart.php');
 ?>
   <div class="filtres">
     <h3>Filtres:</h3>
