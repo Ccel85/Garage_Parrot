@@ -8,16 +8,17 @@ include('../config/configsql.php');?>
         foreach ($users as $user) {
             if (
                 $user['email'] === $_POST['email'] &&
-                $user['mdp'] === $_POST['mdp'] && $user['type'] === 'adm' 
+                $user['mdp'] === $_POST['mdp'] && 
+                $user['type'] === 'adm' 
             ) {
-                $loggedUser = ['email' => $user['email']];
+                $loggedUser = ['type' => $user['type']];
 
                 setcookie('LOGGED_USER',
-                $loggedUser['email'],
+                $loggedUser['type'],
                 ['expires' => time()+3600,
                 'secure' => true,]);
 
-                $_SESSION['LOGGED_USER'] = $loggedUser['email'];
+                $_SESSION['LOGGED_USER'] = $loggedUser['type'];
 
                 header ('location:../Session/admin.php');
             }

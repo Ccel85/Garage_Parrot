@@ -1,21 +1,14 @@
-<?php include('../config/sessionStart.php');
+<?php 
+include('../config/sessionStart.php');
 include('variable.php');
-include('../config/configsql.php');?>
-
-<!DOCTYPE html>
-<html>
-    <head>
-        <link href="../html/style.css" rel="stylesheet">
-    </head>
-    <?php 
-
+include('../config/configsql.php');
+include('../html/header.php');
 
     //condition session admin
 
    // if (isset($_SESSION['admin']) AND $_SESSION['admin'] == true) {  ?>
-
     <nav>
-    <h1>Bonjour <?php  echo ($_SESSION['LOGGED_USER']) ?></h1>
+    <h1>Bonjour <?php  echo ($_SESSION['type']) ?></h1>
         <ul>
             <a href="adminUtilisateurs.php"><li>Gestion des utilisateurs</li></a>
             <a href="adminServices.php"><li>Gestion des services</li></a>
@@ -23,7 +16,7 @@ include('../config/configsql.php');?>
             <a href="adminVehicule.php"><li>Gestion des vehicules</li></a>
             <a href="#"><li>Message clients</li></a>
             <a href="deconnection.php"><li>Déconnexion</li></a>
-            <p> Vous êtes connecté en tant qu'<?php echo ($_SESSION['LOGGED_USER'])?> </p>
+            <p> Vous êtes connecté en tant qu'<?php echo ($_SESSION['type'])?> </p>
         </ul>
     </nav>
 
@@ -40,4 +33,3 @@ include('../config/configsql.php');?>
 </nav>
 <?php }*/
 ?>
-</html>
