@@ -11,14 +11,14 @@ include('../config/configsql.php');?>
                 $user['mdp'] === $_POST['mdp'] && 
                 $user['type'] === 'adm' 
             ) {
-                $loggedUser = ['type' => $user['type']];
+                $loggedUser = ['email' => $user['email']];
 
                 setcookie('LOGGED_USER',
-                $loggedUser['type'],
+                $loggedUser['email'],
                 ['expires' => time()+3600,
                 'secure' => true,]);
 
-                $_SESSION['LOGGED_USER'] = $loggedUser['type'];
+                $_SESSION['LOGGED_USER'] = 'ADMINISTRATEUR';
 
                 header ('location:../Session/admin.php');
             }

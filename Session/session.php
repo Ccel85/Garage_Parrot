@@ -1,7 +1,7 @@
 <?php
 include('../config/configsql.php');
 include('../config/sessionStart.php');
-//include('../html/header.php');
+include('../html/header.php');
 ?>
 
 <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalSignin">

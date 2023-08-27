@@ -1,4 +1,5 @@
 <?php 
+include('../config/sessionStart.php');
 include('../config/configsql.php');
 include('variable.php');?>
 
@@ -20,7 +21,7 @@ include('variable.php');?>
                         //'email' => $user['email'],
                         //];
                 } else { //insertion données du formulaire adminUtilisateur.php
-                        $sql = " INSERT INTO  utilisateur (nom,prenom,email,mdp,type) VALUES ('$userName','$userSurname','$userMail','$userMdp','$userType')";
+                        $sql = " INSERT INTO  utilisateur (nom,prenom,email,type,mdp) VALUES ('$userName','$userSurname','$userMail','$userType','$userMdp')";
 
                         $pdo-> exec($sql);
 
