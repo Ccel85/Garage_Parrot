@@ -5,14 +5,12 @@ include('../config/configsql.php');
 include('../html/header.php');
 
     //condition session admin
-
-   // if (isset($_SESSION['admin']) AND $_SESSION['admin'] == true) {
-    foreach ($users as $user)  ?>
+    foreach ($users as $user) { ?>
     <nav>
     <h1>Bonjour, <?php  echo ($user['prenom']." ".$user['nom'].".") ?></h1>
         <ul>
             <a href="adminUtilisateurs.php"><li>Gestion des utilisateurs</li></a>
-            <a href="adminServices.php"><li>Gestion des services</li></a>
+            <a href="editServicePage.php"><li>Gestion des services</li></a>
             <a href="#"><li>Gestion des infos</li></a>
             <a href="adminVehicule.php"><li>Gestion des vehicules</li></a>
             <a href="#"><li>Message clients</li></a>
@@ -20,7 +18,7 @@ include('../html/header.php');
             <p> Vous êtes connecté en tant qu'<?php echo ($_SESSION['LOGGED_USER'])?>. </p>
         </ul>
     </nav>
-
+<?php }?>
 <?php /* } else { ?>
     <h1>Bonjour <?php  ($_SESSION['nom']) ?></h1>
 <nav>

@@ -2,10 +2,10 @@
 include('variable.php');
 include('../config/configsql.php');
 include('../html/header.php');
-?>
 
-        <form action="newService.php" method="POST">
-            <h2>Gestion page services</h2> 
+//creation de service
+?>        <form action="newService.php" method="POST">
+            <h2>création de services</h2> 
                 <div class="formulaire">
                 <div enctype="multipart/form-data" class="form-group">
                     <label for="service_file" >Images</label>

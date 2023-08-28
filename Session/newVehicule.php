@@ -14,8 +14,6 @@ include('variable.php');?>
 //vérification que les données saisie n'existe pas à faire
 
                 $sqlcar= " INSERT INTO  vehicule (modele,carburant,km,année,description,prix,image) VALUES ('$carModel','$carGasoil','$carKilometers','$carYear','$carDescription','$carPrice','$carFile')";
-
                 $pdo-> exec ($sqlcar);
-
                 echo 'La fiche véhicule '.$carModel.' a bien ete créé';
 ?>

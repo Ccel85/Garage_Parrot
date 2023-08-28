@@ -15,3 +15,4 @@ include('variable.php');?>
 
                 echo 'La page service a été mise à jour';
 ?>
+<button type="submit" action="admin.php">Retour au menu administrateur</button>

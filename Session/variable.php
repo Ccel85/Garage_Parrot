@@ -7,7 +7,12 @@ include ('../config/configsql.php');
     $usersStatement->execute();
     $users = $usersStatement->fetchall();
 
-    //fonction recuperer donnee vehicule par id
+//Récuperation données table service
+    //$getsStatement = $pdo->prepare('SELECT * FROM utilisateur');
+    //$usersStatement->execute();
+    //$users = $usersStatement->fetchall();
+
+    //fonction recuperer donnee vehicule par id pas utilise
     function getCarbyId(PDO $pdo, $carId){
 
         $getcar = $pdo->prepare("SELECT * FROM vehicule ORDER BY id = :id");
@@ -36,17 +41,12 @@ include ('../config/configsql.php');
             return $image['image'];
         }
     }
-    //fonction recuperer donnee service
-    function getservice(PDO $pdo, int $limit = null) {
-        $sql = 'SELECT * FROM service ORDER BY id DESC';
-        if ($limit) {
-            $sql .= ' LIMIT :limit';
-        }
+    //fonction recuperer donnée service
+    function getservice(PDO $pdo) {
+        $sql = "SELECT * FROM service ORDER BY id = :id ";
         $query = $pdo->prepare($sql);
-        if ($limit) {
-            $query->bindParam(':limit', $limit, PDO::PARAM_INT);
-        }
-        $query->execute();
+            $query->bindParam(':id', $service_id, PDO::PARAM_INT);
+            $query->execute();
         return $query->fetchAll();
     }
     //$carCreate = $mysql->prepare('SELECT * FROM vehicule');
