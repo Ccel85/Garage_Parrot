@@ -3,59 +3,54 @@ include('../config/sessionStart.php');
 include('../Session/variable.php');
 include('../config/configsql.php');?>
 <?php
-//on inclue un fichier contenant nom_de_serveur, nom_bdd, login et password d'accès à la bdd mysql
-    if (isset($_POST['email']) && isset($_POST['mdp'])){
-        foreach ($users as $user) {
-            if (
-                $user['email'] === $_POST['email'] &&
-                $user['mdp'] === $_POST['mdp'] && 
-                $user['type'] === 'adm' 
-            ) {
-                $loggedUser = ['email' => $user['email']];
+
+$email=$_POST['email'];
+$password=$_POST['mdp'];
+// verification et redirection de connection
+$statement= $pdo->prepare('SELECT * FROM users WHERE email=:email');
+$statement->bindValue(':email',$_POST['email']);
+$statement->execute();
+    $user =$statement->fetchObject('User');
+    if($user === false){
+        echo'identifiant invalide';
+    } else{
+
+//recuperation des roles d'un utilisateur
+$statement = $pdo -> prepare ('SELECT * FROM userroles JOIN roles ON roles.id = userroles.userId WHERE id = :id');
+$statement ->bindValue (':id',$user->getId());
+if ($statement->execute()){
+    while ($role = $statement->fetch(PDO::FETCH_ASSOC)){
+        $user ->addRole($role['name']);
+    }
+}
+
+//verification du roles pour acceder aux pages
+if (! in_array('administrateur',$user->getRole()))
+{
+    header('location:../html/index.php');
+
+    $_SESSION['LOGGED_USER'] = 'Employé';
+
+    $loggedUser = ['email' => $user['email']];
 
                 setcookie('LOGGED_USER',
                 $loggedUser['email'],
                 ['expires' => time()+3600,
                 'secure' => true,]);
 
-                $_SESSION['LOGGED_USER'] = 'ADMINISTRATEUR';
+} else {
 
-                header ('location:../Session/admin.php');
-            }
-                elseif (
-                    $user['email'] === $_POST['email'] &&
-                    $user['mdp'] === $_POST['mdp'] && $user['type'] !== 'adm' 
-                ) {
-                    $loggedUser = ['email' => $user['email']];
-    
-                    setcookie('LOGGED_USER',
-                    $loggedUser['email'],
-                    ['expires' => time()+3600,
-                    'secure' => true,]);
-    
-                    $_SESSION['LOGGED_USER'] = $loggedUser['email'];
-    
-                    header ('location:../html/accueil.php');                   
-                
-            } else {
+    header('location:../Session/admin.php');
 
-            echo 'Vous ne possedez pas de compte utilisateur,veuillez voir votre administrateur';
-            }
-        }
+    $_SESSION['LOGGED_USER'] = 'Administrateur';
+
+    $loggedUser = ['email' => $user['email']];
+
+                setcookie('LOGGED_USER',
+                $loggedUser['email'],
+                ['expires' => time()+3600,
+                'secure' => true,]);
+
+    }
 }
-        //si le cookie ou session existents
-        /*foreach ($users as $user) {
-        if (isset($_COOKIE['LOGGED_USER']) || isset($_SESSION['LOGGED_USER']) && $user['type']==='adm'){       
-            $loggedUser = [
-                'email' => $_COOKIE['LOGGED_USER'] ?? $_SESSION['LOGGED_USER'],
-            ];
-                header ('location:admin.php');
-            } elseif 
-                (isset($_COOKIE['LOGGED_USER']) || isset($_SESSION['LOGGED_USER']) && $user['type']!=='adm'){       
-                    $loggedUser = [
-                        'email' => $_COOKIE['LOGGED_USER'] ?? $_SESSION['LOGGED_USER'],
-                    ];
-                header('location:../html/accueil.php');
-            }   
-    }      */
     ?>

@@ -5,9 +5,9 @@ include('../config/configsql.php');
 include('../html/header.php');
 
     //condition session admin
-    foreach ($users as $user) { ?>
+    ?>
     <nav>
-    <h1>Bonjour, <?php  echo ($user['prenom']." ".$user['nom'].".") ?></h1>
+    <h1>Bonjour, <?php /*User['prenom']." ".User['nom']."."*/ ?></h1>
         <ul>
             <a href="adminUtilisateurs.php"><li>Gestion des utilisateurs</li></a>
             <a href="editServicePage.php"><li>Gestion des services</li></a>
@@ -18,7 +18,7 @@ include('../html/header.php');
             <p> Vous êtes connecté en tant qu'<?php echo ($_SESSION['LOGGED_USER'])?>. </p>
         </ul>
     </nav>
-<?php }?>
+<?php //}?>
 <?php /* } else { ?>
     <h1>Bonjour <?php  ($_SESSION['nom']) ?></h1>
 <nav>

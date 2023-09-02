@@ -3,6 +3,7 @@ include('../config/configsql.php');
 include('variable.php');?>
 
 <?php  
+//page création vehicule
 //insertion donnée pour alimenter la Table vehicule
         $carFile = $_POST["Car_file"];
         $carModel = $_POST["Car_model"];

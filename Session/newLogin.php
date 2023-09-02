@@ -3,7 +3,10 @@ include('../config/sessionStart.php');
 include('../config/configsql.php');
 include('variable.php');?>
 
-<?php   $userName = $_POST["User_name"];
+<?php  
+//page création utilisateur
+
+        $userName = $_POST["User_name"];
         $userSurname = $_POST["User_surname"];
         $userMail = $_POST["User_email"];
         $userMdp = $_POST["User_mdp"];
@@ -21,10 +24,8 @@ include('variable.php');?>
                         //'email' => $user['email'],
                         //];
                 } else { //insertion données du formulaire adminUtilisateur.php
-                        $sql = " INSERT INTO  utilisateur (nom,prenom,email,type,mdp) VALUES ('$userName','$userSurname','$userMail','$userType','$userMdp')";
-
+                        $sql = " INSERT INTO  users (nom,prenom,email,mdp) VALUES ('$userName','$userSurname','$userMail','$userMdp')";
                         $pdo-> exec($sql);
-
                         echo 'Le compte utilisateur'." ".$_POST['User_name']." ".$_POST['User_surname']." ".'est créé.';// avec le profil'." ".$_POST['User_type'];
                 }
         }
