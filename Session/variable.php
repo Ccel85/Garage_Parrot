@@ -3,9 +3,50 @@ include ('../config/configsql.php');
 //recuperer les variables du client MySQL
 
     //Récupération des variables à l'aide du client MySQL pour les utilisateurs
-    $usersStatement = $pdo->prepare('SELECT * FROM utilisateur');
-    $usersStatement->execute();
-    $users = $usersStatement->fetchall();
+    //$usersStatement = $pdo->prepare('SELECT * FROM utilisateur');
+    //$usersStatement->execute();
+   // $users = $usersStatement->fetchALL();
+
+   // foreach ($users as $user){
+     //   $userType = $user['type'];}
+
+    class User{
+        private string $id;
+        private string $email;
+        private string $password;
+        private string $nom;
+        private string $prenom;
+        //tableau des roles
+        private array $roles = [];
+
+        public function getId() : string
+        {
+            return $this->id;
+        }
+        public function addRole(string $role) : void
+        {
+            $this->roles[] = $role ;
+        }
+        public function getRole() : array
+        {
+            return $this->roles;
+        }
+        }
+
+        
+
+    function verifyUserLoginPassword(PDO $pdo, string $email, string $userMdp) {
+        $query = $pdo->prepare("SELECT * FROM utilisateur WHERE email = :email");
+        $query->bindParam(':email', $email, PDO::PARAM_STR);
+        $query->execute();
+        $users = $query->fetch();
+    
+        if ($users && password_verify($userMdp, $users['mdp'])) {
+            return $users;
+        } else {
+            return false;
+        }
+    }
 
 //Récuperation données table service
     //$getsStatement = $pdo->prepare('SELECT * FROM utilisateur');
@@ -45,7 +86,7 @@ include ('../config/configsql.php');
     function getservice(PDO $pdo) {
         $sql = "SELECT * FROM service ORDER BY id = :id ";
         $query = $pdo->prepare($sql);
-            $query->bindParam(':id', $service_id, PDO::PARAM_INT);
+            $query->bindParam(':id', $id, PDO::PARAM_INT);
             $query->execute();
         return $query->fetchAll();
     }

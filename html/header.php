@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="menuAccueil">
-      <a id="home" href="accueil.php">Accueil</a>
+      <a id="home" href="index.php">Accueil</a>
       <a  id="nosServices" href="nos_services.php">Nos services</a>
       <a id="nosOccasions" href="nos_occasions.php">Nos Occasions</a>
       <a id="contact" href="contact.php">Contact</a>
