@@ -16,10 +16,10 @@ $statement->execute();
     } else{
 
 //recuperation des roles d'un utilisateur
-$statement = $pdo -> prepare ('SELECT * FROM userroles JOIN roles ON roles.id = userroles.userId WHERE id = :id');
-$statement ->bindValue (':id',$user->getId());
-if ($statement->execute()){
-    while ($role = $statement->fetch(PDO::FETCH_ASSOC)){
+$roleStatement = $pdo -> prepare ('SELECT * FROM userroles JOIN roles ON roles.id = userroles.userId WHERE id = :id');
+$roleStatement ->bindValue (':id',$user->getId());
+if ($roleStatement->execute()){
+    while ($role = $roleStatement->fetch(PDO::FETCH_ASSOC)){
         $user ->addRole($role['name']);
     }
 }
@@ -27,11 +27,11 @@ if ($statement->execute()){
 //verification du roles pour acceder aux pages
 if (! in_array('administrateur',$user->getRole()))
 {
-    header('location:../html/index.php');
+    header('location:../Session/employe.php');
 
     $_SESSION['LOGGED_USER'] = 'Employé';
 
-    $loggedUser = ['email' => $user['email']];
+    $loggedUser = ['email' => $_POST['email']];
 
                 setcookie('LOGGED_USER',
                 $loggedUser['email'],
@@ -44,13 +44,13 @@ if (! in_array('administrateur',$user->getRole()))
 
     $_SESSION['LOGGED_USER'] = 'Administrateur';
 
-    $loggedUser = ['email' => $user['email']];
+    $loggedUser = ['email' => $_POST['email']];
 
                 setcookie('LOGGED_USER',
                 $loggedUser['email'],
                 ['expires' => time()+3600,
                 'secure' => true,]);
-
+    
     }
 }
     ?>

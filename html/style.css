@@ -13,7 +13,7 @@ body{
 .menuAccueil{
 display: flex;
 justify-content: space-evenly;
-font-size: 30px;
+font-size: 2rem;
 font-weight: bold;
 }
 
@@ -21,11 +21,11 @@ font-weight: bold;
     display:flex;
     justify-content: center;
     background-color: #173258;
-    height: 501px;
+    height: 31rem;
 }
 .logo img {
-    height: 501px;
-    width: 501px;
+    height: 31rem;
+    width: 31rem;
 
 }
 .connect {
@@ -34,8 +34,8 @@ font-weight: bold;
 }
 
 .connection{
-    width: 50px;
-    height: 50px;
+    width: 3rem;
+    height: 3rem;
     justify-self: center;
 }
 
@@ -52,7 +52,7 @@ a {
 }
 
 hr{
-    height: 5px;
+    height: 1rem;
     background-color: #be1e2d;
     border: none;
 }
@@ -76,7 +76,7 @@ footer a{
 }
 
 .footer img{
-    padding: 20px;
+    padding: 1,25rem;
     padding-top: 0rem;
     margin: 0px;
 }
@@ -118,14 +118,14 @@ footer a{
 }
 
 .navfooter ul{
-    padding: 20px;
+    padding: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 /*page accueil*/
 a:hover{
-    text-decoration: underline 2px #be1e2d;
+    text-decoration: underline 0,125rem #be1e2d;
 }
 
 .imageAccueil{
@@ -133,7 +133,7 @@ a:hover{
 }
 .promesse{
     font-weight:normal;
-    line-height: 50px;
+    line-height: 3rem;
     padding: 1rem;
     
 }
@@ -152,9 +152,9 @@ span{
     font-weight: bold;
     align-self: center;
     background-color:#be1e2d ;
-    width: 530px;
-    height: 130px;
-    margin: 20px;
+    width: 33rem;
+    height: 8rem;
+    margin: 1,25rem;
     }
 
 .button:hover {
@@ -175,7 +175,7 @@ span{
 
 .nosServices p{
     text-align: left;
-    margin: 50px;
+    margin: 3rem;
 }
 
 h2{
@@ -187,27 +187,27 @@ h2{
 /* contact*/
 
 .cardInfo,form{
-    border: 4px solid #173258;
+    border: 0,25rem solid #173258;
     padding: 2rem;
-    line-height: 50px;
+    line-height: 3rem;
 }
 
 .contact{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    font-size: 20px;
-    margin: 40px;
+    font-size: 1,25rem;
+    margin: 2,50rem;
 }
 
 form button{
     background-color: #be1e2d;
     color: white;
     border: none;
-    padding: 15px;
+    padding: 1rem;
     font-size: large;
     font-weight: bold;
-    margin: 15px;
+    margin: 1rem;
 }
 button:hover {
     background-color:#173258;
@@ -231,7 +231,7 @@ button:focus {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    border: 3px solid #173258;
+    border: 1rem solid #173258;
     margin: 1rem;
 }
 .filtres h3{
@@ -239,7 +239,7 @@ button:focus {
     text-align: left;
 }
 h3{
-    font-size: 20px;
+    font-size: 1,25rem;
     font-weight: bold;
     text-decoration: underline;
     text-align:center;
@@ -250,7 +250,7 @@ h3{
 .card{
     color: #173258;
     text-align: center;
-    border: 2px solid #173258;
+    border: 0,125rem solid #173258;
     margin: 2rem;
 }
 .card-body{
@@ -260,8 +260,8 @@ h3{
 .logo-card{
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    flex-wrap: nowrap;
+    justify-content: space-evenly;
+
 }
 .logos{
     display: flex;
@@ -271,9 +271,9 @@ h3{
     flex-wrap: nowrap;
 }
 .logos img {
-    height: 70px;
-    width: 70px;
-    margin: 10px;
+    height: 4,3rem;
+    width: 4,3rem;
+    margin: 0,5rem;
 }
 .logos p {
     margin: 1rem;
@@ -289,10 +289,10 @@ h3{
     background-color: #be1e2d;
     color: white;
     border: none;
-    padding: 15px;
+    padding: 1rem;
     font-size: large;
     font-weight: bold;
-    margin: 15px;
+    margin: 1rem;
 }
 /*session*/
 .modalSession{

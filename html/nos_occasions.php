@@ -1,4 +1,5 @@
-<?php include('header.php');
+<?php 
+include('../html/header.php');
 include('../Session/variable.php');
 include('../config/configsql.php');
 include('../config/sessionStart.php');
@@ -28,7 +29,7 @@ include('../config/sessionStart.php');
     include('cars.php');
   }
   ?>
-  </div>  
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  </div> 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
-  <?php include 'footer.html' ?>
+  <?php include ('../html/footer.html') ?>
