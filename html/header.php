@@ -12,7 +12,7 @@
 </head>
 <body>
   <header>
-    <div>
+    <div class=header>
       <div class="connect">
         <img class="connection" src="../assets/img/connection.png" alt="connection">
           <a class="buttonConnect" href="../Session/session.php">Connection</a>

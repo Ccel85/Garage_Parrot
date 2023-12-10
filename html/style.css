@@ -39,7 +39,7 @@ font-weight: bold;
     justify-self: center;
 }
 
-a {
+header a {
     text-align: center;
     font-size: xx-large;  
     color: #173258;
@@ -57,7 +57,7 @@ hr{
     border: none;
 }
 /*footer*/
-footer a{
+.footer a{
     color: white;
     font-size: 1rem;
     margin: 1rem;
