@@ -1,5 +1,5 @@
 <?php 
-include('../html/header.php');
+include('../templates/header.php');
 include('../Session/variable.php');
 include('../config/configsql.php');
 ?>
@@ -12,4 +12,4 @@ include('../config/configsql.php');
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-  <?php include '../html/footer.html' ?>
+  <?php include '../templates/footer.php' ?>

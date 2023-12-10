@@ -8,7 +8,7 @@ $bdd='garageparrot';
 try
 {
 	// On se connecte à MySQL
-	$pdo = new PDO ("mysql:host=$servername;dbname=garageparrot",'admin','admin' );
+	$pdo = new PDO ("mysql:host=$servername;port=3307;dbname=garageparrot",'root','' );
 }
 catch(PDOException $e)
 {
