@@ -1,10 +1,10 @@
 <?php //session_start(); 
 include('variable.php');
 include('../config/configsql.php');
-include('../html/header.php');
+include('../templates/header.php');
 ?>
 
-        <form action="newVehicule.php" method="POST">
+        <form action="./Session/newVehicule.php" method="POST">
         <h2>Création d'annonce de véhicule d'occasion</h2> 
             <div class="formulaire">
             <div enctype="multipart/form-data" class="form-group">

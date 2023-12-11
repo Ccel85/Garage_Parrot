@@ -1,7 +1,7 @@
 <?php
 include('../config/configsql.php');
 include('../config/sessionStart.php');
-include('../html/header.php');
+include('../templates/header.php');
 ?>
 
 <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalSignin">
@@ -22,7 +22,6 @@ include('../html/header.php');
           <div class="">
             <label for="mdp">Mot de passe</label>
             <input type="password" name="mdp" class="form-control rounded-3" id="mdp" placeholder="Mot de passe">
-            
           </div>
           <button class="connectSession" name="connexion" type="submit">Connection</button>
         </form>

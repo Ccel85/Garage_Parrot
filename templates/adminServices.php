@@ -1,10 +1,10 @@
 <?php  
 include('variable.php');
 include('../config/configsql.php');
-include('../html/header.php');
+include('../templates/header.php');
 
 //creation de service
-?>        <form action="newService.php" method="POST">
+?>        <form action="./Session/newService.php" method="POST">
             <h2>création de services</h2> 
                 <div class="formulaire">
                 <div enctype="multipart/form-data" class="form-group">

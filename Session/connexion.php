@@ -8,7 +8,7 @@ $email=$_POST['email'];
 $password=$_POST['mdp'];
 // verification et redirection de connection
 $statement= $pdo->prepare('SELECT * FROM users WHERE email=:email');
-$statement->bindValue(':email',$_POST['email']);
+$statement->bindValue(':email',$email);
 $statement->execute();
     $user =$statement->fetchObject('User');
     if($user === false){
@@ -27,7 +27,7 @@ if ($statement->execute()){
 //verification du roles pour acceder aux pages
 if (! in_array('administrateur',$user->getRole()))
 {
-    header('location:../html/index.php');
+    header('location:../templates/index.php');
 
     $_SESSION['LOGGED_USER'] = 'Employé';
 
@@ -40,7 +40,7 @@ if (! in_array('administrateur',$user->getRole()))
 
 } else {
 
-    header('location:../Session/admin.php');
+    header('location:../templates/admin.php');
 
     $_SESSION['LOGGED_USER'] = 'Administrateur';
 

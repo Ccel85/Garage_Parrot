@@ -2,10 +2,10 @@
 include('../config/sessionStart.php') ;
 include('variable.php');
 include('../config/configsql.php');
-include('../html/header.php');
+include('../templates/header.php');
 ?>
 
-        <form action="newLogin.php" method="POST">
+        <form action="./Session/newLogin.php" method="POST">
         <h2>Création utilisateur </h2> 
             <div class="formulaire">
             <div class="form-group">

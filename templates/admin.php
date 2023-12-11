@@ -2,7 +2,7 @@
 include('../config/sessionStart.php');
 include('variable.php');
 include('../config/configsql.php');
-include('../html/header.php');
+include('../templates/header.php');
 
     //condition session admin
     ?>
@@ -14,7 +14,7 @@ include('../html/header.php');
             <a href="#"><li>Gestion des infos</li></a>
             <a href="adminVehicule.php"><li>Gestion des vehicules</li></a>
             <a href="#"><li>Message clients</li></a>
-            <a href="deconnection.php"><li>Déconnexion</li></a><br>
+            <a href="./Session/deconnection.php"><li>Déconnexion</li></a><br>
             <p> Vous êtes connecté en tant qu'<?php echo ($_SESSION['LOGGED_USER'])?>. </p>
         </ul>
     </nav>

@@ -1,13 +1,13 @@
 <?php  
 include('../Session/variable.php');
 include('../config/configsql.php');
-include('../html/header.php');
+include('../templates/header.php');
 
 //page de modification de servcies-editservice.php
 $services = getservice($pdo);
 
   foreach ($services as $service){?>  
-        <form action="editservice.php" method="POST">
+        <form action="./Session/editservice.php" method="POST">
             <h2 name="">Modification de services Ref: <?php echo $service['id'] ?></h2> 
             <input type="hidden" value="<?= $service['id']; ?>" name="id[]"/>
             <div class="formulaire">
@@ -29,7 +29,7 @@ $services = getservice($pdo);
             </div>
         </form>
         <?php } ?>
-        <form action="./adminServices.php" style="display:flex; justify-content:center">
+        <form action="adminServices.php" style="display:flex; justify-content:center">
             <button  type="" name="creerService">Créer un service</button>
         </form>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

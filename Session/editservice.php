@@ -1,7 +1,7 @@
 <?php 
 include('../Session/variable.php');
 include('../config/configsql.php');
-include('../html/header.php');
+include('../templates/header.php');
 //recuperation des donnee service de BDD - editServicePage.php
 //on recupere les données de la table service 
 $services = getservice($pdo);
