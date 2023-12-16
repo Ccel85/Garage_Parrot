@@ -15,7 +15,7 @@
     <div class=header>
       <div class="connect">
         <img class="connection" src="../assets/img/connection.png" alt="connection">
-          <a class="buttonConnect" href="../Session/session.php">Connection</a>
+          <a class="buttonConnect" href="../templates/session.php">Connection</a>
       </div>
       <div class="logo">
       <img src="../assets/logo/logo.svg" alt="Logo Garage V.Parrot">

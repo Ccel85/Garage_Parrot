@@ -2,13 +2,14 @@
 
 $servername='localhost';
 $bdd='garageparrot';
+
 ?>
 
 <?php
 try
 {
 	// On se connecte à MySQL
-	$pdo = new PDO ("mysql:host=$servername;port=3307;dbname=garageparrot",'root','' );
+	$pdo = new PDO ("mysql:host=$servername;port=3306;dbname=garageparrot",'user','3f7zhhRn4NH69R' );
 }
 catch(PDOException $e)
 {

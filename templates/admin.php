@@ -1,13 +1,13 @@
 <?php 
 include('../config/sessionStart.php');
-include('variable.php');
+include('../Session/variable.php');
 include('../config/configsql.php');
 include('../templates/header.php');
 
     //condition session admin
     ?>
     <nav>
-    <h1>Bonjour, <?php /*User['prenom']." ".User['nom']."."*/ ?></h1>
+    <h1>Bonjour, <?php /* echo ($loggedUser['name']) */?></h1>
         <ul>
             <a href="adminUtilisateurs.php"><li>Gestion des utilisateurs</li></a>
             <a href="editServicePage.php"><li>Gestion des services</li></a>

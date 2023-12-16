@@ -1,5 +1,5 @@
 <?php  
-include('variable.php');
+include('../Session/variable.php');
 include('../config/configsql.php');
 include('../templates/header.php');
 
