@@ -4,13 +4,14 @@ include('../config/configsql.php');
 include('../templates/header.php');
 
 //creation de service
-?>        <form action="./Session/newService.php" method="POST">
+?>        <form action="../Session/newservice.php" method="POST">
             <h2>création de services</h2> 
                 <div class="formulaire">
-                <div enctype="multipart/form-data" class="form-group">
+            <!--<div class="form-group">
                     <label for="service_file" >Images</label>
-                    <input class="form-control" type="file" name="service_file" id="exampleFormControlInput1" required>
-                </div>
+                    <input type="hidden" name="MAX_FILE_SIZE" value="250000" />
+                    <input class="form-control" type="file" name='service_file' id="exampleFormControlInput1" >
+                </div>-->
                 <div class="form-group">
                     <label for="service_title" >Entrée titre du service</label>
                     <input class="form-control" type="text" name="service_title" id="exampleFormControlInput1" required>
@@ -20,7 +21,7 @@ include('../templates/header.php');
                     <textarea rows="10" class="form-control" type="text" name="service_description" id="exampleFormControlInput1" required></textarea>
                 </div>
                 <div class="form-group">
-                <button type="submit">Valider</button>
+                <button type="submit"name="valider">Valider</button>
                 </div>
             </div>
         </form>

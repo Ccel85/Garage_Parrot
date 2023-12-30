@@ -1,17 +1,18 @@
 <?php 
 include('../config/sessionStart.php');
 include('../Session/variable.php');
+//include('../test/connectTest.php');
 include('../config/configsql.php');?>
 <?php
 //page de connection utilisateur
-
+$user = new User;
 $email=$_POST['email'];
 $password=$_POST['mdp'];
 
 //on encrypte le mot de passe
-$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+//$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-$user = User :: connect($pdo,$email,$hashedPassword);
+User :: connect($pdo,$email,$password);
 
 // verification et redirection de connection
 /*$statement= $pdo->prepare('SELECT * FROM users WHERE email=:email');

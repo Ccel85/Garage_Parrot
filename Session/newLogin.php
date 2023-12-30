@@ -8,7 +8,6 @@ try{
 
 $pdo = new PDO ("mysql:host=$servername;port=3306;dbname=garageparrot",'user','3f7zhhRn4NH69R' );
 $pdo-> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-echo "<br> Connexion à la bdd : OK !";
 
 } catch(PDOException $e) {
         die('Erreur : ' . $e->getMessage());

@@ -21,3 +21,4 @@ ALTER TABLE `garageparrot`.`cars` ADD COLUMN `price` VARCHAR(6) NOT NULL;
 ALTER TABLE `garageparrot`.`cars`ADD COLUMN `firstPicture` BLOB NOT NULL;
 ALTER TABLE `garageparrot`.`cars`ADD COLUMN (`secondPicture` BLOB NOT NULL,`ThirdPicture` BLOB NOT NULL);
 CREATE TABLE `garageparrot`.`services`(`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY , `title` VARCHAR(20) NOT NULL,`servicesContent` VARCHAR(250) NOT NULL,`servicesPicture` BLOB NOT NULL) ENGINE = MyISAM;
+CREATE TABLE `garageparrot`.`serviceFile` ( fileId INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(100),size INT(11),type VARCHAR(20),img BLOB);

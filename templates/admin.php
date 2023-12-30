@@ -7,7 +7,7 @@ include('../templates/header.php');
     //condition session admin
     ?>
     <nav>
-    <h1>Bonjour, <?php /* echo ($loggedUser['name']) */?></h1>
+    <h1>Bonjour, <?php  //*echo ($_SESSION['name']) ?></h1>
         <ul>
             <a href="adminUtilisateurs.php"><li>Gestion des utilisateurs</li></a>
             <a href="editServicePage.php"><li>Gestion des services</li></a>

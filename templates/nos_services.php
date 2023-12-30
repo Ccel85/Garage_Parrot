@@ -3,8 +3,9 @@ include('../templates/header.php');
 include('../Session/variable.php');
 include('../config/configsql.php');
 ?>
+<!--Affichage de la page de service -->
 <div>
-  <?php $services = getservice($pdo);
+  <?php $services = getservice($adminpdo);
     foreach ($services as $key => $service) {
           include('service.php');
   }

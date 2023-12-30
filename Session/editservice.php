@@ -4,7 +4,7 @@ include('../config/configsql.php');
 include('../templates/header.php');
 //recuperation des donnee service de BDD - editServicePage.php
 //on recupere les données de la table service 
-$services = getservice($pdo);
+$services = getservice($adminpdo);
 
 //foreach ($services as $service){
   foreach ($_POST['id'] as $id){
@@ -12,12 +12,12 @@ $services = getservice($pdo);
   // Réecriture des variables
   $id='id';
   $titre_service=$_POST['title'][$id];
-  $description_service=$service['description'][$id];
+  $description_service=$service['servicesContent'][$id];
   //$image_service=$_POST['image'];}
 
   // Requête de modification d'enregistrement
-  $sth= $pdo->prepare ("UPDATE `garageparrot`.`service` SET title='$titre_service',
-  description='$description_service', WHERE id = :id
+  $sth= $adminpdo->prepare ("UPDATE `garageparrot`.`service` SET title='$titre_service',
+  servicesContent='$description_service', WHERE id = :id
   ");
   $sth->bindParam (':id',$id,PDO::PARAM_INT);
   $sth->execute();
