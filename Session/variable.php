@@ -191,7 +191,7 @@ class UserManager {
         $query = $adminpdo->prepare($sql);
             $query->bindParam(':id', $id, PDO::PARAM_INT);
             $query->execute();
-        return $query->fetchAll();
+    return $query->fetchAll();
     }
     //$carCreate = $mysql->prepare('SELECT * FROM vehicule');
 //$carCreate->execute();

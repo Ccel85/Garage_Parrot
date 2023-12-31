@@ -1,0 +1,19 @@
+<?php
+include('../config/configsql.php');
+include('../Session/variable.php');
+include('../templates/header.php');
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1> test1</h1>
+  <img src="../test/imgconnect.php?fileId=1" />
+</body>
+</html>

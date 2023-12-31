@@ -6,7 +6,7 @@ include('../templates/header.php');
 
 <?php  
 //page création service
-       // $servicesPicture =($_FILES['service_file']['name']);
+        //$servicesPicture =($_FILES['service_file']['name']);
         $serviceTitle = $_POST['service_title'];
         $serviceContent = $_POST['service_description'];
        // $filename = file_get_contents($_FILES['service_file']['tmp_name']);
@@ -21,8 +21,16 @@ $statement->bindParam(':title', $serviceTitle);
 $statement->bindParam(':serviceContent', $serviceContent);
 //$statement->bindParam(':servicesPicture',addslashes($filename));
 $statement->execute();
-//return $statement;
-        echo 'La page service a été mise à jour';
+
+$sqlFile= " INSERT INTO  servicefile (name,size,type,img) VALUES (:name,:size,:type,:img)";
+$stmt = $adminpdo->prepare ($sqlFile);
+$stmt->bindParam(':name', $_FILES['service_file']['name']);
+$stmt->bindParam(':size', $_FILES['service_file']['size']);
+$stmt->bindParam(':type', $_FILES['service_file']['type']);
+$stmt->bindParam(':img',file_get_contents($_FILES['service_file']['tmp_name']));
+$stmt->execute();
+
+echo 'La page service a été mise à jour';
 }
 catch (PDOException $e){
         echo "Erreur lors de la mise à jour :". $e->getMessage();
