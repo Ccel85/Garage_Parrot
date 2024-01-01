@@ -5,7 +5,7 @@ include('../templates/header.php');
 //recuperation des donnee service de BDD - editServicePage.php
 
 //on recupere les données de la table service 
-  //foreach ($_POST['id'] as $id){
+
   if(isset($_POST['modifierService'])) {
 
   // Réecriture des variables

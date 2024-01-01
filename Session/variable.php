@@ -1,9 +1,8 @@
 <?php
-//require '../Session/variable.php';
 require '../config/configsql.php';
 
-//$user = $manager->('email','password');
-class User {
+class User 
+{
     private string $id;
     private string $email;
     private string $password;
@@ -12,20 +11,21 @@ class User {
   //tableau des roles
     private array $roles = [];
     
-    /*public function __construct($id,$email,$password,$name,$surname)
+    public function __construct($id='',$email='',$password='',$name='',$surname='',$roles=[])
     {
     $this->id = $id;
     $this->email = $email;
     $this->password = $password;
     $this->name = $name;
     $this->surname = $surname;
-    }*/
+    $this->roles = $roles;
+    }
 
     public function getId() : string
     {
         return $this->id;
-  }
-  public function addRole(string $role) : void
+    }
+    public function addRole(string $role) : void
     {
         $this->roles[] = $role ;
     }
@@ -40,68 +40,56 @@ class User {
 
     public static function connect(PDO $pdo,string $email,string $password) 
     {
-    //$email=$_POST['email'];
-    //$password=$_POST['mdp'];
+        session_start();
+    //Recuperation des donnees de la table Users
         $statement= $pdo->prepare('SELECT * FROM users WHERE email=:email');
         $statement->setFetchMode(PDO::FETCH_CLASS,'User');
         $statement->bindValue(':email',$email);
-        ($statement->execute());
-        
+        $statement->execute();
+    // Verification si email entrée existe dans la table
+
         if ($statement->rowCount() == 0)
         {
-            echo'identifiant invalide';
-        } else 
+            echo'Identifiant invalide';
+        } else {
+        //vérification mot de passe
+        $monUser = $statement->fetch(PDO::FETCH_ASSOC);
+                
+        if (password_verify($password,$monUser['password']) || $password === $monUser['password'])
         {
-        //verification mot de passe
-                $monUser = $statement->fetch(PDO::FETCH_ASSOC);
-                var_dump($monUser);
-                if (password_verify($password,$monUser['password']) || $password === $monUser['password'])
-            {
-                echo "Connection réussie! Bienvenue"." " . $monUser['surname']." " . $monUser['name'];
-                header('location:../templates/admin.php');
-                //recuperation des roles d'un utilisateur
-                /* $stmt = $pdo -> prepare ('SELECT * FROM userRoles JOIN roles ON roles.id = userRoles.userId WHERE id = :id');
-                $stmt ->bindValue (':id',$monUser['id']);
-                $stmt->execute();
+            $_SESSION['user_id'] = $monUser['id'];
+            $_SESSION['name'] = $monUser['name'];
+            $_SESSION['surname'] = $monUser['surname'];
+            $_SESSION['role'] = $monUser['role'];
+                
+        //recuperation des roles d'un utilisateur
 
-                    $role = $stmt->setFetchMode(PDO::FETCH_CLASS,'User');
-                    var_dump($role);
-                    print_r($role);
-                    $role->getRole()['administrateur'];
-                    if ($role == 'administrateur'){
-                        $monUser->addRole('administrateur');
-                        var_dump($monUser);
-                        echo $monUser;
-                        
-                    }
-        //verification du roles pour acceder aux pages
-                if (! in_array('administrateur',$monUser))
-                {
-                    header('location:../templates/index.php');
-                    $_SESSION['LOGGED_USER'] = 'Employé';
-                    $loggedUser = ['email' => $monUser['email']];
-                                setcookie('LOGGED_USER',
-                                $loggedUser['email'],
-                                ['expires' => time()+3600,
-                                'secure' => true,]);
-                } 
-                else
-                {
-                    header('location:../templates/admin.php');
-                    $_SESSION['LOGGED_USER'] = 'administrateur';
-                    $loggedUser = ['email' => $monUser['email']];
-                                setcookie('LOGGED_USER',
-                                $loggedUser['email'],
-                                ['expires' => time()+3600,
-                                'secure' => true,]);
-                }*/
-        }
-        else{
-          echo " Mot de passe incorrect";
+            $stmt = $pdo -> prepare ('SELECT roles.name FROM users JOIN userroles ON :usersId = userRoles.userId JOIN roles ON roles.id = userroles.roleId ');
+            $stmt ->bindValue (':usersId',$_SESSION['user_id']);
+            $stmt->execute();
+        //$stmt->setFetchMode(PDO::FETCH_CLASS,'User');
+            $role = $stmt->fetch();
+                
+            if (in_array('administrateur', $role)) {
+                $_SESSION['role'] = 'Administrateur';
+                header('location: ../templates/admin.php');
+                setcookie('session',$email,
+                    ['expires' => time()+600,
+                    'secure' => true,]);
+            } else {
+                    $_SESSION['role'] = 'Employé';
+                    header('location: ../templates/index.php');
+                    setcookie('session',$email,
+                    ['expires' => time()+600,
+                    'secure' => true,]);
+            }
+        } else
+        {
+        echo " Mot de passe incorrect";
         } 
-      }
     }
-  }
+    }
+}
     
     
 class UserManager {
@@ -124,32 +112,6 @@ class UserManager {
     
             }*/
         }
-
-/*function verifyUserLoginPassword(PDO $pdo, string $email, string $password) {
-        $query = $pdo->prepare("SELECT * FROM users WHERE email = :email");
-        $query->bindParam(':email', $email, PDO::PARAM_STR);
-        $query->execute();
-        
-        if ($query-> rowCount()== 1) {
-
-            $users = $query->fetch(PDO::FETCH_ASSOC);
-
-        if (password_verify($password , $users['password'])){
-            echo "Connection réussie! Bienvenue" . $users['name'] . $users['surname'];
-        }else {
-            echo " Mot de passe incorrect";
-        }
-        }
-        else {
-            echo "utilisteur introuvable, êtes vous sure de votre email ?";
-        }
-    }
-     /*   if ($users && password_verify($userMdp, $users['password'])) {
-            return $users;
-        } else {
-            return false;
-        }
-    }*/
 
 //Récuperation données table service
     //$getsStatement = $pdo->prepare('SELECT * FROM utilisateur');
