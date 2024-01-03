@@ -22,7 +22,7 @@ include('../config/sessionStart.php');
       </div>
     </div>
   </div>
-  <?php $cars = getcars($pdo);?>
+  <?php $cars = getCarbyId($adminpdo);?>
   <div>  
     <?php foreach ($cars as $key => $car) {
     include('cars.php');

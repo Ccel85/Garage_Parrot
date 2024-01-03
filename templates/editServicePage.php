@@ -3,7 +3,7 @@ include('../Session/variable.php');
 include('../config/configsql.php');
 include('../templates/header.php');
 
-//page de modification de servcies-editservice.php
+//page de modification de services-editservice.php
 $services = getservice($adminpdo);
 
 foreach ($services as $service){?>  
@@ -25,12 +25,13 @@ foreach ($services as $service){?>
                 </div>
                 <div class="form-group">
                 <button type="submit" name="modifierService">Valider la modification</button>
+                <button  type="submit" name="supprimerService">Supprimer le service</button>
                 </div>
             </div>
-        </form>
+        </form>        
         <?php } ?>
-        <form action="../templates/adminServices.php" style="display:flex; justify-content:center">
-            <button  type="" name="creerService">Créer un service</button>
+        <form  action="../templates/adminServices.php" method="POST" style="display:flex; justify-content:center">
+            <button  type="submit" name="creerService">Créer un service</button>
         </form>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>

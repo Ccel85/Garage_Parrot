@@ -14,4 +14,5 @@ $user = new User($email, $password);
 
 // Fonction connection utilisateur
 User :: connect($pdo,$email,$password);
+
 ?>

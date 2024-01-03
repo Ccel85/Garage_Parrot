@@ -33,7 +33,7 @@ include('../templates/header.php');
                 <select class="form-control" name="User_type" id="exampleFormControlInput1" >
                     <option value="" selected></option>
                     <option name="administrateur">Administrateur</option>
-                    <option name="collaborateur">collaborateur</option>
+                    <option name="collaborateur">Employé</option>
             </div>
         </div>
         </form>

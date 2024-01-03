@@ -46,7 +46,8 @@ $stmt->bindParam(':password', $hashedPassword);
 $stmt->execute();
 
 //test
-$statement = $pdo -> prepare ('INSERT INTO userRoles JOIN roles ON roles.id = userRoles.roleId WHERE id = :id');
+$statement = $pdo -> prepare ('INSERT INTO userRoles.userId FROM users JOIN userroles ON :usersId = userRoles.userId JOIN roles ON roles.id = userroles.roleId');
+//$statement = $pdo -> prepare ('INSERT INTO userRoles JOIN roles ON roles.id = userRoles.roleId WHERE id = :id');
 $statement ->bindValue (':id',$userType);
 if ($statement->execute()){
     while ($role = $statement->fetch(PDO::FETCH_ASSOC)){

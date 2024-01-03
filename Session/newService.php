@@ -22,13 +22,13 @@ $statement->bindParam(':serviceContent', $serviceContent);
 //$statement->bindParam(':servicesPicture',addslashes($filename));
 $statement->execute();
 
-$sqlFile= " INSERT INTO  servicefile (name,size,type,img) VALUES (:name,:size,:type,:img)";
+/*$sqlFile= " INSERT INTO  servicefile (name,size,type,img) VALUES (:name,:size,:type,:img)";
 $stmt = $adminpdo->prepare ($sqlFile);
 $stmt->bindParam(':name', $_FILES['service_file']['name']);
 $stmt->bindParam(':size', $_FILES['service_file']['size']);
 $stmt->bindParam(':type', $_FILES['service_file']['type']);
 $stmt->bindParam(':img',file_get_contents($_FILES['service_file']['tmp_name']));
-$stmt->execute();
+$stmt->execute();*/
 
 echo 'La page service a été mise à jour';
 }

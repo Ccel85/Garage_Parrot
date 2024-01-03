@@ -4,12 +4,12 @@ include('../config/configsql.php');
 include('../templates/header.php');
 ?>
 
-        <form action="./Session/newVehicule.php" method="POST">
+        <form action="../Session/newVehicule.php" method="POST">
         <h2>Création d'annonce de véhicule d'occasion</h2> 
             <div class="formulaire">
             <div enctype="multipart/form-data" class="form-group">
                 <label for="exampleFormControlInput1" >Photos</label>
-                <input class="form-control" type="file" name="Car_file" id="exampleFormControlInput1" required>
+                <input class="form-control" type="file" name="Car_file" id="exampleFormControlInput1" >
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1" >Modèle</label>
@@ -38,7 +38,7 @@ include('../templates/header.php');
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Description</label>
-                <input class="form-control" type="textarea" name="Car_descritpion" id="exampleFormControlInput1" required>
+                <input class="form-control" type="textarea" name="Car_description" id="exampleFormControlInput1" required>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Prix</label>
