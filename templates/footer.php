@@ -1,4 +1,5 @@
 
+<footer>
     <div class="footer">
         <div class="footerMail">
             <img src="../assets/logo/footer/Vector_email.svg">

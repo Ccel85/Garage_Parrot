@@ -11,7 +11,7 @@ include('../config/sessionStart.php');?>
 <form action="./Session/submit_message.php" method="POST">
 <div class="formulaire">
     <div class="form-group">
-        <label for="exampleFormControlInput1">Votre nom et prénom</label>
+        <label for="exampleFormControlInput1" class="form-label">Votre nom et prénom</label>
         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="John Doe">
     </div>
     <div class="form-group">

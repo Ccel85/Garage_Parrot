@@ -16,7 +16,7 @@ foreach ($services as $service){?>
                     <input class="form-control" type="file" name="image" id="exampleFormControlInput1" >
                 </div>-->
                 <div class="form-group">
-                    <label for="title" >Entrée titre du service</label>
+                    <label for="title" class="form-label" >Entrée titre du service</label>
                     <input class="form-control" type="text" name="title" value=<?php echo ($service['title']);?>>
                 </div>
                 <div class="form-group">
@@ -33,7 +33,7 @@ foreach ($services as $service){?>
         <form  action="../templates/adminServices.php" method="POST" style="display:flex; justify-content:center">
             <button  type="submit" name="creerService">Créer un service</button>
         </form>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
     </body>
 </html>
     

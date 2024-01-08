@@ -37,6 +37,6 @@ catch (PDOException $e){
 }
 ?>
 <form action="../templates/admin.php" style="display:flex; justify-content:center">
-        <button  type="" name="">Tableau de bord ADMIN</button>
+        <button  type="" name="">Tableau de bord administrateur</button>
 </form>
 <?php include '../templates/footer.php' ?>

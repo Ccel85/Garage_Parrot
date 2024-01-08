@@ -186,7 +186,7 @@ $row = $stmt->fetch();
     $carId=$row['id'];*/
     class Car
     {
-        private string $id;
+        
         private string $modele;
         private string $energy;
         private int $km;
@@ -195,9 +195,9 @@ $row = $stmt->fetch();
         private int $price;
         
             
-        public function __construct(int $id,$modele='',$energy='',$km='',$year='',$carContent='',$price='')
+        public function __construct($modele='',$energy='',$km='',$year='',$carContent='',$price='')
         {
-        $this->id = $id;
+       
         $this->modele = $modele;
         $this->energy = $energy;
         $this->km = $km;
@@ -206,10 +206,7 @@ $row = $stmt->fetch();
         $this->price = $price;
         }
     
-        public function getId() : int
-        {
-            return $this->id;
-        }  
+        
         public function getModele() : string
         {
             return $this->modele;
