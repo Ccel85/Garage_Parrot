@@ -1,6 +1,7 @@
 <?php
 require '../config/configsql.php';
 
+//GESTION UTILISATEUR
 class User 
 {
     private string $id;
@@ -97,6 +98,7 @@ class User
 //}
 }
     
+//GESTION SERVICES
 class Service
 {
     private string $id;
@@ -132,47 +134,15 @@ class Service
     }  
 }
 
-    //fonction recuperer donnee vehicule par id pas utilise
-    /*function getCarbyId(PDO $pdo, $carId){
-
-        $getcar = $pdo->prepare("SELECT * FROM vehicule ORDER BY id = :id");
-        $getcar -> bindParam (':id',$carId, PDO::PARAM_INT);
-        $getcar->execute();
-        return $getcar->fetchAll();
-    }
-    //fonction recuperer donnee vehicule par id
-    function getcars(PDO $pdo, int $limit = null) {
-        $sql = 'SELECT * FROM VEHICULE ORDER BY id DESC';
-        if ($limit) {
-            $sql .= ' LIMIT :limit';
-        }
-        $query = $pdo->prepare($sql);
-        if ($limit) {
-            $query->bindParam(':limit', $limit, PDO::PARAM_INT);
-        }
-        $query->execute();
-        return $query->fetchAll();
-    }
-    //fonction recuperer image vehicule
-    function getCarImage(string|null $image) {
-        if ($image === null) {
-            return '../img/img_clio_1.png';
-        } else {
-            return $image['image'];
-        }
-    }*/
+   
     //fonction recuperer donnée service
 function getservice(PDO $adminpdo) {
     $sql = "SELECT * FROM services ORDER BY id = :id ";
-    $query = $adminpdo->prepare($sql);
-    $query->bindParam(':id', $id, PDO::PARAM_INT);
-    $query->execute();
-    return $query->fetchAll();
+    $queryService = $adminpdo->prepare($sql);
+    $queryService->bindParam(':id', $id, PDO::PARAM_INT);
+    $queryService->execute();
+    return $queryService->fetchAll();
     }
-
-//$carCreate = $mysql->prepare('SELECT * FROM vehicule');
-//$carCreate->execute();
-//$cars = $carCreate->fetchall();
 
 //création des variables pour annonce
 /*$stmt = $pdo->query("SELECT * FROM vehicule ");
@@ -184,9 +154,8 @@ $row = $stmt->fetch();
     $carDescription=$row['description'];
     $carPrice=$row['Prix'];
     $carId=$row['id'];*/
-    class Car
+class Car
     {
-        
         private string $modele;
         private string $energy;
         private int $km;
@@ -197,7 +166,6 @@ $row = $stmt->fetch();
             
         public function __construct($modele='',$energy='',$km='',$year='',$carContent='',$price='')
         {
-       
         $this->modele = $modele;
         $this->energy = $energy;
         $this->km = $km;
@@ -205,7 +173,6 @@ $row = $stmt->fetch();
         $this->carContent = $carContent;
         $this->price = $price;
         }
-    
         
         public function getModele() : string
         {
@@ -255,8 +222,6 @@ $row = $stmt->fetch();
         {
             return $this->price ;
         }  
-
-        
 }
 
 function getCarbyId(PDO $adminpdo){
@@ -265,4 +230,112 @@ function getCarbyId(PDO $adminpdo){
     $getcar -> bindParam (':id',$id, PDO::PARAM_INT);
     $getcar->execute();
     return $getcar->fetchAll();
+}
+/*
+//fonction recuperer donnee vehicule par id
+function getcars(PDO $pdo, int $limit = null) {
+    $sql = 'SELECT * FROM VEHICULE ORDER BY id DESC';
+    if ($limit) {
+        $sql .= ' LIMIT :limit';
+    }
+    $query = $pdo->prepare($sql);
+    if ($limit) {
+        $query->bindParam(':limit', $limit, PDO::PARAM_INT);
+    }
+    $query->execute();
+    return $query->fetchAll();
+}
+//fonction recuperer image vehicule
+function getCarImage(string|null $image) {
+    if ($image === null) {
+        return '../img/img_clio_1.png';
+    } else {
+        return $image['image'];
+    }
+}
+//fonction recuperer image vehicule
+    function getCarImage(string|null $image) {
+        if ($image === null) {
+            return '../img/img_clio_1.png';
+        } else {
+            return $image['image'];
+        }
+    }
+     //fonction recuperer donnee vehicule par id
+    function getcars(PDO $pdo, int $limit = null) {
+        $sql = 'SELECT * FROM VEHICULE ORDER BY id DESC';
+        if ($limit) {
+            $sql .= ' LIMIT :limit';
+        }
+        $query = $pdo->prepare($sql);
+        if ($limit) {
+            $query->bindParam(':limit', $limit, PDO::PARAM_INT);
+        }
+        $query->execute();
+        return $query->fetchAll();
+    }
+    
+    */
+
+    //GESTION HORAIRES
+class Horaire
+{
+    private string $day;
+    private string $heureDebutAm;
+    private string $heureFinAm;
+    private string $heureDebutPm;
+    private string $heureFinPm;
+        
+    public function __construct($day='',$heureDebutAm='',$heureFinAm='',$heureDebutPm='',$heureFinPm='')
+    {
+    $this->day = $day;
+    $this->heureDebutAm = $heureDebutAm;
+    $this->heureFinAm = $heureFinAm;
+    $this->heureDebutPm = $heureDebutPm;
+    $this->heureFinPm = $heureFinPm;
+    }
+
+    public function getDay() : string
+    {
+        return $this->day;
+    }  
+    public function getHeureDebutAm() : string
+    {
+        return $this->heureDebutAm;
+    }  
+    public function setHeureDebutAm(string $heureDebutAm) : void
+    {
+        $this->heureDebutAm=$heureDebutAm;
+    }  
+    public function getHeureFinAm() : string
+    {
+        return $this->heureFinAm;
+    }  
+    public function setHeureFinAm(string $heureFinAm) : void
+    {
+        $this->heureFinAm=$heureFinAm;
+}
+public function getHeureDebutPm() : string
+    {
+        return $this->heureDebutPm;
+    }  
+    public function setHeureDebutPm(string $heureDebutPm) : void
+    {
+        $this->heureDebutPm=$heureDebutPm;
+    }
+    public function getHeureFinPm() : string
+    {
+        return $this->heureFinPm;
+    }  
+    public function setHeureFinPm(string $heureFinPm) : void
+    {
+        $this->heureFinPm=$heureFinPm;
+    }
+}
+function getHoraire(PDO $adminpdo){
+
+    $getHoraire = $adminpdo->prepare("SELECT * FROM horaires ORDER BY id = :id");
+    $getHoraire -> bindParam (':id',$id, PDO::PARAM_INT);
+    $getHoraire->execute();
+    return $getHoraire->fetchAll(PDO::FETCH_CLASS, 'Horaire');
 }

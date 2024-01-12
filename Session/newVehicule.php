@@ -21,12 +21,6 @@ $km = $newCar->getKm();
 $year =$newCar-> getYear();
 $carContent = $newCar-> getcarContent();
 $price = $newCar->getPrice();
-var_dump($modele);
-var_dump($km);
-var_dump($year);
-var_dump($carContent);
-var_dump($price);
-var_dump($energy);
 
 if (
 isset($_POST["Car_model"], $_POST["Car_gasoil"], $_POST["Car_kilometers"], $_POST["Car_year"], $_POST["Car_price"], $_POST["Car_description"])

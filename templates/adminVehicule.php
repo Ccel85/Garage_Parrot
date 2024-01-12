@@ -5,7 +5,7 @@ include('../templates/header.php');
 //création annonce vehicule
 ?>
 
-        <form action="../templates/editCarPage.php" method="POST">
+        <form action="../Session/newVehicule.php" method="POST">
         <h2>Création d'annonce de véhicule d'occasion</h2> 
             <div class="formulaire">
             <div enctype="multipart/form-data" class="form-group">
@@ -21,11 +21,11 @@ include('../templates/header.php');
             </div>
             <div>
                 <input type="radio" id="gasoil" name="Car_gasoil" value="Gasoil">
-                <label for="car_gasoil">Diesel</label><br>
+                <label for="gasoil">Diesel</label><br>
                 <input type="radio" id="Essence" name="Car_gasoil" value="Essence">
                 <label for="Essence">Essence</label><br>
                 <input type="radio" id="hybride" name="Car_gasoil" value="Hybride">
-                <label for="Hybride">Hybride</label><br>
+                <label for="hybride">Hybride</label><br>
                 <input type="radio" id="electrique" name="Car_gasoil" value="Electrique">
                 <label for="electrique">Electrique</label>
             </div>
@@ -50,7 +50,5 @@ include('../templates/header.php');
             </div>
         </div>
         </form>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    
-
+        <?php include '../templates/footer.php' ?>
     

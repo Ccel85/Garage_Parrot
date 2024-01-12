@@ -27,14 +27,14 @@ if(isset($_POST['modifierAnnonce'])) {
   $sth= $adminpdo->prepare ("UPDATE `garageparrot`.`cars` SET modele = :modele,energy = :energy, km = :km, year = :year,
   carContent = :carContent, price = :price WHERE id = :id");
   $sth->bindParam (':id',$id);
-  $carModel = $_POST['modele'];
+  //$carModel = $_POST['modele'];
   $sth->bindParam (':modele',$carModel);
   $sth->bindParam (':energy',$carEnergy);
-  $sth->bindParam (':km',$km);
-  $sth->bindParam (':year',$year);
+  $sth->bindParam (':km',$carKm);
+  $sth->bindParam (':year',$carYear);
   $sth->bindParam (':carContent',$carDescription);
   $sth->bindParam (':price',$carPrice);
-  $sth->execute();
+  $annonce=$sth->execute();
 
   } elseif (isset($_POST['supprimerAnnonce'])){
     // Réecriture des variables

@@ -3,13 +3,13 @@ include('../Session/variable.php');
 include('../config/configsql.php');
 include('../templates/header.php');
 
-//page de modification de services-editservice.php
-$services = getservice($adminpdo);
+//page de modification de horaire-editHoraire.php
+$horaires = getHoraire($adminpdo);
 
-foreach ($services as $service){?>  
-        <form action="../Session/editservice.php" method="POST">
-            <h2 name="">Modification de services N°: <?php echo $service['id'] ?></h2> 
-            <input type="hidden" value="<?= $service['id']; ?>" name="id"/>
+foreach ($horaires as $horaire){?>  
+        <form action="../Session/edithoraire.php" method="POST">
+            <h2 name="">Modification de horaire pour le : <?php echo $horaire['day'] ?></h2> 
+            <input type="hidden" value="<?= $service['day']; ?>" name="day"/>
             <div class="formulaire">
                 <!--<div enctype="multipart/form-data" class="form-group">
                     <label for="image" >Image</label>
@@ -30,9 +30,8 @@ foreach ($services as $service){?>
             </div>
         </form>        
         <?php } ?>
-        <form  action="../templates/adminServices.php" method="POST" style="display:flex; justify-content:center">
-            <button  type="submit" name="creerService">Créer un service</button>
+        <form  action="../templates/adminHoraire.php" method="POST" style="display:flex; justify-content:center">
+            <button  type="submit" name="creerHoraire">Créer l'horaire</button>
         </form>
         <?php include '../templates/footer.php' ?>
 </html>
-    

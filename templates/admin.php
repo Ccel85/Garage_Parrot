@@ -10,7 +10,7 @@ include('../templates/header.php');
         <ul>
             <a href="adminUtilisateurs.php"><li>Gestion des utilisateurs</li></a>
             <a href="editServicePage.php"><li>Gestion des services</li></a>
-            <a href="#"><li>Gestion des infos</li></a>
+            <a href="editHorairePage.php"><li>Gestion des infos</li></a>
             <a href="editCarPage.php"><li>Gestion des véhicules</li></a>
             <a href="#"><li>Message client</li></a>
             <a href="./Session/deconnection.php"><li>Déconnexion</li></a><br>
@@ -31,8 +31,6 @@ include('../templates/header.php');
 </nav>
 <?php }*/
 ?>
-<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-<script src="sidebars.js"></script>
-</body>
+  <?php include '../templates/footer.php' ?>
 </html>
     
