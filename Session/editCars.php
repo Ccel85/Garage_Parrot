@@ -10,34 +10,47 @@ include('../templates/header.php');
   header('Location=../templates/adminServices.php');
 }*/
 
-if(isset($_POST['modifierService'])) {
+if(isset($_POST['modifierAnnonce'])) {
 
   // Réecriture des variables
   //$service = new Services($_POST['title'], $_POST['description']);
   $id = $_POST['id'];
-  $titre_service = $_POST['title'];
-  $description_service = $_POST['description'];
+  $carModel = $_POST['modele'];
+  $carEnergy = $_POST['energy'];
+  $carKm = $_POST['km'];
+  $carYear = $_POST['year'];
+  $carDescription = $_POST['carContent'];
+  $carPrice = $_POST['price'];
   //$image_service=$_POST['image'];
 
   // Requête de modification d'enregistrement
-  $sth= $adminpdo->prepare ("UPDATE `garageparrot`.`services` SET title = :title,
-  servicesContent = :servicesContent WHERE id = :id");
+  $sth= $adminpdo->prepare ("UPDATE `garageparrot`.`cars` SET modele = :modele,energy = :energy, km = :km, year = :year,
+  carContent = :carContent, price = :price WHERE id = :id");
   $sth->bindParam (':id',$id);
-  $sth->bindParam (':title',$titre_service);
-  $sth->bindParam (':servicesContent',$description_service);
-  $sth->execute();
+  //$carModel = $_POST['modele'];
+  $sth->bindParam (':modele',$carModel);
+  $sth->bindParam (':energy',$carEnergy);
+  $sth->bindParam (':km',$carKm);
+  $sth->bindParam (':year',$carYear);
+  $sth->bindParam (':carContent',$carDescription);
+  $sth->bindParam (':price',$carPrice);
+  $annonce=$sth->execute();
 
-  } elseif (isset($_POST['supprimerService'])){
+  } elseif (isset($_POST['supprimerAnnonce'])){
     // Réecriture des variables
   //$service = new Services($_POST['title'], $_POST['description']);
 
   $id = $_POST['id'];
-  $titre_service = $_POST['title'];
-  $description_service = $_POST['description'];
+  $carModel = $_POST['modele'];
+  $carEnergy = $_POST['energy'];
+  $carKm = $_POST['km'];
+  $carYear = $_POST['year'];
+  $carDescription = $_POST['carContent'];
+  $carPrice = $_POST['price'];
   //$image_service=$_POST['image'];
 
   // Requête de modification d'enregistrement
-  $sth= $adminpdo->prepare ("DELETE FROM services WHERE id = :id");
+  $sth= $adminpdo->prepare ("DELETE FROM cars WHERE id = :id");
   $sth->bindParam (':id',$id);
   $sth->execute();
   }

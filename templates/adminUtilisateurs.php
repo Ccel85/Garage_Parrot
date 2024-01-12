@@ -1,11 +1,11 @@
 <?php 
 include('../config/sessionStart.php') ;
-include('variable.php');
+include('../Session/variable.php');
 include('../config/configsql.php');
-include('../html/header.php');
+include('../templates/header.php');
 ?>
 
-        <form action="newLogin.php" method="POST">
+        <form action="../Session/newLogin.php" method="POST">
         <h2>Création utilisateur </h2> 
             <div class="formulaire">
             <div class="form-group">
@@ -30,14 +30,13 @@ include('../html/header.php');
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Type de compte</label>
-                <select class="form-control" name="User_type" id="exampleFormControlInput1" required>
+                <select class="form-control" name="User_type" id="exampleFormControlInput1" >
                     <option value="" selected></option>
-                    <option value="adm">Administrateur</option>
-                    <option value=" ">Sans droit</option>
+                    <option name="administrateur">Administrateur</option>
+                    <option name="collaborateur">Employé</option>
             </div>
         </div>
         </form>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    </body>
+        <?php include '../templates/footer.php' ?>
 </html>
     

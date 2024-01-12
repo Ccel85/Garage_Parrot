@@ -8,10 +8,10 @@ include('../config/sessionStart.php');?>
             Tel:  09.66.34.56.12</span><br>
             ou à l’aide du formulaire de contact. </p>
     </div>
-<form action="submit_message.php" method="POST">
+<form action="./Session/submit_message.php" method="POST">
 <div class="formulaire">
     <div class="form-group">
-        <label for="exampleFormControlInput1">Votre nom et prénom</label>
+        <label for="exampleFormControlInput1" class="form-label">Votre nom et prénom</label>
         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="John Doe">
     </div>
     <div class="form-group">

@@ -1,13 +1,15 @@
+
+<!--affichage annonce car-->
 <div class="container">
     <!--card-->
   <div class="card" style="width: 18rem;">
-    <img src=<?= $car['image']?> class="card-img-top" alt="Renault Captur">
+   <!-- <img src=<?= $car['image']?> class="card-img-top" alt="Renault Captur">-->
     <div class="card-body">
       <h5 class="card-title"><?=$car['modele']; ?></h5>
       <div class="logo-card">
       <div class="logos">
         <img src="../assets/logo/logo_carburant.svg">
-        <p class=""><?= $car['carburant'];?></p>
+        <p class=""><?= $car['energy'];?></p>
       </div>
       <div class="logos">
         <img src="../assets/logo/logo_compteur_vitesse.svg">
@@ -15,11 +17,11 @@
       </div>
       <div class="logos">
         <img src="../assets/logo/logo_calendrier.svg">
-        <p class=""><?= $car['année']; ?></p>
+        <p class=""><?= $car['year']; ?></p>
       </div>
       </div>
       <div>
-      <h2 class="prix"><?= $car['Prix']." "."€"; ?></h2>  
+      <h2 class="prix"><?= $car['price']." "."€"; ?></h2>  
       </div>
     <button class="button-occasions">Plus de détails</button>
     <div><?= "Ref annonce :".$car['id']; ?></div>

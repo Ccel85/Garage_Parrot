@@ -1,4 +1,5 @@
-<?php include('header.php');
+<?php 
+include('header.php');
 include('../Session/variable.php');
 include('../config/configsql.php');
 include('../config/sessionStart.php');
@@ -22,13 +23,11 @@ include('../config/sessionStart.php');
       </div>
     </div>
   </div>
-  <?php $cars = getcars($pdo);?>
+  <?php $cars = getCarbyId($adminpdo);?>
   <div>  
     <?php foreach ($cars as $key => $car) {
     include('cars.php');
   }
   ?>
   </div>  
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-  <?php include 'footer.php' ?>
+  <?php include '../templates/footer.php' ?>
