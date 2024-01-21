@@ -278,64 +278,163 @@ function getCarImage(string|null $image) {
     */
 
     //GESTION HORAIRES
-class Horaire
+/*class Horaire
 {
+    private string $id;
     private string $day;
-    private string $heureDebutAm;
-    private string $heureFinAm;
-    private string $heureDebutPm;
-    private string $heureFinPm;
+    private string $heure_debut_am;
+    private string $heure_fin_am;
+    private string $heure_debut_pm;
+    private string $heure_fin_pm;
         
-    public function __construct($day='',$heureDebutAm='',$heureFinAm='',$heureDebutPm='',$heureFinPm='')
-    {
+    public function __construct(
+            $id = '',
+            $day = '',
+            $heureDebutAm = '',
+            $heureFinAm = '',
+            $heureDebutPm = '',
+            $heureFinPm = '')
+            {
+    $this->id = $id;    
     $this->day = $day;
-    $this->heureDebutAm = $heureDebutAm;
-    $this->heureFinAm = $heureFinAm;
-    $this->heureDebutPm = $heureDebutPm;
-    $this->heureFinPm = $heureFinPm;
+    $this->heure_debut_am = $heureDebutAm;
+    $this->heure_fin_am = $heureFinAm;
+    $this->heure_debut_pm = $heureDebutPm;
+    $this->heure_fin_pm = $heureFinPm;
     }
-
+    public function getId() : string
+    {
+        return $this->id;
+    }  
     public function getDay() : string
     {
         return $this->day;
     }  
     public function getHeureDebutAm() : string
     {
-        return $this->heureDebutAm;
+        return $this->heure_debut_am;
     }  
     public function setHeureDebutAm(string $heureDebutAm) : void
     {
-        $this->heureDebutAm=$heureDebutAm;
+        $this->heure_debut_am=$heureDebutAm;
     }  
     public function getHeureFinAm() : string
     {
-        return $this->heureFinAm;
+        return $this->heure_fin_am;
     }  
     public function setHeureFinAm(string $heureFinAm) : void
     {
-        $this->heureFinAm=$heureFinAm;
+        $this->heure_fin_am=$heureFinAm;
 }
 public function getHeureDebutPm() : string
     {
-        return $this->heureDebutPm;
+        return $this->heure_debut_pm;
     }  
     public function setHeureDebutPm(string $heureDebutPm) : void
     {
-        $this->heureDebutPm=$heureDebutPm;
+        $this->heure_debut_pm=$heureDebutPm;
     }
     public function getHeureFinPm() : string
     {
-        return $this->heureFinPm;
+        return $this->heure_fin_pm;
     }  
     public function setHeureFinPm(string $heureFinPm) : void
     {
-        $this->heureFinPm=$heureFinPm;
+        $this->heure_fin_pm=$heureFinPm;
+    }
+}*/
+class Horaire
+{
+    private int $id;
+    private string $day;
+    private string $heure_debut_am;
+    private string $heure_fin_am;
+    private string $heure_debut_pm;
+    private string $heure_fin_pm;
+    
+        public function __construct(
+            //int $id  ,
+            string $day ='',
+            string $heure_debut_am ='' ,
+            string $heure_fin_am = '',
+            string $heure_debut_pm = '',
+            string $heure_fin_pm = ''
+        ) {
+           // $this->id = $id;
+            $this->day = $day;
+            $this->heure_debut_am = $heure_debut_am;
+            $this->heure_fin_am = $heure_fin_am;
+            $this->heure_debut_pm = $heure_debut_pm;
+            $this->heure_fin_pm = $heure_fin_pm;
+        }
+    
+    //public function getId(): int
+    //{
+    //   return $this->id;
+    //}
+
+    public function getDay(): string
+    {
+        return $this->day;
+    }
+
+    public function getHeureDebutAm(): string
+    {
+        return $this->heure_debut_am;
+    }
+    public function setHeureDebutAm(string $heure_debut_am): void
+    {
+        $this->heure_debut_am = $heure_debut_am;
+    }
+
+    public function getHeureFinAm(): string
+    {
+        return $this->heure_fin_am;
+    }
+
+    public function setHeureFinAm(string $heure_fin_am): void
+    {
+        $this->heure_fin_am = $heure_fin_am;
+    }
+
+    public function getHeureDebutPm(): string
+    {
+        return $this->heure_debut_pm;
+    }
+
+    public function setHeureDebutPm(string $heure_debut_pm): void
+    {
+        $this->heure_debut_pm = $heure_debut_pm;
+    }
+
+    public function getHeureFinPm(): string
+    {
+        return $this->heure_fin_pm;
+    }
+
+    public function setHeureFinPm(string $heure_fin_pm): void
+    {
+        $this->heure_fin_pm = $heure_fin_pm;
     }
 }
+
+
+
 function getHoraire(PDO $adminpdo){
 
-    $getHoraire = $adminpdo->prepare("SELECT * FROM horaires ORDER BY id = :id");
+    $getHoraire = $adminpdo->prepare("SELECT *, DATE_FORMAT(heure_debut_am,'%H/%i') FROM horaires ORDER BY id = :id");
     $getHoraire -> bindParam (':id',$id, PDO::PARAM_INT);
     $getHoraire->execute();
-    return $getHoraire->fetchAll(PDO::FETCH_CLASS, 'Horaire');
+    return  $getHoraire->fetchAll();
 }
+
+/*function getHoraires(PDO $adminpdo)
+{
+    $adminpdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $getHoraires = $adminpdo->prepare("SELECT * FROM horaires");
+    $getHoraires->execute();
+    return $getHoraires->fetchAll(PDO::FETCH_CLASS,'Horaire');
+}*/
+
+

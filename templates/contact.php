@@ -1,6 +1,7 @@
 <?php 
 include('header.php');
-include('../config/sessionStart.php');?>
+include('../config/sessionStart.php');
+include('../Session/variable.php');?>
 <div class="contact" >
     <div class="cardInfo">
         <p>Vous pouvez nous contacter :<br>
@@ -38,4 +39,4 @@ include('../config/sessionStart.php');?>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-<?php include 'footer.php' ?>
+<?php include '../templates/footer.php' ?>

@@ -10,11 +10,22 @@ body , body a{
    /* padding: 1rem;*/
 }
 /*header*/
-.menuAccueil{
-display: flex;
-justify-content: space-evenly;
+header,footer{
+    width: 100%;
+}
+.menuAccueil > a{
+display: inline-block;
 font-size: 30px;
 font-weight: bold;
+}
+.menuHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: space-around;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    text-align: center;
 }
 
 .logo{
@@ -29,8 +40,13 @@ font-weight: bold;
 
 }
 .connect {
-    display:grid;
-    justify-content: end;
+    display: flex;
+    flex-direction: column;
+    align-content:center;
+    justify-content:center;
+    align-items: center;
+    flex-wrap: wrap;
+    
 }
 
 .connection{
@@ -248,10 +264,19 @@ h3{
 }
 /* card*/
 .card{
+    display: flex;
     color: #173258;
     text-align: center;
     border: 2px solid #173258;
     margin: 2rem;
+    /*width: 20rem;*/
+}
+div.cards{
+    
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        /* grid-gap: 10px; */
+    
 }
 .card-body{
     display: flex;
@@ -302,11 +327,33 @@ h3{
 }
 table,
 td {
-    border: 1px solid #333;
+    
+    
+    border: 1px solid #333 ;
+    border-collapse: collapse;
+    text-align: center;
+    
 }
 
 thead,
 tfoot {
     background-color: #333;
     color: #fff;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 700px) {
+	.menuAccueil {
+		flex-wrap: wrap;
+	}
+
+	.menuAccueil {
+		flex: 0 0 35px;
+		overflow: hidden;
+		height: 35px;
+		padding-right: 15px;
+	}
 }

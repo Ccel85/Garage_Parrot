@@ -3,7 +3,7 @@ include('../Session/variable.php');
 include('../config/configsql.php');
 include('../templates/header.php');
 
-//page de modification de services-editservice.php
+//page de modification de cars-editCars.php
 $cars = getCarbyId($adminpdo);
 
 foreach ($cars as $car){?>  
@@ -56,5 +56,5 @@ foreach ($cars as $car){?>
             <button  type="submit" name="creerAnnonce">Créer une annonce</button>
         </form>
         <?php include '../templates/footer.php' ?>
-</html>
+
     

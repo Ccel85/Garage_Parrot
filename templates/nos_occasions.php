@@ -24,7 +24,7 @@ include('../config/sessionStart.php');
     </div>
   </div>
   <?php $cars = getCarbyId($adminpdo);?>
-  <div>  
+  <div class="cards">  
     <?php foreach ($cars as $key => $car) {
     include('cars.php');
   }

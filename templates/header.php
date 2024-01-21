@@ -13,21 +13,27 @@
 </head>
 <body>
   <header>
-    <div class=header>
+  <div class="header">
+    <!--<div class="connect">
+        <img class="connection" src="../assets/img/connection.png" alt="connection">
+          <a class="buttonConnect" href="../templates/session.php">Connection</a>
+      </div>-->
+      <div class="logo">
+      <img src="../assets/logo/logo.svg" alt="Logo Garage V.Parrot">
+      </div>
+    <nav class="menuHeader">
+      <div class="menuAccueil ">
+      <a id="home" href="index.php">Accueil</a>
+      <a id="nosServices" href="nos_services.php">Nos services</a>
+      <a id="nosOccasions" href="nos_occasions.php">Nos Occasions</a>
+      <a id="contact" href="contact.php">Contact</a>
+      </div>
       <div class="connect">
         <img class="connection" src="../assets/img/connection.png" alt="connection">
           <a class="buttonConnect" href="../templates/session.php">Connection</a>
       </div>
-      <div class="logo">
-      <img src="../assets/logo/logo.svg" alt="Logo Garage V.Parrot">
       </div>
-    </div>
-    <div class="menuAccueil">
-      <a id="home" href="index.php">Accueil</a>
-      <a  id="nosServices" href="nos_services.php">Nos services</a>
-      <a id="nosOccasions" href="nos_occasions.php">Nos Occasions</a>
-      <a id="contact" href="contact.php">Contact</a>
-    </div>
+</nav>
     <hr>
   </header>
 

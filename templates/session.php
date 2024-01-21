@@ -2,6 +2,7 @@
 include('../config/configsql.php');
 include('../config/sessionStart.php');
 include('../templates/header.php');
+include('../Session/variable.php');
 ?>
 
 <!--<div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalSignin">

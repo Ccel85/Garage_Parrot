@@ -1,4 +1,3 @@
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 <footer>
@@ -25,20 +24,21 @@
                 31000 Toulouse</p>
         </div>
         <div class="horaires ">
-            <p>Horaires d’ouverture:<br>
-            
-        <?php $horaires = getHoraire($adminpdo);
+        <table border="1">
+      <tbody>
+      <?php $horaires = getHoraire($adminpdo);
         foreach ($horaires as $horaire){?> 
-             
-            <?php echo($horaire['day']) ?>              
-            <?php echo($horaire['heure_debut_am']).' -' ?>            
-            <?php echo($horaire['heure_fin_am']).' \\' ?>
-            <?php echo($horaire['heure_debut_pm']).' -' ?>
-            <?php echo($horaire['heure_fin_pm']) ?><br>
+              <tr>
+                  <td><?php echo($horaire['day']) ?></td>                  
+                  <td><?php echo($horaire['heure_debut_am']) ?></td>
+                  <td><?php echo($horaire['heure_fin_am']) ?></td>
+                  <td><?php echo($horaire['heure_debut_pm']) ?></td>
+                  <td><?php echo($horaire['heure_fin_pm']) ?></td>
+              </tr>
           <?php
          } ?>
-      
-            </p>
+      </tbody>
+  </table>
         </div>
     </div>
     </footer>
