@@ -3,7 +3,7 @@ include('../Session/variable.php');
 include('../config/configsql.php');
 include('../templates/header.php');
 
-//page de modification de cars-editCars.php
+//page d'edition de cars-editCars.php
 $cars = getCarbyId($adminpdo);
 
 foreach ($cars as $car){?>  
@@ -17,7 +17,7 @@ foreach ($cars as $car){?>
                 </div>-->
                 <div class="form-group">
                     <label for="modele" >Modele</label>
-                    <input class="form-control" type="text" name="modele" value=<?php echo ($car['modele']);?>>
+                    <textarea rows="1" class="form-control" type="text" name="modele"><?php echo htmlentities($car['modele']);?></textarea>
                 </div>
                 <div class="form-group">
                     <label for="energy">Energie</label>
@@ -34,17 +34,45 @@ foreach ($cars as $car){?>
                     <input class="form-control" type="text" name="km" value=<?php echo ($car['km']);?>>
                 </div>
                 <div class="form-group">
-                    <label for="year">Year</label>
+                    <label for="year">Année</label>
                     <input class="form-control" type="text" name="year" value=<?php echo ($car['year']);?>>
                 </div>
                 <div class="form-group">
-                    <label for="carContent">Description</label>
-                    <textarea rows="10" class="form-control" type="text" name="carContent" id="carContent" ><?php echo htmlentities($car['carContent']);?></textarea>
+                    <label for="carContent">Descriptif court</label>
+                    <textarea rows="3" class="form-control" type="text" name="carContent" id="carContent"><?php echo htmlentities($car['carContent']);?></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="carColor">Couleur</label>
+                    <textarea  rows="1"class="form-control" type="text" name="carColor" id="carColor" ><?php echo htmlentities($car['color']);?></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="carBoite">Boite de vitesse</label>
+                    <select class="form-control" name="carBoite" id="exampleFormControlInput1" value=<?php echo ($car['carBoite']);?>>
+                        <option value=<?php echo ($car['carBoite']);?>><?php echo ($car['carBoite']);?></option>
+                        <option value="manuelle">Manuelle</option>
+                        <option value="automatic">Automatique</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="carDoor" >Nombre de portes</label>
+                    <input class="form-control" type="integer" name="carDoor" value=<?php echo ($car['carDoor']);?>>
+                </div>
+                <div class="form-group">
+                    <label for="puissanceFiscale" >Puissance fiscale</label>
+                    <input class="form-control" type="integer" name="puissanceFiscale" value=<?php echo ($car['puissanceFiscale']);?>>
+                </div>
+                <div class="form-group">
+                    <label for="puissance" >Puissance (DIN)</label>
+                    <input class="form-control" type="integer" name="puissance" value=<?php echo ($car['Puissance']);?>>
                 </div>
                 <div class="form-group">
                     <label for="price">Prix</label>
                     <input class="form-control" id="price" type="text" name="price" value=<?php echo ($car['price']);?>>
-                </div>
+                </div>      
+                <div class="form-group">
+                    <label for="guarantie" >Garantie</label>
+                    <input class="form-control" type="integer" name="guarantie" value=<?php echo ($car['guarantie']);?>>
+                </div>          
                 <div class="form-group">
                 <button type="submit" name="modifierAnnonce">Valider la modification</button>
                 <button  type="submit" name="supprimerAnnonce">Supprimer l'annonce</button>

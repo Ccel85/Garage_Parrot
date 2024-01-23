@@ -19,21 +19,47 @@ if(isset($_POST['modifierAnnonce'])) {
   $carEnergy = $_POST['energy'];
   $carKm = $_POST['km'];
   $carYear = $_POST['year'];
-  $carDescription = $_POST['carContent'];
   $carPrice = $_POST['price'];
+  $carDescription = $_POST['carContent'];
+  $carBoite = $_POST['carBoite'];
+  $carDoor = $_POST['carDoor'];
+  $puissanceFiscale = $_POST['puissanceFiscale'];
+  $puissance = $_POST['puissance'];
+  $guarantie = $_POST['guarantie'];
+  $carColor = $_POST['carColor'];
+  
   //$image_service=$_POST['image'];
 
   // Requête de modification d'enregistrement
-  $sth= $adminpdo->prepare ("UPDATE `garageparrot`.`cars` SET modele = :modele,energy = :energy, km = :km, year = :year,
-  carContent = :carContent, price = :price WHERE id = :id");
+  $sth= $adminpdo->prepare ("UPDATE `garageparrot`.`cars` SET 
+  modele = :modele,
+  energy = :energy,
+  km = :km,
+  year = :year,
+  carContent = :carContent,
+  price = :price,
+  carBoite = :carBoite,
+  carDoor = :carDoor,
+  puissanceFiscale = :puissanceFiscale,
+  puissance = :puissance,
+  guarantie = :guarantie,
+  color = :color
+  WHERE id = :id");
+
   $sth->bindParam (':id',$id);
-  //$carModel = $_POST['modele'];
   $sth->bindParam (':modele',$carModel);
   $sth->bindParam (':energy',$carEnergy);
   $sth->bindParam (':km',$carKm);
   $sth->bindParam (':year',$carYear);
   $sth->bindParam (':carContent',$carDescription);
+  $sth->bindParam (':carBoite',$carBoite);
+  $sth->bindParam (':carDoor',$carDoor);
+  $sth->bindParam (':puissanceFiscale',$puissanceFiscale);
+  $sth->bindParam (':puissance',$puissance);
+  $sth->bindParam (':guarantie',$guarantie);
+  $sth->bindParam (':color',$carColor);
   $sth->bindParam (':price',$carPrice);
+
   $annonce=$sth->execute();
 
   } elseif (isset($_POST['supprimerAnnonce'])){

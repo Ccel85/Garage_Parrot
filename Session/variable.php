@@ -134,8 +134,8 @@ class Service
     }  
 }
 
-   
-    //fonction recuperer donnée service
+
+//fonction recuperer donnée service
 function getservice(PDO $adminpdo) {
     $sql = "SELECT * FROM services ORDER BY id = :id ";
     $queryService = $adminpdo->prepare($sql);
@@ -145,6 +145,7 @@ function getservice(PDO $adminpdo) {
     }
 
 //création des variables pour annonce
+
 /*$stmt = $pdo->query("SELECT * FROM vehicule ");
 $row = $stmt->fetch();
     $carModele=$row['modele'];
@@ -154,6 +155,8 @@ $row = $stmt->fetch();
     $carDescription=$row['description'];
     $carPrice=$row['Prix'];
     $carId=$row['id'];*/
+
+
 class Car
     {
         private string $modele;
@@ -244,23 +247,25 @@ function getcars(PDO $pdo, int $limit = null) {
     }
     $query->execute();
     return $query->fetchAll();
-}
+}*/
+
 //fonction recuperer image vehicule
-function getCarImage(string|null $image) {
-    if ($image === null) {
+function getCarImages(?array $carImages) {
+    if ($carImages === null || empty($carImages)) {
         return '../img/img_clio_1.png';
-    } else {
-        return $image['image'];
     }
+    // Retournez la première image de la liste
+    
+    return ($carImages);
 }
-//fonction recuperer image vehicule
-    function getCarImage(string|null $image) {
-        if ($image === null) {
-            return '../img/img_clio_1.png';
-        } else {
-            return $image['image'];
-        }
-    }
+// Utilisation de la fonction
+$carImages = getCarImages([
+    "0" => "../assets/img/jeepCompassPhase2.jpg",
+    "1" => "../assets/img/renaultClioV.jpg",
+    "2" => "../assets/img/renaultEspaceV.jpg",
+    "3" => "../assets/img/daciaDuster2.jpg"
+]);
+
      //fonction recuperer donnee vehicule par id
     function getcars(PDO $pdo, int $limit = null) {
         $sql = 'SELECT * FROM VEHICULE ORDER BY id DESC';
@@ -275,74 +280,10 @@ function getCarImage(string|null $image) {
         return $query->fetchAll();
     }
     
-    */
+    
 
     //GESTION HORAIRES
-/*class Horaire
-{
-    private string $id;
-    private string $day;
-    private string $heure_debut_am;
-    private string $heure_fin_am;
-    private string $heure_debut_pm;
-    private string $heure_fin_pm;
-        
-    public function __construct(
-            $id = '',
-            $day = '',
-            $heureDebutAm = '',
-            $heureFinAm = '',
-            $heureDebutPm = '',
-            $heureFinPm = '')
-            {
-    $this->id = $id;    
-    $this->day = $day;
-    $this->heure_debut_am = $heureDebutAm;
-    $this->heure_fin_am = $heureFinAm;
-    $this->heure_debut_pm = $heureDebutPm;
-    $this->heure_fin_pm = $heureFinPm;
-    }
-    public function getId() : string
-    {
-        return $this->id;
-    }  
-    public function getDay() : string
-    {
-        return $this->day;
-    }  
-    public function getHeureDebutAm() : string
-    {
-        return $this->heure_debut_am;
-    }  
-    public function setHeureDebutAm(string $heureDebutAm) : void
-    {
-        $this->heure_debut_am=$heureDebutAm;
-    }  
-    public function getHeureFinAm() : string
-    {
-        return $this->heure_fin_am;
-    }  
-    public function setHeureFinAm(string $heureFinAm) : void
-    {
-        $this->heure_fin_am=$heureFinAm;
-}
-public function getHeureDebutPm() : string
-    {
-        return $this->heure_debut_pm;
-    }  
-    public function setHeureDebutPm(string $heureDebutPm) : void
-    {
-        $this->heure_debut_pm=$heureDebutPm;
-    }
-    public function getHeureFinPm() : string
-    {
-        return $this->heure_fin_pm;
-    }  
-    public function setHeureFinPm(string $heureFinPm) : void
-    {
-        $this->heure_fin_pm=$heureFinPm;
-    }
-}*/
+
 class Horaire
 {
     private int $id;
@@ -417,8 +358,6 @@ class Horaire
         $this->heure_fin_pm = $heure_fin_pm;
     }
 }
-
-
 
 function getHoraire(PDO $adminpdo){
 

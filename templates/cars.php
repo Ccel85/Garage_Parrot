@@ -1,10 +1,9 @@
 
 <!--affichage annonce car-->
 <div class="container">
-    <!--card-->
   <div class="card" >
-   <!-- <img src=<?= $car['image']?> class="card-img-top" alt="Renault Captur">-->
-    <div class="card-body">
+    <div class="card-body"> 
+    <img class="card-img-top" alt="Renault Captur" src="<?= $carImage;?>">
       <h5 class="card-title"><?=$car['modele']; ?></h5>
       <div class="logo-card">
       <div class="logos">
@@ -26,7 +25,6 @@
     <button class="button-occasions">Plus de détails</button>
     <div><?= "Ref annonce :".$car['id']; ?></div>
     </div>
+    <?php //endforeach; ?>
   </div>
 </div>
-
-

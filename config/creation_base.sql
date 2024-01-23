@@ -49,6 +49,15 @@ ALTER TABLE `garageparrot`.`cars`ADD COLUMN (
     `secondPicture` BLOB NOT NULL,
     `ThirdPicture` BLOB NOT NULL
   );
+  ALTER TABLE `garageparrot`.`cars`ADD COLUMN (
+    `carBoite` varchar(10),
+    `color` varchar(20),
+    `carDoor` int,
+    `puissanceFiscale` int,
+    `Puissance` int,
+    `guarantie` int  );
+
+
 CREATE TABLE `garageparrot`.`services`(
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
     `title` VARCHAR(20) NOT NULL,

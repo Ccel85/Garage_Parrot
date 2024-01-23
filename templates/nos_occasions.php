@@ -23,11 +23,23 @@ include('../config/sessionStart.php');
       </div>
     </div>
   </div>
-  <?php $cars = getCarbyId($adminpdo);?>
+  <?php $cars = getCarbyId($adminpdo);
+  //var_dump($cars);
+  ?>
   <div class="cards">  
-    <?php foreach ($cars as $key => $car) {
+    <!--/* foreach ($cars as $key => $car){
+      foreach ($carImages as $key => $carImage)
     include('cars.php');
   }
-  ?>
+  
+  */?>-->
+
+<?php foreach ($cars as $carKey => $car) : ?>
+  <?php foreach ($carImages as $imageKey => $carImage) :?>
+    <?php if ($carKey === $imageKey) : ?>
+            <?php include('cars.php'); ?>
+            <?php endif;  ?>
+            <?php endforeach; ?>
+            <?php endforeach; ?>
   </div>  
   <?php include '../templates/footer.php' ?>
