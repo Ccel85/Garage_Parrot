@@ -22,9 +22,9 @@
       <div>
       <h2 class="prix"><?= $car['price']." "."€"; ?></h2>  
       </div>
-    <button class="button-occasions">Plus de détails</button>
-    <div><?= "Ref annonce :".$car['id']; ?></div>
+    
+    <button onclick="window.location.href = '../templates/carDetail.php';" class="button-occasions">Plus de détails</button>
+    <div><?= "Référence de l'annonce : 00".$car['id']; ?></div>
     </div>
-    <?php //endforeach; ?>
   </div>
 </div>

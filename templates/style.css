@@ -153,9 +153,10 @@ a:hover{
     padding: 1rem;
     
 }
-span{
+.infoContact{
     color:#be1e2d;
-    font-weight: bolder;
+    font-weight: normal;
+
     }
 .navButton{
     display: flex;
@@ -283,10 +284,12 @@ div.cards{
     flex-direction: column;
 }
 .logo-card{
-    display: flex;
+    display:flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     flex-wrap: nowrap;
+    margin: 2rem;
+    align-items: center;
 }
 .logos{
     display: flex;
@@ -345,7 +348,43 @@ form {
     flex-direction: column;
 }
 
-@media (max-width: 700px) {
+/*carDetail*/
+.carGeneral{
+/* display: flex;*/
+    list-style-type: none;
+    text-align: left;
+}
+/*.titleDescritpion{
+color:#173258;
+font-size:x-large;
+}*/
+.carCaracteristique {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-between;
+    justify-content: space-around;
+    list-style-type: none;
+    color: #173258;
+    align-items: stretch;
+    list-style: none;
+    text-align: left;
+}
+
+.carDetail,.guarantie,.autre,.carInterieur,.chassis {
+color: #173258;
+font-size:2rem ;
+list-style-type: none;
+padding: 2rem;
+vertical-align: top;
+}
+
+.carCaracteristique h2{
+    text-align: left;
+}
+
+
+/*@media (max-width: 700px) {
 	.menuAccueil {
 		flex-wrap: wrap;
 	}
@@ -356,4 +395,4 @@ form {
 		height: 35px;
 		padding-right: 15px;
 	}
-}
+}*/

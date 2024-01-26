@@ -57,6 +57,11 @@ ALTER TABLE `garageparrot`.`cars`ADD COLUMN (
     `Puissance` int,
     `guarantie` int  );
 
+    ALTER TABLE `garageparrot`.`cars`ADD COLUMN (
+    `interieur` varchar(250),
+    `chassis` varchar(250),
+    `autre` varchar(250));
+
 
 CREATE TABLE `garageparrot`.`services`(
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,

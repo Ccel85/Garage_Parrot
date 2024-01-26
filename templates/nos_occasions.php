@@ -27,13 +27,6 @@ include('../config/sessionStart.php');
   //var_dump($cars);
   ?>
   <div class="cards">  
-    <!--/* foreach ($cars as $key => $car){
-      foreach ($carImages as $key => $carImage)
-    include('cars.php');
-  }
-  
-  */?>-->
-
 <?php foreach ($cars as $carKey => $car) : ?>
   <?php foreach ($carImages as $imageKey => $carImage) :?>
     <?php if ($carKey === $imageKey) : ?>

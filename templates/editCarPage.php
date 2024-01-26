@@ -72,6 +72,63 @@ foreach ($cars as $car){?>
                 <div class="form-group">
                     <label for="guarantie" >Garantie</label>
                     <input class="form-control" type="integer" name="guarantie" value=<?php echo ($car['guarantie']);?>>
+                </div> 
+            <hr>
+                <label for="chassis">Exterieur et chassis</label>    
+                <div class="checkbox">
+                    <input class="" type="checkbox" name="chassis[]" value="Chassis sport">
+                    <label for="chassis[]" >Chassis sport</label>
+                </div>    
+                <div class="checkbox">
+                    <input class="" type="checkbox" name="chassis[]" value="Jantes Alu">
+                    <label for="chassis[]" >Jantes Alu</label>
+                </div>    
+                <div class="checkbox">
+                    <input class="" type="checkbox" name="chassis[]" value="Toit panoramique">
+                    <label for="chassis[]" >Toit panoramique</label>
+                </div>    
+                <div class="checkbox">
+                    <input class="" type="checkbox" name="chassis[]" value="Retroviseur electrique">
+                    <label for="chassis[]" >Retroviseur electrique</label>
+                </div>    
+            <hr>
+                <label for="interieur">Equipement intérieur</label>
+                <div class="checkbox">
+                    <input class="" type="checkbox" name="interieur[]" value="Camera de recul">
+                    <label for="interieur" >Camera de recul</label>
+                </div> 
+                <div class="checkbox">
+                    <input class="" type="checkbox" name="interieur[]" value="Climatisation">
+                    <label for="interieur" >Climatisation</label>
+                </div> 
+                <div class="checkbox">
+                    <input class="" type="checkbox" name="interieur[]" value="Régulateur de vitesse">
+                    <label for="interieur" >Régulateur de vitesse</label>
+                </div> 
+                <div class="checkbox">
+                    <input class="" type="checkbox" name="interieur[]" value="Siege chauffant">
+                    <label for="interieur" >Siege chauffant</label>
+                </div> 
+                <div class="checkbox">
+                    <input class="" type="checkbox" name="interieur[]" value="Vitre surteintées">
+                    <label for="interieur" >Vitre surteintées</label>
+                </div> 
+                <div class="checkbox">
+                    <input class="" type="checkbox" name="interieur[]" value="Intérieur cuir">
+                    <label for="interieur" >Intérieur cuir</label>
+                </div> 
+                <div class="checkbox">
+                    <input class="" type="checkbox" name="interieur[]" value="Affichage tête haute">
+                    <label for="interieur" ></label>
+                </div> 
+                <div class="checkbox">
+                    <input class="" type="checkbox" name="interieur[]" value="Alerte franchissement de ligne">
+                    <label for="interieur" >Alerte franchissement de ligne</label>
+                </div> 
+            <hr>
+                <div class="form-group">
+                    <label for="autre" >Autre</label>
+                    <textarea row="30" class="form-control" type="text" name="autre" value=<?php echo ($car['autre']);?>></textarea>
                 </div>          
                 <div class="form-group">
                 <button type="submit" name="modifierAnnonce">Valider la modification</button>

@@ -5,7 +5,7 @@ include('../Session/variable.php');?>
 <div class="contact" >
     <div class="cardInfo">
         <p>Vous pouvez nous contacter :<br>
-            <span>par mail: garageparrot@gmail.com<br>
+            <span class="infoContact">par mail: garageparrot@gmail.com<br>
             Tel:  09.66.34.56.12</span><br>
             ou à l’aide du formulaire de contact. </p>
     </div>

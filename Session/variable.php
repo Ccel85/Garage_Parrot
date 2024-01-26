@@ -260,10 +260,10 @@ function getCarImages(?array $carImages) {
 }
 // Utilisation de la fonction
 $carImages = getCarImages([
-    "0" => "../assets/img/jeepCompassPhase2.jpg",
-    "1" => "../assets/img/renaultClioV.jpg",
-    "2" => "../assets/img/renaultEspaceV.jpg",
-    "3" => "../assets/img/daciaDuster2.jpg"
+    "0" => "../assets\img\jeepcompass\W102834019_STANDARD_1.jpg",
+    "1" => "../assets\img\audirs4\E113347647_STANDARD_1.jpg",
+    "2" => "../assets\img/renaultespace\E112536985_STANDARD_2.jpg",
+    "3" => "../assets\img\dacia\E113210533_STANDARD_1.jpg"
 ]);
 
      //fonction recuperer donnee vehicule par id
