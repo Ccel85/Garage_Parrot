@@ -133,8 +133,6 @@ class Service
         $this->content = $content;
     }  
 }
-
-
 //fonction recuperer donnée service
 function getservice(PDO $adminpdo) {
     $sql = "SELECT * FROM services ORDER BY id = :id ";
@@ -143,19 +141,75 @@ function getservice(PDO $adminpdo) {
     $queryService->execute();
     return $queryService->fetchAll();
     }
+//function recuperer valeur min max cars pour Range
+function minMaxRange(PDO $adminpdo){
+// Exemple de requête pour obtenir les valeurs minimales et maximales
+$requete = "SELECT MIN(price) AS min_prix, MAX(price) AS max_prix, 
+MIN(year) AS min_annee, MAX(year) AS max_annee,
+MIN(km) AS min_km, MAX(km) AS max_km
+FROM cars";
 
-//création des variables pour annonce
+$resultat = $adminpdo->query($requete);
 
-/*$stmt = $pdo->query("SELECT * FROM vehicule ");
-$row = $stmt->fetch();
-    $carModele=$row['modele'];
-    $carGasoil=$row['carburant'];
-    $carKilometers=$row['km'];
-    $carYear=$row['année'];
-    $carDescription=$row['description'];
-    $carPrice=$row['Prix'];
-    $carId=$row['id'];*/
+// Vérifier la réussite de la requête
+if ($resultat) {
+return  $resultat->fetch(PDO::FETCH_ASSOC);
 
+} else {
+// Gérer l'erreur de la requête
+die("Erreur dans la requête : " . $adminpdo->errorInfo()[2]);
+}
+}
+
+/*function getFilteredVehicles(PDO $adminpdo, $minPrix, $maxPrix, $minAnnee, $maxAnnee, $minKm, $maxKm) {
+    // Requête SQL avec des paramètres de filtrage
+   /* $requete = "SELECT * FROM cars
+                WHERE price BETWEEN :min_prix AND :max_prix
+                AND year BETWEEN :min_annee AND :max_annee
+                AND km BETWEEN :min_km AND :max_km";*/
+/*$requete = "SELECT MIN(price) AS :min_prix, MAX(price) AS :max_prix, 
+MIN(year) AS :min_annee, MAX(year) AS :max_annee,
+MIN(km) AS :min_km, MAX(km) AS :max_km
+FROM cars";
+    // Préparation de la requête
+    $stmt = $adminpdo->prepare($requete);
+
+    // Attribution des valeurs aux paramètres
+    $stmt->bindParam(':min_prix', $minPrix, PDO::PARAM_INT);
+    $stmt->bindParam(':max_prix', $maxPrix, PDO::PARAM_INT);
+    $stmt->bindParam(':min_annee', $minAnnee, PDO::PARAM_INT);
+    $stmt->bindParam(':max_annee', $maxAnnee, PDO::PARAM_INT);
+    $stmt->bindParam(':min_km', $minKm, PDO::PARAM_INT);
+    $stmt->bindParam(':max_km', $maxKm, PDO::PARAM_INT);
+
+    // Exécution de la requête
+    $stmt->execute();
+
+    // Récupération des résultats
+    $resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Fermeture de la requête
+    $stmt->closeCursor();
+
+    return $resultats;
+    var_dump($resultats);
+}
+// Utilisation de la fonction avec les valeurs des filtres
+$minPrix = 0;
+$maxPrix = $_POST["max_prix"];
+$minAnnee = 2000;
+$maxAnnee = $_POST["max_annee"];
+$minKm = 0;
+$maxKm = $_POST["max_km"];
+
+$resultatsFiltres = getFilteredVehicles($adminpdo, $minPrix, $maxPrix, $minAnnee, $maxAnnee, $minKm, $maxKm);
+//var_dump($resultatsFiltres);
+
+// Affichage des résultats
+  foreach ($resultatsFiltres as $vehicule) {
+    echo "ID : " . $vehicule['id'] . " - Marque : " . $vehicule['modele'] . "<br>";
+    // Ajoutez d'autres détails selon votre structure de base de données
+  }*/
 
 class Car
     {
@@ -260,11 +314,41 @@ function getCarImages(?array $carImages) {
 }
 // Utilisation de la fonction
 $carImages = getCarImages([
-    "0" => "../assets\img\jeepcompass\W102834019_STANDARD_1.jpg",
-    "1" => "../assets\img\audirs4\E113347647_STANDARD_1.jpg",
-    "2" => "../assets\img/renaultespace\E112536985_STANDARD_2.jpg",
-    "3" => "../assets\img\dacia\E113210533_STANDARD_1.jpg"
+    "0" => "../assets\img/1-jeepcompass\W102834019_STANDARD_1.jpg",
+    "1" => "../assets\img/2-audirs4\E113347647_STANDARD_1.jpg",
+    "2" => "../assets\img/3-renaultespace\E112536985_STANDARD_2.jpg",
+    "3" => "../assets\img/4-dacia\E113210533_STANDARD_1.jpg"
 ]);
+//recuperer les fichiers images
+// Chemin du répertoire où se trouvent les images
+function getImages($fichiersImages){
+
+$cheminRepertoire = '../assets/img';
+
+// Liste des fichiers et dossiers dans le répertoire
+$contenuRepertoire = scandir($cheminRepertoire);
+
+// Filtrer les résultats pour ne conserver que les dossiers (en excluant . et ..)
+$dossiersImages = array_filter($contenuRepertoire, function ($element) use ($cheminRepertoire) {
+    return is_dir($cheminRepertoire . '/' . $element) && !in_array($element, ['.', '..']);
+});
+
+// Afficher le tableau des dossiers
+if (!empty($dossiersImages)) {
+    foreach ($dossiersImages as $dossier) {
+        echo '<h2>Dossier : ' . $dossier . '</h2>';
+
+        // Obtenir la liste des fichiers dans le dossier
+        $cheminDossier = $cheminRepertoire . '/' . $dossier;
+        $contenuDossier = scandir($cheminDossier);
+
+        // Filtrer les résultats pour ne conserver que les fichiers (en excluant . et ..)
+        $fichiersImages = array_filter($contenuDossier, function ($element) use ($cheminDossier) {
+            return is_file($cheminDossier . '/' . $element) && !in_array($element, ['.', '..']);
+        });
+    }
+}
+}
 
      //fonction recuperer donnee vehicule par id
     function getcars(PDO $pdo, int $limit = null) {

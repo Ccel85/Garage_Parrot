@@ -21,12 +21,12 @@
       <div class="logo">
       <img src="../assets/logo/logo.svg" alt="Logo Garage V.Parrot">
       </div>
-    <nav class="menuHeader">
-      <div class="menuAccueil ">
-      <a id="home" href="index.php">Accueil</a>
-      <a id="nosServices" href="nos_services.php">Nos services</a>
-      <a id="nosOccasions" href="nos_occasions.php">Nos Occasions</a>
-      <a id="contact" href="contact.php">Contact</a>
+    <nav class="menuHeader ">
+      <div class="menuAccueil container ">
+      <a id="home" href="../templates/index.php">Accueil</a>
+      <a id="nosServices" href="../templates/nos_services.php">Nos services</a>
+      <a id="nosOccasions" href="../templates/nos_occasions.php">Nos Occasions</a>
+      <a id="contact" href="../templates/contact.php">Contact</a>
       </div>
       <div class="connect">
         <img class="connection" src="../assets/img/connection.png" alt="connection">

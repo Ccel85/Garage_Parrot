@@ -6,15 +6,15 @@ include('../templates/header.php');
     //condition session admin
     ?>
     <nav>
-        <h1> Bonjour, <?php echo $_SESSION['surname'] . ' ' . $_SESSION['name']; ?> </h1>
-        <ul>
+        <h1> Bonjour <?php echo $_SESSION['surname'] . ' ' . $_SESSION['name'].','; ?> </h1>
+        <p> vous êtes connecté en tant qu'<?php echo $_SESSION['role']?>. </p>
+        <ul class="menuAdmin">
             <a href="adminUtilisateurs.php"><li>Gestion des utilisateurs</li></a>
             <a href="editServicePage.php"><li>Gestion des services</li></a>
             <a href="adminHoraire.php"><li>Gestion des infos</li></a>
             <a href="editCarPage.php"><li>Gestion des véhicules</li></a>
             <a href="#"><li>Message client</li></a>
             <a href="./Session/deconnection.php"><li>Déconnexion</li></a><br>
-            <p> Vous êtes connecté en tant qu'<?php echo $_SESSION['role']?>. </p>
         </ul>
     </nav>
 <?php //}?>

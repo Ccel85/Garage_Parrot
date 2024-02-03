@@ -13,19 +13,24 @@ body , body a{
 header,footer{
     width: 100%;
 }
-.menuAccueil > a{
-display: inline-block;
+.menuAccueil {
 font-size: 30px;
 font-weight: bold;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: space-evenly;
+align-items: center;
+align-content: center;
 }
 .menuHeader{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    align-content: space-around;
-    flex-wrap: wrap;
-    flex-direction: row-reverse;
-    text-align: center;
+display: flex;
+justify-content: space-between;
+align-items: center;
+align-content: space-around;
+flex-wrap: nowrap;
+flex-direction: row-reverse;
+text-align: center;
 }
 
 .logo{
@@ -48,7 +53,10 @@ font-weight: bold;
     flex-wrap: wrap;
     
 }
-
+.menuAdmin{
+    text-align: center;
+    list-style: none;
+}
 .connection{
     width: 50px;
     height: 50px;
@@ -200,6 +208,10 @@ h2{
     text-decoration: underline;
     text-align: center;
     font-weight: bold;
+}
+.textRed{
+color:#be1e2d;
+font-weight: bold;
 }
 /* contact*/
 

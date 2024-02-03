@@ -1,7 +1,7 @@
 
 <!--affichage annonce car-->
 <div class="container">
-  <div class="card" >
+  <div class="card" id="card" >
     <div class="card-body"> 
     <img class="card-img-top" alt="Renault Captur" src="<?= $carImage;?>">
       <h5 class="card-title"><?=$car['modele']; ?></h5>
@@ -12,7 +12,7 @@
       </div>
       <div class="logos">
         <img src="../assets/logo/logo_compteur_vitesse.svg">
-        <p class=""><?= $car['km']; ?></p>
+        <p class=""><?= $car['km'].' Km'; ?></p>
       </div>
       <div class="logos">
         <img src="../assets/logo/logo_calendrier.svg">

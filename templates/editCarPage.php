@@ -76,7 +76,7 @@ foreach ($cars as $car){?>
             <hr>
                 <label for="chassis">Exterieur et chassis</label>    
                 <div class="checkbox">
-                    <input class="" type="checkbox" name="chassis[]" value="Chassis sport">
+                    <input class="" type="checkbox" name="chassis[]" value="Chassis sport" >
                     <label for="chassis[]" >Chassis sport</label>
                 </div>    
                 <div class="checkbox">

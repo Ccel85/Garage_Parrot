@@ -72,13 +72,7 @@ if(isset($_POST['modifierAnnonce'])) {
   } elseif (isset($_POST['supprimerAnnonce'])){
     // Réecriture des variables
 
-  $id = $_POST['id'];
-  $carModel = $_POST['modele'];
-  $carEnergy = $_POST['energy'];
-  $carKm = $_POST['km'];
-  $carYear = $_POST['year'];
-  $carDescription = $_POST['carContent'];
-  $carPrice = $_POST['price'];
+    $id = $_POST['id'];
   //$image_service=$_POST['image'];
 
   // Requête de modification d'enregistrement

@@ -1,5 +1,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../config/script.js"></script>
 </body>
 <footer>
     <div class="footer">
@@ -29,15 +30,14 @@
             
         <?php $horaires = getHoraire($adminpdo);
         foreach ($horaires as $horaire){?> 
-             
+            
             <?php echo($horaire['day']) ?>              
             <?php echo($horaire['heure_debut_am']).' -' ?>            
             <?php echo($horaire['heure_fin_am']).' \\' ?>
             <?php echo($horaire['heure_debut_pm']).' -' ?>
             <?php echo($horaire['heure_fin_pm']) ?><br>
-          <?php
-         } ?>
-      
+        <?php
+            } ?>
             </p>
         </div>
     </div>
