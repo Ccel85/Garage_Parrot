@@ -4,7 +4,7 @@ include('../config/configsql.php');
 include('../templates/header.php');
 
 //page d'edition de cars-editCars.php
-$cars = getCarbyId($adminpdo);
+$cars = getCar($adminpdo);
 
 foreach ($cars as $car){?>  
         <form action="../Session/editCars.php" method="POST" enctype="multipart/form-data">

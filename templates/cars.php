@@ -1,10 +1,10 @@
 
 <!--affichage annonce car-->
-<div class="container">
+<div class="container carCard">
   <div class="card" id="card" >
     <div class="card-body"> 
-    <img class="card-img-top" alt="Renault Captur" src="<?= $carImage;?>">
-      <h5 class="card-title"><?=$car['modele']; ?></h5>
+    <img class="card-img-top" alt="Image véhicule" src="<?= $carImage;?>">
+      <h2 class="card-title"><?=$car['modele']; ?></h2>
       <div class="logo-card">
       <div class="logos">
         <img src="../assets/logo/logo_carburant.svg">
@@ -22,8 +22,10 @@
       <div>
       <h2 class="prix"><?= $car['price']." "."€"; ?></h2>  
       </div>
-    
-    <button onclick="window.location.href = '../templates/carDetail.php';" class="button-occasions">Plus de détails</button>
+      <!---->
+        
+      <button  class="button-occasions" value="<?php echo $car['id']; ?>">Plus de détails</button>
+      
     <div><?= "Référence de l'annonce : 00".$car['id']; ?></div>
     </div>
   </div>

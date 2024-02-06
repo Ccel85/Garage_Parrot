@@ -213,6 +213,7 @@ $resultatsFiltres = getFilteredVehicles($adminpdo, $minPrix, $maxPrix, $minAnnee
 
 class Car
     {
+        private string $id;
         private string $modele;
         private string $energy;
         private int $km;
@@ -230,7 +231,10 @@ class Car
         $this->carContent = $carContent;
         $this->price = $price;
         }
-        
+        public function getId() : string
+        {
+            return $this->id;
+        } 
         public function getModele() : string
         {
             return $this->modele;
@@ -281,13 +285,34 @@ class Car
         }  
 }
 
-function getCarbyId(PDO $adminpdo){
+function getCar(PDO $adminpdo){
 
     $getcar = $adminpdo->prepare("SELECT * FROM cars ORDER BY id = :id");
     $getcar -> bindParam (':id',$id, PDO::PARAM_INT);
     $getcar->execute();
     return $getcar->fetchAll();
 }
+function getCarById(PDO $adminpdo,$carId){
+        try {
+            // Utilisation d'une requête préparée pour éviter les injections SQL
+            $query = "SELECT * FROM cars WHERE id = :id";
+            $statement = $adminpdo->prepare($query);
+            $statement->bindParam(':id', $carId, PDO::PARAM_INT);
+            $statement->execute();    
+            // Récupération des résultats
+            $carDetails = $statement->fetch(PDO::FETCH_ASSOC);
+            // Fermeture de la connexion à la base de données
+            $pdo = null;
+
+            return $carDetails;
+
+        } catch (PDOException $e) {
+            // Gestion des erreurs de connexion à la base de données
+            die('Erreur de connexion à la base de données : ' . $e->getMessage());
+        }
+    }
+    
+
 /*
 //fonction recuperer donnee vehicule par id
 function getcars(PDO $pdo, int $limit = null) {
@@ -309,15 +334,14 @@ function getCarImages(?array $carImages) {
         return '../img/img_clio_1.png';
     }
     // Retournez la première image de la liste
-    
     return ($carImages);
 }
 // Utilisation de la fonction
 $carImages = getCarImages([
-    "0" => "../assets\img/1-jeepcompass\W102834019_STANDARD_1.jpg",
-    "1" => "../assets\img/2-audirs4\E113347647_STANDARD_1.jpg",
-    "2" => "../assets\img/3-renaultespace\E112536985_STANDARD_2.jpg",
-    "3" => "../assets\img/4-dacia\E113210533_STANDARD_1.jpg"
+    "1" => "../assets\img/1-jeepcompass\W102834019_STANDARD_1.jpg",
+    "2" => "../assets\img/2-audirs4\E113347647_STANDARD_1.jpg",
+    "3" => "../assets\img/3-renaultespace\E112536985_STANDARD_2.jpg",
+    "4" => "../assets\img/4-dacia\E113210533_STANDARD_1.jpg"
 ]);
 //recuperer les fichiers images
 // Chemin du répertoire où se trouvent les images

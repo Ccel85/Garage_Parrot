@@ -3,7 +3,7 @@ include('../templates/header.php');
 include('../Session/variable.php');
 include('../config/configsql.php');
 
-$cars = getCarbyId($adminpdo);
+$cars = getCar($adminpdo);
 $minMaxRange = minMaxRange($adminpdo);
 
 ?>
@@ -34,7 +34,7 @@ $minMaxRange = minMaxRange($adminpdo);
 
   foreach ($cars as $carKey => $car) { 
     foreach ($carImages as $imageKey => $carImage) {
-      if ($carKey === $imageKey) { 
+      if ($car['id'] === $imageKey) { 
               include('../templates/cars.php'); 
       }
       }

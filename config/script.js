@@ -5,6 +5,7 @@ function afficherValeur(idSlider, idSpan) {
         var span = document.getElementById(idSpan);
     span.innerHTML = slider.value  ;
     }
+    
     // Ajouter des écouteurs d'événements pour chaque curseur
     document.getElementById("prix").addEventListener("input", function () {
         afficherValeur("prix", "prixValeur");
@@ -35,41 +36,43 @@ function getFilteredVehicles(valeur) {
     // Ajoutez le code de votre fonction ici
 }
 //essai avec black box ai
-/*function filterElements(array, filterFunction) {
-    return array.filter(filterFunction);
-  }
-  
-  const elements = [
-    { id: 1, name: 'Element 1', category: 'Category 1' },
-    { id: 2, name: 'Element 2', category: 'Category 1' },
-    { id: 3, name: 'Element 3', category: 'Category 2' },
-    { id: 4, name: 'Element 4', category: 'Category 3' },
-  ];
-  
-  // Filtre pour obtenir les éléments de la catégorie 'Category 1'
-  const filterCategory1 = (element) => element.category === 'Category 1';
-  
-  const filteredElements = filterElements(elements, filterCategory1);
-  
-  console.log(filteredElements);*/
 
-  //autre essai
-
-  const priceFilter = document.getElementById('prix');
-const cards = document.querySelectorAll('.card');
+const priceFilter = document.getElementById('prix');
+//const cards = document.querySelectorAll('.card');
 
 priceFilter.addEventListener('input', () => {
   const maxPrice = priceFilter.value;
   const filteredAnnouncements = Array.from(cards)
     .filter(card => {
         const price = card.dataset.price;
+        console.log(price);
         return price > maxPrice;
     });
-    console.log(filteredAnnouncements)
+   
   filteredAnnouncements.forEach(card => card.style.display = 'block');
+  console.log(filteredAnnouncements);
   cards.forEach(card => {
     if (!filteredAnnouncements.includes(card)) {
       card.style.display = 'none';
     }
   });
 });
+
+//affichage des annonce en detail
+
+    document.addEventListener('DOMContentLoaded', function () {
+      // Sélectionnez tous les boutons avec la classe 'button-occasions'
+      var buttons = document.querySelectorAll('.button-occasions');
+  
+      // Ajoutez un gestionnaire d'événements pour chaque bouton
+      buttons.forEach(function (button) {
+          button.addEventListener('click', function () {
+              // Récupérez la valeur du bouton (l'ID de la voiture)
+              var carId = button.value;
+              // Redirection vers carDetail.php avec l'ID comme paramètre
+              location.href = '../templates/carDetail.php?id=' + carId;
+          });
+      });
+  });
+
+
