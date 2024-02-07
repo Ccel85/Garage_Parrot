@@ -1,7 +1,7 @@
 <?php  
 include('../Session/variable.php');
 include('../config/configsql.php');
-include('../templates/header.php');
+include('../templates/headerAdmin.php');
 
 //PAGES DE VISUALISATION ET MODIFICATION HORAIRE
 ?> 

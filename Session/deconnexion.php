@@ -13,7 +13,7 @@ session_destroy();
 setcookie('session', '', time() - 3600, '/');
 
 // Redirect to the index page
-header('location:../templates/admin.php');
+header('location:../templates/index.php');
 
 ?>
 

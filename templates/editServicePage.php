@@ -1,7 +1,7 @@
 <?php  
 include('../Session/variable.php');
 include('../config/configsql.php');
-include('../templates/header.php');
+include('../templates/headerAdmin.php');
 
 //page de modification de services-editservice.php
 $services = getservice($adminpdo);

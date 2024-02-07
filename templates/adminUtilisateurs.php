@@ -2,7 +2,7 @@
 include('../config/sessionStart.php') ;
 include('../Session/variable.php');
 include('../config/configsql.php');
-include('../templates/header.php');
+include('../templates/headerAdmin.php');
 ?>
 
         <form action="../Session/newLogin.php" method="POST">

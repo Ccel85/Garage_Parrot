@@ -54,9 +54,23 @@ text-align: center;
     
 }
 .menuAdmin{
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: center;
+    align-items: baseline;
     list-style: none;
 }
+.admin {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    align-content: space-around;
+  }
+  
 .connection{
     width: 50px;
     height: 50px;
@@ -411,12 +425,74 @@ vertical-align: top;
 .carCaracteristique h2{
     text-align: left;
 }
+/* Ajouter une media query pour les écrans moyen */
 @media (max-width: 768px) {
     .footer {
-        grid-template-columns: 1fr; /* Une seule colonne pour les écrans plus petits */
+        grid-template-areas:
+        "footerMail footerPhone"
+        "navFooter localisation"
+        "horaires horaires";
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        align-items: start;
+        text-align: justify;
     }
+    .horaires {
+        text-align: center;
+      }
+      .localisation {
+        align-self: center;
+      }
+      
+      .menuAccueil {
+		flex-wrap: wrap;
+	}
+
+	.menuAccueil {
+		flex: 0 0 35px;
+		overflow: hidden;
+		height: 35px;
+		padding-right: 15px;
+	}
+      
 }
 
+/* Ajouter une media query pour les écrans plus petits */
+@media (max-width: 576px) {
+    .footer {
+        grid-template-areas:
+        "footerMail"
+        "footerPhone"
+        "navFooter"
+        "localisation"
+        "horaires";
+        grid-template-columns: auto;
+        grid-template-rows: auto;
+    }
+    .footerPhone {
+        grid-area: "footerPhone";
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-left: 0rem;
+
+    }
+    .localisation {
+        grid-area: "localisation";
+        display: flex;
+        align-items: center;
+        justify-content: center; 
+       
+    }
+    .horaires {
+        grid-area: "horaires";
+        text-align: center;
+        justify-content: center; 
+    }
+    .navFooter {
+        display:none;
+    }
+}
 /*@media (max-width: 700px) {
 	.menuAccueil {
 		flex-wrap: wrap;

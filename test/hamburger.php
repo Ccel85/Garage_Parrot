@@ -1,9 +1,21 @@
+<?php  
+include('../Session/variable.php');
+include('../config/configsql.php');
+include('../templates/header.php');
+?>
 <?php 
-include('header.php');
-include('../config/sessionStart.php');
-include('../Session/variable.php');?>
 
-<?php 
+$cars = getCar($adminpdo);
+$minMaxRange = minMaxRange($adminpdo);
+
+  foreach ($cars as $carKey => $car) { 
+    foreach ($carImages as $imageKey => $carImage) {
+      if ($car['id'] === $imageKey) { 
+              include('../templates/cars.php'); 
+      }
+      }
+    }
+  
 if (isset($_GET['id'])) {
   $carId = $_GET['id'];
   // Utiliser l'ID pour récupérer les détails de l'annonce depuis la base de données
@@ -13,9 +25,8 @@ $carDetails = getCarById($adminpdo,$carId);}
   foreach ($carImages as $imageKey => $carImage) {
     if ($carDetails['id'] === $imageKey) { ?>
 <div class="container  announcement-container announcement-<?= $carDetails['id']?>" >
-
-    <!-- debut test caroussel-->
-    <div id="myCarousel" class="carousel slide mb-6 pointer-event" data-bs-ride="carousel">
+      <!--  inclure manege image-->
+      <div id="myCarousel" class="carousel slide mb-6 pointer-event" data-bs-ride="carousel">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class="active" aria-current="true"></button>
@@ -23,13 +34,13 @@ $carDetails = getCarById($adminpdo,$carId);}
       </div>
       <div class="carousel-inner">
         <div class="carousel-item">
-          <img class="bd-placeholder-img card-img" width="60%" height="60%" src="<?= $carImage;?>" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></img>
+          <img class="bd-placeholder-img card-img-top" width="" height="" src="../assets/img/2-audirs4/E113347647_STANDARD_1.jpg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></img>
         </div>
         <div class="carousel-item active">
-          <img class="bd-placeholder-img card-img" width="60%" height="60%" src="../assets/img/2-audirs4/E113347647_STANDARD_1.jpg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></img>
+          <img class="bd-placeholder-img card-img-top" width="" height="" src="../assets/img/2-audirs4/E113347647_STANDARD_1.jpg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></img>
           </div>
         <div class="carousel-item">
-          <img class="bd-placeholder-img card-img" width="60%" height="60%" src="../assets/img/2-audirs4/E113347647_STANDARD_1.jpg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></img>
+          <img class="bd-placeholder-img card-img-top" width="" height="" src="../assets/img/2-audirs4/E113347647_STANDARD_1.jpg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></img>
           </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
@@ -41,8 +52,7 @@ $carDetails = getCarById($adminpdo,$carId);}
         <span class="visually-hidden">Suivant</span>
       </button>
     </div>
-
-  <!--<img class="img-top" alt="Image véhicule" src="<?= $carImage;?>">--><br>
+  <!--<img class="img-top" alt="Image véhicule" src="<?= $carImage;?>"><br>-->
   <div>
   <h1 class="carTitle"><?=$carDetails['modele']; ?></h1>
     <br>
@@ -144,3 +154,6 @@ $carDetails = getCarById($adminpdo,$carId);}
 <?php }}
 ?>
 <?php include '../templates/footer.php' ?>
+      
+    
+      

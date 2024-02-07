@@ -2,20 +2,26 @@
 include('../config/sessionStart.php');
 include('../Session/variable.php');
 include('../config/configsql.php');
-include('../templates/header.php');
+include('../templates/headerAdmin.php');
     //condition session admin
     ?>
     <nav>
-        <h1> Bonjour <?php echo $_SESSION['surname'] . ' ' . $_SESSION['name'].','; ?> </h1>
-        <p> vous êtes connecté en tant qu'<?php echo $_SESSION['role']?>. </p>
-        <ul class="menuAdmin">
-            <a href="adminUtilisateurs.php"><li>Gestion des utilisateurs</li></a>
-            <a href="editServicePage.php"><li>Gestion des services</li></a>
-            <a href="adminHoraire.php"><li>Gestion des infos</li></a>
-            <a href="editCarPage.php"><li>Gestion des véhicules</li></a>
-            <a href="#"><li>Message client</li></a>
-            <a href="./Session/deconnection.php"><li>Déconnexion</li></a><br>
-        </ul>
+        <p> Bonjour <span class="textRed"><?php echo $_SESSION['surname'] . ' ' . $_SESSION['name'].', '; ?></span> vous êtes connecté en tant qu'<span class="textRed"><?php echo $_SESSION['role']?></span>. </p>
+        <div class="admin">
+        <div class="menuAdmin">
+            <ul class="menuAdmin">
+                <a href="adminUtilisateurs.php"><li>Gestion des utilisateurs</li></a>
+                <a href="editServicePage.php"><li>Gestion des services</li></a>
+                <a href="adminHoraire.php"><li>Gestion des infos</li></a>
+                <a href="editCarPage.php"><li>Gestion des véhicules</li></a>
+                <a href="#"><li>Message client</li></a>
+                <a href="./Session/deconnection.php"><li>Déconnexion</li></a><br>
+            </ul>
+        </div>
+        <div> 
+            <h1>Tableau de bord</h1>
+        </div>
+        </div>
     </nav>
 <?php //}?>
 <?php /* } else { ?>

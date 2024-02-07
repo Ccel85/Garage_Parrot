@@ -1,7 +1,7 @@
 <?php  
 include('../Session/variable.php');
 include('../config/configsql.php');
-include('../templates/header.php');
+include('../templates/headerAdmin.php');
 
 //creation de service
 ?>        <form action="../Session/newservice.php"  enctype= "multipart/form-data" method="POST">

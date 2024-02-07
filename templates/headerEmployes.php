@@ -30,16 +30,18 @@
         <img class="connection" src="../assets/img/connection.png" alt="connection">
         </a>
         <ul class="dropdown-menu text-small">
+          <li><a class="dropdown-item" href="../templates/employes.php">Menu général</a></li>
+          <li><a class="dropdown-item" href="#">Tableau de bord</a></li>
+          <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" href="../templates/index.php">Accueil</a></li>
           <li><a class="dropdown-item" href="../templates/nos_services.php">Nos services</a></li>
           <li><a class="dropdown-item" href="../templates/nos_occasions.php">Nos occasions</a></li>
           <li><a class="dropdown-item" href="../templates/contact.php">Contact</a></li>
           <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="../templates/session.php">Connexion</a></li>
+          <li><a class="dropdown-item" href="../Session/deconnexion.php">Déconnexion</a></li>
         </ul>
       </div>
     </nav>
   </div>
     <hr>
   </header>
-

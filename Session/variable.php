@@ -79,7 +79,7 @@ class User
                     'secure' => true,]);
             } else {
                     $_SESSION['role'] = 'Employé';
-                    header('location: ../templates/index.php');
+                    header('location: ../templates/employes.php');
                     setcookie('session',$email,
                     ['expires' => time()+3600,
                     'secure' => true,]);
