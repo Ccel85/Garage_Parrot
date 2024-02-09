@@ -13,11 +13,10 @@
 </head>
 <body>
   <header>
-  <div class="header">
-  <div class="header">
+    <div class="header">
       <div class="logo">
-      <img src="../assets/logo/logo.svg" alt="Logo Garage V.Parrot" alt="mdo" width="32" height="32" class="rounded-circle">
-    </div>
+          <img src="../assets/logo/logo.svg" alt="Logo Garage V.Parrot" alt="mdo" width="32" height="32" class="rounded-circle">
+      </div>
     <nav class="menuHeader ">
       <div class="menuAccueil container ">
         <a id="home" href="../templates/index.php">Accueil</a>
@@ -42,6 +41,7 @@
         </ul>
       </div>
     </nav>
-  </div>
+    </div>
     <hr>
   </header>
+  <main>

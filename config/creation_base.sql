@@ -70,6 +70,15 @@ CREATE TABLE `garageparrot`.`services`(
     `servicesPicture` BLOB NOT NULL
     ) 
     ENGINE = MyISAM;
+    CREATE TABLE `garageparrot`.`message` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+    `name` VARCHAR(100),
+    `surname` VARCHAR(100),
+    `email` VARCHAR(255) NOT NULL UNIQUE,
+    `phone` VARCHAR(15)NOT NULL,
+    `message` VARCHAR(255)NOT NULL,
+    `date` DATE NOT NULL
+    );
 CREATE TABLE `garageparrot`.`serviceFile` ( 
     `fileId` INT AUTO_INCREMENT PRIMARY KEY, 
     `name` VARCHAR(100),

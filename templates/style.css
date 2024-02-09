@@ -3,10 +3,10 @@
     src: url(https://fonts.googleapis.com/css2?family=Raleway&display=swap);
 }  
 /*test*/
-body , body a{
+body , body a ,h3{
     color: #173258;
     font-family:Raleway;
-    font-size: 2rem;
+    font-size: 1.8rem;
    /* padding: 1rem;*/
 }
 /*header*/
@@ -194,6 +194,7 @@ a:hover{
     width: 530px;
     height: 130px;
     margin: 20px;
+    color: white;
     }
 
 .button:hover {
@@ -202,9 +203,6 @@ a:hover{
     }
 
 .button a {
-    color: white;
-}
-.button{
     color: white;
 }
 /* nos services */
@@ -285,7 +283,6 @@ button:focus {
     text-align: left;
 }
 h3{
-    font-size: 20px;
     font-weight: bold;
     text-decoration: underline;
     text-align:center;
@@ -371,17 +368,17 @@ div.cards{
 }
 table,
 td {
-    
-    
+
     border: 1px solid #333 ;
     border-collapse: collapse;
     text-align: center;
+    margin-top: 1rem;
     
 }
 
 thead,
 tfoot {
-    background-color: #333;
+    background-color: #173258;
     color: #fff;
 }
 form {
@@ -424,6 +421,30 @@ vertical-align: top;
 
 .carCaracteristique h2{
     text-align: left;
+}
+
+/*menu employe*/
+.menuEmploye{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+.badge{
+    background-color:#be1e2d;
+}
+.tbord{
+    font-size: 1rem;
+}
+.tableauBord{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+
 }
 /* Ajouter une media query pour les écrans moyen */
 @media (max-width: 768px) {

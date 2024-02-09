@@ -5,7 +5,7 @@ function afficherValeur(idSlider, idSpan) {
         var span = document.getElementById(idSpan);
     span.innerHTML = slider.value  ;
     }
-    
+
     // Ajouter des écouteurs d'événements pour chaque curseur
     document.getElementById("prix").addEventListener("input", function () {
         afficherValeur("prix", "prixValeur");
@@ -74,5 +74,71 @@ priceFilter.addEventListener('input', () => {
           });
       });
   });
+
+//inserer titre dans DOM Info vehicule sur le formulaire
+
+/*document.addEventListener('DOMContentLoaded', function() {
+var InfoCarbuttons = document.querySelectorAll('.info-occasions');
+var carSubject = document.querySelector('.subject');
+
+InfoCarbuttons.forEach(function(button) {
+  button.addEventListener('click',function(){
+    // Modifiez la valeur et le placeholder du champ de sujet
+  carSubject.value = 'Demande info véhicule';
+  carSubject.placeHolder = 'Demande info véhicule';
+  //redirection
+  window.location.href = '../templates/contact.php';
+});
+});
+});*/
+
+function demandeInfo() {
+  // Sélectionnez le bouton "Demande d'info"
+  var infoButton = document.querySelector('.demandeInfo'); 
+  
+  // Ajoutez un gestionnaire d'événements au clic sur le bouton
+  infoButton.addEventListener('click', function() {
+    // Redirigez vers la page de contact
+    window.location.href = '../templates/contact.php';
+  });
+    document.addEventListener('DOMContentLoaded', function() {
+      // Sélectionnez l'élément input avec la classe "subject"
+  var subjectInput = document.querySelector('.subject');
+
+      // Modifiez la valeur et le placeholder de l'input
+      subjectInput.value = 'Demande info véhicule';
+      subjectInput.placeholder = 'Demande info véhicule';
+    });
+};
+    
+    
+function checkboxMessage() {
+document.addEventListener('DOMContentLoaded', function () {
+    // Sélectionnez la case à cocher
+var checkBox = document.querySelector('.checkboxMessage'); 
+// Ajoutez un gestionnaire d'événements pour l'événement de changement de la case à cocher
+checkBox.addEventListener('change', function() {
+  // Vérifiez si la case à cocher est cochée
+  if (checkBox.checked) {
+    // Créez une nouvelle div
+    var messageDiv = document.createElement('div');
+    // Ajoutez du texte à la div
+    messageDiv.textContent = 'Message archivé';
+    // Ajoutez une classe à la div si nécessaire
+    messageDiv.classList.add('messageArchived');
+    // Insérez la nouvelle div dans le document, par exemple, avant la case à cocher
+    checkBox.parentNode.insertBefore(messageDiv, checkBox.nextSibling);
+  } else {
+    // Supprimez la div si la case à cocher est décochée (si nécessaire)
+    var messageArchived = document.querySelector('.messageArchived');
+    if (messageArchived) {
+      messageArchived.parentNode.removeChild(messageArchived);
+    }
+  }
+});
+  });
+};
+
+    
 
 

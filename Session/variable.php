@@ -388,6 +388,23 @@ if (!empty($dossiersImages)) {
         return $query->fetchAll();
     }
     
+function numberCars(PDO $adminpdo){
+try{
+    // Préparation de la requête SQL
+    $query = $adminpdo->prepare("SELECT COUNT(*) AS total_cars FROM cars");
+
+    // Exécution de la requête
+    $query->execute();
+
+    // Récupération du nombre total de produits
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+    $totalCars = $result['total_cars'];
+    return $totalCars;
+} catch (PDOException $e) {
+    // Gestion des erreurs de connexion à la base de données
+    die('Erreur de connexion à la base de données : ' . $e->getMessage());
+}
+}
     
 
     //GESTION HORAIRES
@@ -484,4 +501,125 @@ function getHoraire(PDO $adminpdo){
     return $getHoraires->fetchAll(PDO::FETCH_CLASS,'Horaire');
 }*/
 
+//GESTION MESSAGE
+class Message
+{
+    private string $id;
+    private string $name;
+    private string $surname;
+    private string $email;
+    private string $phone;
+    private string $message;
+    private string $date;
+        
+    public function __construct($id='',$email='',$phone='',$message='',$date='')
+    {
+    $this->id = $id;
+    $this->email = $email;
+    $this->phone = $phone;
+    $this->message = $message;
+    $this->date = $date;
+    }
+
+    public function getId() : string
+    {
+        return $this->id;
+    }  
+    public function getEmail() : string
+    {
+        return $this->email;
+    }  
+    public function getPhone() : string
+    {
+        return $this->phone;
+    }  
+    public function setMessage(string $message): void
+    {
+        $this->message = $message;
+    }  
+    public function getMessage() : string
+    {
+        return $this->message;
+    }  
+    public function getDate() : string
+    {
+        return $this->date;
+    }  
+    
+}
+//fonction recuperer donnée message
+function getMessages(PDO $adminpdo) {
+    $sql = "SELECT * FROM message ORDER BY id ";
+    $queryService = $adminpdo->prepare($sql);
+    $queryService->execute();
+    return $queryService->fetchAll();
+    }
+
+    function getLastMessage(PDO $adminpdo) {
+        $sql = "SELECT * FROM message ORDER BY id DESC LIMIT 0,3";
+        $queryService = $adminpdo->prepare($sql);
+        $queryService->execute();
+        return $lastMessage = $queryService->fetchAll();
+        }
+
+function insertMessage(PDO $adminpdo){
+
+        // Reecriture des variables
+        //$id = $_POST['id'];
+        $name = $_POST["name"];
+        $surname = $_POST["surname"];
+        $email = $_POST["email"];
+        $phone = $_POST["phone"];
+        $message = $_POST["message"];
+        $date =date('Y-m-d');
+        
+        try{
+        // requete mise à jour donnée
+        $sql = $adminpdo->prepare(
+            "INSERT INTO `garageparrot`.`message` (name, surname, email, phone, message, date)
+            VALUES (:name, :surname, :email, :phone, :message, :date)"
+        );
+        // Bind parameters
+        //$sql->bindParam(':id', $id);
+        $sql->bindParam(':name', $name);
+        $sql->bindParam(':surname', $surname);
+        $sql->bindParam(':email', $email);
+        $sql->bindParam(':phone', $phone);
+        $sql->bindParam(':message', $message);
+        $sql->bindParam(':date', $date);
+        $sql->execute();
+    
+        // Check if the update was successful
+        if (!$sql) {
+            echo "La modification a échoué. ";
+            }  else {
+                echo "<div class='alert alert-success'>
+                <h1>Requête validée !</h1>
+                <p>La mise à jour a bien été effectuée !</p>
+            </div>";    
+            }
+        } catch (PDOException $e) {
+        
+            echo 'Erreur lors de la modification de l\'Horaire : '.$e->getMessage();
+        }
+        }
+    
+function numbermessage(PDO $adminpdo){
+    try{
+        // Préparation de la requête SQL
+        $query = $adminpdo->prepare("SELECT COUNT(*) AS total_message FROM message");
+        
+        // Exécution de la requête
+        $query->execute();
+        
+        // Récupération du nombre total de produits
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        $totalMessage = $result['total_message'];
+        return $totalMessage;
+
+        } catch (PDOException $e) {
+            // Gestion des erreurs de connexion à la base de données
+        die('Erreur de connexion à la base de données : ' . $e->getMessage());
+        }
+    }
 

@@ -135,12 +135,20 @@ $carDetails = getCarById($adminpdo,$carId);}
     <hr>
   <div class="footerOccasion">  
     <div style="text-align: center;"><?= "Référence de l'annonce : 00".$carDetails['id']; ?></div>
-    <div>  
-    <button  class="button-occasions" onclick="window.location.href = '../templates/nos_occasions.php';">Retour</button>
+      <div class=""> 
+        <div>
+        <button class="demandeInfo  button" id="demandeInfo" name="demandeInfo">Demande d'info</button>
+        </div>
+        <div> 
+        <button  class="back button" onclick="window.location.href = '../templates/nos_occasions.php';">Retour</button>
+        </div>
+        
+      </div>
     </div>
+  <?php }?>
   </div>
-      <?php } ?>
-  </div>
-<?php }}
-?>
+<?php }}?>
+</div>
+</form>
 <?php include '../templates/footer.php' ?>
+<script>demandeInfo()</script>
