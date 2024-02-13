@@ -8,15 +8,15 @@
       <div class="logo-card">
       <div class="logos">
         <img src="../assets/logo/logo_carburant.svg">
-        <p class=""><?= $car['energy'];?></p>
+        <p class="energy"><?= $car['energy'];?></p>
       </div>
       <div class="logos">
         <img src="../assets/logo/logo_compteur_vitesse.svg">
-        <p class=""><?= $car['km'].' Km'; ?></p>
+        <p class="km"><?= $car['km'].' Km'; ?></p>
       </div>
       <div class="logos">
         <img src="../assets/logo/logo_calendrier.svg">
-        <p class=""><?= $car['year']; ?></p>
+        <p class="year"><?= $car['year']; ?></p>
       </div>
       </div>
       <div>

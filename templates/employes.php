@@ -4,7 +4,8 @@ include('../Session/variable.php');
 include('../config/configsql.php');
 include('../templates/headerEmployes.php');
 $totalCars = numberCars($adminpdo);
-    //condition session employe
+$totalMessage = numbermessage($adminpdo);
+    //Page session employé
     ?>
     <p> Bonjour <span class="textRed"><?php echo $_SESSION['surname'] . ' ' . $_SESSION['name'].', '; ?></span> vous êtes connecté en tant qu'<span class="textRed"><?php echo $_SESSION['role']?></span>. </p>
     <br>
@@ -15,9 +16,9 @@ $totalCars = numberCars($adminpdo);
                 <ul class="list-group">
                     <a href="editCarPage.php">
                     <li class="list-group-item d-flex justify-content-between align-items-center" >Gestion des véhicules</li></a>
-                    <a href="editAvis.php">
+                    <a href="editComments.php">
                     <li class="list-group-item d-flex justify-content-between align-items-center">Gestion des avis</li></a>
-                    <a href="../templates/submitMessage.php">
+                    <a href="../templates/messagePage.php">
                     <li class="list-group-item d-flex justify-content-between align-items-center">Message clients</li></a>
                     <a href="../Session/deconnexion.php">
                     <li class="list-group-item d-flex justify-content-between align-items-center">Déconnexion</li></a><br>
@@ -30,7 +31,7 @@ $totalCars = numberCars($adminpdo);
         <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between align-items-center">
             Nombre de message non Archivé
-                <span class="badge  rounded-pill m-2">14</span>
+                <span class="badge  rounded-pill m-2"><?php echo ($totalMessage)?></span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
             Nombre d'annonce en ligne
@@ -43,14 +44,16 @@ $totalCars = numberCars($adminpdo);
             </ul>
     </div>
 </div>
+<hr>
 <div>
+<h4 class="fst-italic">Messages récents </h4>
     <?php //gestion message
     $lastMessages= getLastMessage($adminpdo) ;
     foreach ($lastMessages as $lastMessage){
     // Convertir la date SQL en format JJ/MM/AA
     $dateFormatee = date("d-m-y", strtotime($lastMessage['date']));?>
             
-    <h4 class="fst-italic">Messages récents </h4>
+    
     <div class="list-group">
         <a href="../templates/messagePage.php" class="list-group-item list-group-item-action d-flex gap-3 py-3 " aria-current="true">
         <div class="d-flex gap-2 w-100 justify-content-between align-items-start">

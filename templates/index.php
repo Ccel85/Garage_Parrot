@@ -24,9 +24,43 @@ include('../Session/variable.php');
     </div>
 </div>
 <div>
-    <h3>Avis client:</h3>
-    <div class="avis">
-
-    </div>
+<h3>Avis client</h3>
+<hr>
+<?php $comments = checkComments($adminpdo);
+foreach($comments as $comment){
+$dateFormatee = date("d-m-y", strtotime($comment['date']));?>
+    <p class="blog-post-meta"><?= ($dateFormatee).' '. ($comment['pseudo']) ?></p>
+    <p><?= htmlspecialchars($comment['comments']) ?>
+    <span value="" id="rating"><?=htmlspecialchars($comment['rating']) ?></span>
+    <span class="etoilesContainer"></span>
+    <hr>
+    <?php }?>
+   
 </div>
+<div>
+<?php include '../templates/comments_create.php'?>
+</div>
+</div>
+<script>
+ // Définition de la fonction pour afficher les étoiles en fonction du nombre donné
+function afficherEtoiles(nombre) {
+    var etoiles = '';
+    for (var i = 0; i < nombre; i++) {
+        etoiles += '★'; // Ajoute une étoile à chaque itération
+    }
+    return etoiles;
+}
+
+// Sélectionnez tous les éléments ayant la classe "rating"
+var ratings = document.querySelectorAll('.rating');
+
+// Pour chaque élément, convertissez la valeur en étoiles
+ratings.forEach(function(ratingElement) {
+    var rating = parseInt(ratingElement.textContent); // Convertit le contenu en nombre
+    var etoiles = afficherEtoiles(rating); // Convertit le nombre en étoiles en utilisant la fonction définie ci-dessus
+    var etoilesContainer = ratingElement.nextElementSibling; // Sélectionne l'élément suivant (qui est le conteneur des étoiles)
+    etoilesContainer.textContent = etoiles; // Affiche les étoiles dans le conteneur
+});
+</script>
+
 <?php include 'footer.php' ?>

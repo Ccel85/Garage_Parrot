@@ -4,8 +4,9 @@ include('../Session/variable.php');
 include('../config/configsql.php');
 
 $cars = getCar($adminpdo);
-$minMaxRange = minMaxRange($adminpdo);
 
+//fonction recupere valeur min et max en BDD des filtres
+$minMaxRange = minMaxRange($adminpdo);
 ?>
   <div class="filtres">
     <h3>Filtres:</h3>
@@ -17,7 +18,7 @@ $minMaxRange = minMaxRange($adminpdo);
       </div>
       <div class="année">
         <h3>Année</h3>
-        <input type="range" id="annee" name="année" min="<?php echo $minMaxRange["min_annee"];?>" max="<?php echo $minMaxRange["max_annee"];?>" value="<?php echo $minMaxRange["max_annee"];?>" step="1" >
+        <input type="range" id="annee" name="annee" min="<?php echo $minMaxRange["min_annee"];?>" max="<?php echo $minMaxRange["max_annee"];?>" value="<?php echo $minMaxRange["max_annee"];?>" step="1" >
         <span id="anneeValeur"></span>
       </div>
       <div class="km">
@@ -42,4 +43,28 @@ $minMaxRange = minMaxRange($adminpdo);
   
   ?>
 </div>  
+<script>
+   // Ajouter des écouteurs d'événements pour chaque curseur
+    document.getElementById("prix").addEventListener("input", function () {    
+        afficherValeur("prix", "prixValeur");
+        updatePrixValue();
+        getFilteredVehicles(parseInt(document.getElementById("prix").value), parseInt(document.getElementById("annee").value), parseInt(document.getElementById("km").value));
+    });
+    // Ajouter un écouteur d'événements pour le curseur d'année
+    document.getElementById("annee").addEventListener("input", function () {
+    // Mettre à jour l'affichage de la valeur du curseur d'année
+    afficherValeur("annee", "anneeValeur");
+    // Mettre à jour les filtres et afficher les cartes correspondantes en fonction de la valeur du curseur d'année
+    getFilteredVehicles(parseInt(document.getElementById("prix").value), parseInt(document.getElementById("annee").value), parseInt(document.getElementById("km").value));
+});
+// Ajouter un écouteur d'événements pour le curseur de kilométrage
+    document.getElementById("km").addEventListener("input", function () {
+    // Mettre à jour l'affichage de la valeur du curseur de kilométrage
+    afficherValeur("km", "kmValeur");
+    // Mettre à jour les filtres et afficher les cartes correspondantes en fonction de la valeur du curseur de kilométrage
+    getFilteredVehicles(parseInt(document.getElementById("prix").value), parseInt(document.getElementById("annee").value), parseInt(document.getElementById("km").value));
+});
+
+
+</script>
   <?php include '../templates/footer.php' ?>

@@ -141,6 +141,7 @@ function getservice(PDO $adminpdo) {
     $queryService->execute();
     return $queryService->fetchAll();
     }
+    
 //function recuperer valeur min max cars pour Range
 function minMaxRange(PDO $adminpdo){
 // Exemple de requête pour obtenir les valeurs minimales et maximales
@@ -387,7 +388,7 @@ if (!empty($dossiersImages)) {
         $query->execute();
         return $query->fetchAll();
     }
-    
+   //fonction nombre d'annonce de vehicules 
 function numberCars(PDO $adminpdo){
 try{
     // Préparation de la requête SQL
@@ -547,21 +548,24 @@ class Message
     }  
     
 }
-//fonction recuperer donnée message
+//fonction recuperer message sans archivage
 function getMessages(PDO $adminpdo) {
-    $sql = "SELECT * FROM message ORDER BY id ";
-    $queryService = $adminpdo->prepare($sql);
-    $queryService->execute();
-    return $queryService->fetchAll();
+    $sql = "SELECT * FROM message WHERE archive = :archive ORDER BY id ";
+    $archivage = '';
+    $sql = $adminpdo->prepare($sql);
+    $sql->bindParam(':archive', $archivage);
+    $sql->execute();
+    return $sql->fetchAll();
     }
 
     function getLastMessage(PDO $adminpdo) {
-        $sql = "SELECT * FROM message ORDER BY id DESC LIMIT 0,3";
+        $sql = "SELECT * FROM message ORDER BY id DESC LIMIT 0,5";
         $queryService = $adminpdo->prepare($sql);
         $queryService->execute();
         return $lastMessage = $queryService->fetchAll();
         }
 
+        //fonction insertion message en BDD
 function insertMessage(PDO $adminpdo){
 
         // Reecriture des variables
@@ -603,7 +607,7 @@ function insertMessage(PDO $adminpdo){
             echo 'Erreur lors de la modification de l\'Horaire : '.$e->getMessage();
         }
         }
-    
+    //fonction afficher nombre de message 
 function numbermessage(PDO $adminpdo){
     try{
         // Préparation de la requête SQL
@@ -623,3 +627,132 @@ function numbermessage(PDO $adminpdo){
         }
     }
 
+//integrer la notion archivé en bdd des message
+function checkMessage($adminpdo){
+    if(isset($_POST['valider']) && isset($_POST['archive']))  {
+        foreach ($_POST['archive'] as $id => $archive) {
+            $id = $id + 1;
+            try{
+                $sql = $adminpdo->prepare('UPDATE `garageparrot`.`message` SET archive = :archive WHERE id = :id');
+                $sql->bindParam(':id', $id);
+                $sql->bindParam(':archive', $archive);
+                $sql->execute();
+               
+                // Vérifiez si la mise à jour a réussi
+                if ($sql->rowCount() > 0) {
+                    echo "<div class='alert alert-success'>
+                        <h1>Requête validée !</h1>
+                        <p>La mise à jour a bien été effectuée pour l'ID : $id !</p>
+                    </div>"; 
+                } else {
+                    echo "La modification a échoué pour l'ID : $id.";
+                }
+            } catch (PDOException $e) {
+                // Gestion des erreurs de connexion à la base de données
+                die('Erreur de connexion à la base de données : ' . $e->getMessage());
+            }
+        }
+    }
+}
+
+    //récuperer les messages archivés
+    function messageArchive($adminpdo){
+        try{
+            // Préparation de la requête SQL
+            $query = $adminpdo->prepare("SELECT * FROM `garageparrot`.`message` WHERE archive=:archive");
+            $archiveValue = 'Y';
+            $query->bindParam(':archive', $archiveValue);
+            
+            // Exécution de la requête
+            $query->execute();
+            $messageArchive = $query->fetchAll();
+            return $messageArchive;
+            
+            } catch (PDOException $e) {
+                // Gestion des erreurs de connexion à la base de données
+            die('Erreur de connexion à la base de données : ' . $e->getMessage());
+            }
+        }
+
+//gestion des avis
+//récuperation des avis avec validation
+
+function checkComments($adminpdo){
+    try{
+    $sql = $adminpdo->prepare('SELECT * FROM comments WHERE archive =:archive');
+    $archiveValue = 'Y';
+    $sql->bindParam(':archive', $archiveValue);
+    $sql->execute();
+    $comments = $sql->fetchAll(PDO::FETCH_ASSOC);
+    return $comments;
+    } catch (PDOException $e) {
+        // Gestion des erreurs de connexion à la base de données
+    die('Erreur de connexion à la base de données : ' . $e->getMessage());
+    }
+} 
+//recuperation de tous les commentaires
+function getComments($adminpdo){
+    try{
+    $sql = $adminpdo->prepare('SELECT * FROM comments WHERE id' );
+    $sql->execute();
+    $comments = $sql->fetchAll(PDO::FETCH_ASSOC);
+    return $comments;
+    } catch (PDOException $e) {
+        // Gestion des erreurs de connexion à la base de données
+    die('Erreur de connexion à la base de données : ' . $e->getMessage());
+    }
+} 
+
+/*function insertCheck($adminpdo){
+    if(isset($_POST['valideComments']))  {
+        //foreach ($_POST['archive'] as $id => $archive){
+       //var_dump($archive);
+        try{
+        $sql = $adminpdo->prepare('UPDATE `garageparrot`.`comments` SET archive = :archive
+        WHERE id = :id' );
+        $sql->bindParam(':id', $allComment['id']);
+        $sql->bindParam(':archive', $allComment['archive']);
+        $sql->execute();
+       
+        // Check if the update was successful
+        if (!$sql) {
+            echo "La modification a échoué pour l'ID :.";
+            }  else {
+                echo "<div class='alert alert-success'>
+                <h1>Requête validée !</h1>
+                <p>La mise à jour a bien été effectuée !</p>
+            </div>"; 
+            }   
+        } catch (PDOException $e) {
+            // Gestion des erreurs de connexion à la base de données
+        die('Erreur de connexion à la base de données : ' . $e->getMessage());
+        }
+} 
+    }
+;*/
+function insertCheck($adminpdo){
+    if(isset($_POST['valideComments']) && isset($_POST['archive']))  {
+        foreach ($_POST['archive'] as $id => $archive) {
+            $id = $id + 1;
+            try{
+                $sql = $adminpdo->prepare('UPDATE `garageparrot`.`comments` SET archive = :archive WHERE id = :id');
+                $sql->bindParam(':id', $id);
+                $sql->bindParam(':archive', $archive);
+                $sql->execute();
+               
+                // Vérifiez si la mise à jour a réussi
+                if ($sql->rowCount() > 0) {
+                    echo "<div class='alert alert-success'>
+                        <h1>Requête validée !</h1>
+                        <p>La mise à jour a bien été effectuée pour l'ID : $id !</p>
+                    </div>"; 
+                } else {
+                    echo "La modification a échoué pour l'ID : $id.";
+                }
+            } catch (PDOException $e) {
+                // Gestion des erreurs de connexion à la base de données
+                die('Erreur de connexion à la base de données : ' . $e->getMessage());
+            }
+        }
+    }
+}

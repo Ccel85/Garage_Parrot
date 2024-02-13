@@ -79,6 +79,8 @@ CREATE TABLE `garageparrot`.`services`(
     `message` VARCHAR(255)NOT NULL,
     `date` DATE NOT NULL
     );
+    ALTER TABLE `garageparrot`.`message`ADD COLUMN (
+    `archive` varchar(1));
 CREATE TABLE `garageparrot`.`serviceFile` ( 
     `fileId` INT AUTO_INCREMENT PRIMARY KEY, 
     `name` VARCHAR(100),
@@ -94,3 +96,13 @@ CREATE TABLE `garageparrot`.`horaires` (
     `heure_debut_pm` TIME,
     `heure_fin_Pm` TIME
   );
+
+  CREATE TABLE `garageparrot`.`comments` (
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `date` DATE NOT NULL,
+    `pseudo` VARCHAR (25) ,
+    `comments` VARCHAR (255) NOT NULL,
+    `rating` INT NOT NULL);
+
+    ALTER TABLE `garageparrot`.`comments`ADD COLUMN (
+    `archive` varchar(1));

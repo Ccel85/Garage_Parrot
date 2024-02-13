@@ -3,7 +3,7 @@ include('../Session/variable.php');
 include('../config/configsql.php');
 include('../templates/header.php');
 
-//Page modification de services
+//Page modification des annonces voiture
 //recuperation des donnee service de BDD - editServicePage.php
 
 /*if (isset($_POST['creerService'])) {
