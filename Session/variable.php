@@ -48,7 +48,7 @@ class User
     // CONNECTION ,VERIFICATION MDP ET ROLE
     public static function connect(PDO $pdo,string $email,string $password) 
     {
-    //session_start();
+    session_start();
     //Recuperation des donnees de la table Users
         $statement= $pdo->prepare('SELECT * FROM users WHERE email=:email');
         $statement->setFetchMode(PDO::FETCH_CLASS,'User');

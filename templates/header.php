@@ -14,62 +14,68 @@
 </head>
 <body>
   <header>
-  <div class="header">
-  <div class="header">
+    <div class="header">
+    <div class="header">
       <div class="logo">
-      <img src="../assets/logo/logo.svg" alt="Logo Garage V.Parrot" alt="mdo" width="32" height="32" class="rounded-circle">
+        <img src="../assets/logo/logo.svg" alt="Logo Garage V.Parrot" alt="mdo" width="32" height="32" class="rounded-circle">
+      </div>
+      <nav class="menuHeader ">
+        <div class="menuAccueil container ">
+          <a id="home" href="../templates/index.php">Accueil</a>
+          <a id="nosServices" href="../templates/nos_services.php">Nos services</a>
+          <a id="nosOccasions" href="../templates/nos_occasions.php">Nos Occasions</a>
+          <a id="contact" href="../templates/contact.php">Contact</a>
+        </div>
+        <?php if (($_SESSION['role'])==''){?>
+        <div class="connect  dropdown text-end">
+          <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <img class="connection" src="../assets/img/connection.png" alt="connection">
+          </a>
+          <ul class="dropdown-menu text-small">
+            <li><a class="dropdown-item" href="../templates/index.php">Accueil</a></li>
+            <li><a class="dropdown-item" href="../templates/nos_services.php">Nos services</a></li>
+            <li><a class="dropdown-item" href="../templates/nos_occasions.php">Nos occasions</a></li>
+            <li><a class="dropdown-item" href="../templates/contact.php">Contact</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="../templates/session.php">Connexion</a></li>
+          </ul>
+        </div>
+        <?php } elseif ($_SESSION['role']=='administrateur') {?>
+        <div class="connect  dropdown text-end">
+          <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <img class="connection" src="../assets/img/connection.png" alt="connection">
+          </a>
+          <ul class="dropdown-menu text-small">
+            <li><a class="dropdown-item" href="../templates/admin.php">Menu Administrateur</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="../templates/index.php">Accueil</a></li>
+            <li><a class="dropdown-item" href="../templates/nos_services.php">Nos services</a></li>
+            <li><a class="dropdown-item" href="../templates/nos_occasions.php">Nos occasions</a></li>
+            <li><a class="dropdown-item" href="../templates/contact.php">Contact</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="../Session/deconnexion.php">Déconnexion</a></li>
+          </ul>
+        </div>
+        <?php } elseif ($_SESSION['role']=='employe') {?>
+        <div class="connect  dropdown text-end">
+          <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <img class="connection" src="../assets/img/connection.png" alt="connection">
+          </a>
+          <ul class="dropdown-menu text-small">
+            <li><a class="dropdown-item" href="../templates/employes.php">Menu Employé</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="../templates/index.php">Accueil</a></li>
+            <li><a class="dropdown-item" href="../templates/nos_services.php">Nos services</a></li>
+            <li><a class="dropdown-item" href="../templates/nos_occasions.php">Nos occasions</a></li>
+            <li><a class="dropdown-item" href="../templates/contact.php">Contact</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="../Session/deconnexion.php">Déconnexion</a></li>
+          </ul>
+        </div>
+        <?php }
+        ?>
+      </nav>
     </div>
-    <nav class="menuHeader ">
-      <div class="menuAccueil container ">
-        <a id="home" href="../templates/index.php">Accueil</a>
-        <a id="nosServices" href="../templates/nos_services.php">Nos services</a>
-        <a id="nosOccasions" href="../templates/nos_occasions.php">Nos Occasions</a>
-        <a id="contact" href="../templates/contact.php">Contact</a>
-      </div>
-      <?php
-      if (!isset($_SESSION['role']) || !$_SESSION['role']){?>
-      <div class="connect  dropdown text-end">
-        <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        <img class="connection" src="../assets/img/connection.png" alt="connection">
-        </a>
-        <ul class="dropdown-menu text-small">
-          <li><a class="dropdown-item" href="../templates/index.php">Accueil</a></li>
-          <li><a class="dropdown-item" href="../templates/nos_services.php">Nos services</a></li>
-          <li><a class="dropdown-item" href="../templates/nos_occasions.php">Nos occasions</a></li>
-          <li><a class="dropdown-item" href="../templates/contact.php">Contact</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="../templates/session.php">Connexion</a></li>
-        </ul>
-      </div>
-    <?php } elseif ($_SESSION['role']='Administrateur'){?>
-      <div class="connect  dropdown text-end">
-        <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        <img class="connection" src="../assets/img/connection.png" alt="connection">
-        </a>
-        <ul class="dropdown-menu text-small">
-          <li><a class="dropdown-item" href="../templates/admin.php">Menu général</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="../templates/index.php">Accueil</a></li>
-          <li><a class="dropdown-item" href="../templates/nos_services.php">Nos services</a></li>
-          <li><a class="dropdown-item" href="../templates/nos_occasions.php">Nos occasions</a></li>
-          <li><a class="dropdown-item" href="../templates/contact.php">Contact</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="../Session/deconnexion.php">Déconnexion</a></li>
-        </ul>
-      <?php } elseif ($_SESSION['role']='Employé'){?>
-        <ul class="dropdown-menu text-small">
-          <li><a class="dropdown-item" href="../templates/employes.php">Menu général</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="../templates/index.php">Accueil</a></li>
-          <li><a class="dropdown-item" href="../templates/nos_services.php">Nos services</a></li>
-          <li><a class="dropdown-item" href="../templates/nos_occasions.php">Nos occasions</a></li>
-          <li><a class="dropdown-item" href="../templates/contact.php">Contact</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="../Session/deconnexion.php">Déconnexion</a></li>
-        </ul>
-        <?php }?>
-    </nav>
-  </div>
     <hr>
   </header>
 

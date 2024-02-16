@@ -1,5 +1,5 @@
 <?php 
-session_start();;
+session_start();
 include('../Session/variable.php');
 include('../config/configsql.php');
 include('../templates/header.php');
@@ -7,7 +7,7 @@ $totalCars = numberCars($adminpdo);
 $totalMessage = numbermessage($adminpdo);
 $totalComments = numberComments($adminpdo);
     //Page session employé
-    var_dump($_SESSION);?>
+   ?>
     <p> Bonjour <span class="textRed"><?php echo $_SESSION['surname'] . ' ' . $_SESSION['name'].', '; ?></span> vous êtes connecté en tant qu'<span class="textRed"><?php echo $_SESSION['role']?></span>. </p>
     <br>
 
