@@ -424,17 +424,19 @@ vertical-align: top;
 }
 
 /*menu employe*/
-.menuEmploye{
+.menu {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-content: space-around;
-    justify-content: space-evenly;
+    align-content: center;
+    justify-content: space-around;
     align-items: flex-start;
 }
+
 .badge{
     background-color:#be1e2d;
 }
+
 .tbord{
     font-size: 1rem;
 }

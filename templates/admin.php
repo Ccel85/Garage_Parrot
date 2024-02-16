@@ -1,28 +1,55 @@
 <?php 
-include('../config/sessionStart.php');
+session_start();
 include('../Session/variable.php');
 include('../config/configsql.php');
-include('../templates/headerAdmin.php');
-    //condition session admin
-    ?>
-    <nav>
-        <p> Bonjour <span class="textRed"><?php echo $_SESSION['surname'] . ' ' . $_SESSION['name'].', '; ?></span> vous êtes connecté en tant qu'<span class="textRed"><?php echo $_SESSION['role']?></span>. </p>
-        <div class="admin">
-        <div class="menuAdmin">
-            <ul class="menuAdmin">
-                <a href="adminUtilisateurs.php"><li>Gestion des utilisateurs</li></a>
-                <a href="editServicePage.php"><li>Gestion des services</li></a>
-                <a href="adminHoraire.php"><li>Gestion des infos</li></a>
-                <a href="editCarPage.php"><li>Gestion des véhicules</li></a>
-                <a href="#"><li>Message client</li></a>
-                <a href="./Session/deconnection.php"><li>Déconnexion</li></a><br>
+include('../templates/header.php');
+
+    $totalCars = numberCars($adminpdo);
+    $totalMessage = numbermessage($adminpdo);
+    $totalComments = numberComments($adminpdo);
+
+//PAGE SESSION ADMIN
+var_dump($_SESSION);?>
+<div>
+    <p> Bonjour <span class="textRed"><?php echo $_SESSION['surname'] . ' ' . $_SESSION['name'].', '; ?></span> vous êtes connecté en tant qu'<span class="textRed"><?php echo $_SESSION['role']?></span>. </p>
+    <div class="menu">    
+        <nav>   
+            <div class=" menuAdmin">
+                <ul class="list-group">
+                    <a href="../templates/adminUtilisateurs.php">
+                    <li class="list-group-item d-flex justify-content-between align-items-center" >Gestion des utilisateurs</li></a>
+                    <a href="../templates/editServicePage.php">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">Gestion des services</li></a>
+                    <a href="../templates/adminHoraire.php">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">Gestion des infos</li></a>
+                    <a href="../templates/editCarPage.php">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">Gestion des véhicules</li></a>
+                    <a href="../templates/messagePage.php">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">Message client</li></a>
+                    <a href="../Session/deconnexion.php">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">Déconnexion</li></a><br>
+                </ul>
+            </div>
+        </nav>
+    
+        <div class="tableauBord">
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                Nombre de message non Archivé
+                    <span class="badge  rounded-pill m-2"><?php echo ($totalMessage)?></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                Nombre d'annonce en ligne
+                    <span class="badge  rounded-pill m-2"><?php echo ($totalCars)?></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                Nombre d'avis
+                    <span class="badge  rounded-pill m-2"><?php echo ($totalComments)?></span>
+                </li>
             </ul>
         </div>
-        <div> 
-            <h1>Tableau de bord</h1>
-        </div>
-        </div>
-    </nav>
+    </div>
+</div>
 <?php //}?>
 <?php /* } else { ?>
     <h1>Bonjour <?php  ($_SESSION['nom']) ?></h1>

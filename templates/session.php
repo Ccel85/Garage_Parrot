@@ -1,20 +1,11 @@
 <?php
+session_start();
 include('../config/configsql.php');
-include('../config/sessionStart.php');
 include('../templates/header.php');
 include('../Session/variable.php');
 ?>
 
-<!--<div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalSignin">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content rounded-4 shadow">
-      <div class="modal-header p-5 pb-4 border-bottom-0"> -->   
         <h1 class="fw-bold mb-0 fs-2">Connection</h1>
-        <!--<div>
-        <button type="button"  data-bs-dismiss="" class="btn-close"  aria-label="Close"></button>
-        </div>-->
-      <!--</div>
-      <div class="modal-body p-5 pt-0">-->
         <form class="modalSession" method="POST" action="../Session/connexion.php">
           <div class="">
             <label for="email">Email</label>

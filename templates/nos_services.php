@@ -2,6 +2,7 @@
 include('../templates/header.php');
 include('../Session/variable.php');
 include('../config/configsql.php');
+include('../config/sessionStart.php');
 ?>
 <!--Affichage de la page de service -->
 <div>

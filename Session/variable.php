@@ -1,7 +1,7 @@
 <?php
 require '../config/configsql.php';
 
-//GESTION UTILISATEUR
+            /*GESTION UTILISATEUR*/
 class User 
 {
     private string $id;
@@ -12,7 +12,13 @@ class User
   //tableau des roles
     private array $roles = [];
     
-    public function __construct($id='',$email='',$password='',$name='',$surname='',$roles=[])
+    public function __construct(
+    $id='',
+    $email='',
+    $password='',
+    $name='',
+    $surname='',
+    $roles=[])
     {
     $this->id = $id;
     $this->email = $email;
@@ -39,47 +45,71 @@ class User
         return $this->password;
     }
 
+    // CONNECTION ,VERIFICATION MDP ET ROLE
     public static function connect(PDO $pdo,string $email,string $password) 
     {
-        session_start();
+    //session_start();
     //Recuperation des donnees de la table Users
         $statement= $pdo->prepare('SELECT * FROM users WHERE email=:email');
         $statement->setFetchMode(PDO::FETCH_CLASS,'User');
         $statement->bindValue(':email',$email);
         $statement->execute();
     // Verification si email entrée existe dans la table
-
         if ($statement->rowCount() == 0)
         {
             echo'Identifiant invalide';
         } else {
         //vérification mot de passe
         $monUser = $statement->fetch(PDO::FETCH_ASSOC);
-                
+
         if (password_verify($password,$monUser['password']) || $password === $monUser['password'])
         {
             $_SESSION['user_id'] = $monUser['id'];
             $_SESSION['name'] = $monUser['name'];
             $_SESSION['surname'] = $monUser['surname'];
-            $_SESSION['role'] = $monUser['role'];
-                
-        //recuperation des roles d'un utilisateur
+            $_SESSION['email'] = $monUser['email'];
 
-            $stmt = $pdo -> prepare ('SELECT roles.name FROM users JOIN userroles ON :usersId = userRoles.userId JOIN roles ON roles.id = userroles.roleId ');
-            $stmt ->bindValue (':usersId',$_SESSION['user_id']);
-            $stmt->execute();
-        //$stmt->setFetchMode(PDO::FETCH_CLASS,'User');
-            $role = $stmt->fetch();
-                
-            if (in_array('administrateur', $role)) {
+        //recuperation des roles d'un utilisateur
+        $stmt = $pdo->prepare('SELECT roles.name 
+        FROM users
+        JOIN userroles ON users.id = userroles.userId 
+        JOIN roles ON roles.id = userroles.roleId 
+        WHERE users.id = :userId');
+        $stmt->bindValue(':userId', $_SESSION['user_id']);
+        $stmt->execute();
+        $roleName = $stmt->fetchColumn();
+
+        $_SESSION['role'] = $roleName;
+
+        if ($_SESSION['role'] === 'employe') {
+            header('location: ../templates/employes.php');
+        } else {
+            $_SESSION['role'] = 'administrateur';
+            header('location: ../templates/admin.php');
+        }   
+    //  cookie de session 
+        setcookie('session', $email, [
+            'expires' => time() + 3600,
+            'secure' => true,
+            ]);
+        }
+        else
+        {
+        echo " Mot de passe incorrect";
+        } 
+    }
+}
+}
+
+           /* if (in_array('administrateur', $roleNames)) {
                 $_SESSION['role'] = 'Administrateur';
-                header('location: ../templates/admin.php');
+               // header('location: ../templates/admin.php');
                 setcookie('session',$email,
                     ['expires' => time()+3600,
                     'secure' => true,]);
             } else {
                     $_SESSION['role'] = 'Employé';
-                    header('location: ../templates/employes.php');
+                 //   header('location: ../templates/employes.php');
                     setcookie('session',$email,
                     ['expires' => time()+3600,
                     'secure' => true,]);
@@ -90,15 +120,10 @@ class User
         } 
     }
     }
-
-   // public static function sayHello(){
-
-       // echo('Bonjour'. $surname . ' '. $name);
+}*/
     
-//}
-}
-    
-//GESTION SERVICES
+            /*GESTION SERVICES*/
+
 class Service
 {
     private string $id;
@@ -133,7 +158,7 @@ class Service
         $this->content = $content;
     }  
 }
-//fonction recuperer donnée service
+//RECUPERER DONNEES SERVICES
 function getservice(PDO $adminpdo) {
     $sql = "SELECT * FROM services ORDER BY id = :id ";
     $queryService = $adminpdo->prepare($sql);
@@ -142,76 +167,9 @@ function getservice(PDO $adminpdo) {
     return $queryService->fetchAll();
     }
     
-//function recuperer valeur min max cars pour Range
-function minMaxRange(PDO $adminpdo){
-// Exemple de requête pour obtenir les valeurs minimales et maximales
-$requete = "SELECT MIN(price) AS min_prix, MAX(price) AS max_prix, 
-MIN(year) AS min_annee, MAX(year) AS max_annee,
-MIN(km) AS min_km, MAX(km) AS max_km
-FROM cars";
 
-$resultat = $adminpdo->query($requete);
 
-// Vérifier la réussite de la requête
-if ($resultat) {
-return  $resultat->fetch(PDO::FETCH_ASSOC);
-
-} else {
-// Gérer l'erreur de la requête
-die("Erreur dans la requête : " . $adminpdo->errorInfo()[2]);
-}
-}
-
-/*function getFilteredVehicles(PDO $adminpdo, $minPrix, $maxPrix, $minAnnee, $maxAnnee, $minKm, $maxKm) {
-    // Requête SQL avec des paramètres de filtrage
-   /* $requete = "SELECT * FROM cars
-                WHERE price BETWEEN :min_prix AND :max_prix
-                AND year BETWEEN :min_annee AND :max_annee
-                AND km BETWEEN :min_km AND :max_km";*/
-/*$requete = "SELECT MIN(price) AS :min_prix, MAX(price) AS :max_prix, 
-MIN(year) AS :min_annee, MAX(year) AS :max_annee,
-MIN(km) AS :min_km, MAX(km) AS :max_km
-FROM cars";
-    // Préparation de la requête
-    $stmt = $adminpdo->prepare($requete);
-
-    // Attribution des valeurs aux paramètres
-    $stmt->bindParam(':min_prix', $minPrix, PDO::PARAM_INT);
-    $stmt->bindParam(':max_prix', $maxPrix, PDO::PARAM_INT);
-    $stmt->bindParam(':min_annee', $minAnnee, PDO::PARAM_INT);
-    $stmt->bindParam(':max_annee', $maxAnnee, PDO::PARAM_INT);
-    $stmt->bindParam(':min_km', $minKm, PDO::PARAM_INT);
-    $stmt->bindParam(':max_km', $maxKm, PDO::PARAM_INT);
-
-    // Exécution de la requête
-    $stmt->execute();
-
-    // Récupération des résultats
-    $resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    // Fermeture de la requête
-    $stmt->closeCursor();
-
-    return $resultats;
-    var_dump($resultats);
-}
-// Utilisation de la fonction avec les valeurs des filtres
-$minPrix = 0;
-$maxPrix = $_POST["max_prix"];
-$minAnnee = 2000;
-$maxAnnee = $_POST["max_annee"];
-$minKm = 0;
-$maxKm = $_POST["max_km"];
-
-$resultatsFiltres = getFilteredVehicles($adminpdo, $minPrix, $maxPrix, $minAnnee, $maxAnnee, $minKm, $maxKm);
-//var_dump($resultatsFiltres);
-
-// Affichage des résultats
-  foreach ($resultatsFiltres as $vehicule) {
-    echo "ID : " . $vehicule['id'] . " - Marque : " . $vehicule['modele'] . "<br>";
-    // Ajoutez d'autres détails selon votre structure de base de données
-  }*/
-
+    /* GESTION DES VEHICULES*/
 class Car
     {
         private string $id;
@@ -285,7 +243,7 @@ class Car
             return $this->price ;
         }  
 }
-
+//RECUPERER LES ANNONCES VOITURES
 function getCar(PDO $adminpdo){
 
     $getcar = $adminpdo->prepare("SELECT * FROM cars ORDER BY id = :id");
@@ -293,6 +251,7 @@ function getCar(PDO $adminpdo){
     $getcar->execute();
     return $getcar->fetchAll();
 }
+//RECUPERATION D'UNE ANNONCE VOITURES
 function getCarById(PDO $adminpdo,$carId){
         try {
             // Utilisation d'une requête préparée pour éviter les injections SQL
@@ -313,23 +272,7 @@ function getCarById(PDO $adminpdo,$carId){
         }
     }
     
-
-/*
-//fonction recuperer donnee vehicule par id
-function getcars(PDO $pdo, int $limit = null) {
-    $sql = 'SELECT * FROM VEHICULE ORDER BY id DESC';
-    if ($limit) {
-        $sql .= ' LIMIT :limit';
-    }
-    $query = $pdo->prepare($sql);
-    if ($limit) {
-        $query->bindParam(':limit', $limit, PDO::PARAM_INT);
-    }
-    $query->execute();
-    return $query->fetchAll();
-}*/
-
-//fonction recuperer image vehicule
+//RECUPERER IMAGE VEHICULE
 function getCarImages(?array $carImages) {
     if ($carImages === null || empty($carImages)) {
         return '../img/img_clio_1.png';
@@ -344,29 +287,25 @@ $carImages = getCarImages([
     "3" => "../assets\img/3-renaultespace\E112536985_STANDARD_2.jpg",
     "4" => "../assets\img/4-dacia\E113210533_STANDARD_1.jpg"
 ]);
-//recuperer les fichiers images
-// Chemin du répertoire où se trouvent les images
+
+//RECUPERER LE FICHIER IMAGE
+
+    // Chemin du répertoire où se trouvent les images
 function getImages($fichiersImages){
-
 $cheminRepertoire = '../assets/img';
-
-// Liste des fichiers et dossiers dans le répertoire
+    // Liste des fichiers et dossiers dans le répertoire
 $contenuRepertoire = scandir($cheminRepertoire);
-
-// Filtrer les résultats pour ne conserver que les dossiers (en excluant . et ..)
+    // Filtrer les résultats pour ne conserver que les dossiers (en excluant . et ..)
 $dossiersImages = array_filter($contenuRepertoire, function ($element) use ($cheminRepertoire) {
     return is_dir($cheminRepertoire . '/' . $element) && !in_array($element, ['.', '..']);
 });
-
-// Afficher le tableau des dossiers
+    // Afficher le tableau des dossiers
 if (!empty($dossiersImages)) {
     foreach ($dossiersImages as $dossier) {
         echo '<h2>Dossier : ' . $dossier . '</h2>';
-
-        // Obtenir la liste des fichiers dans le dossier
+    // Obtenir la liste des fichiers dans le dossier
         $cheminDossier = $cheminRepertoire . '/' . $dossier;
         $contenuDossier = scandir($cheminDossier);
-
         // Filtrer les résultats pour ne conserver que les fichiers (en excluant . et ..)
         $fichiersImages = array_filter($contenuDossier, function ($element) use ($cheminDossier) {
             return is_file($cheminDossier . '/' . $element) && !in_array($element, ['.', '..']);
@@ -375,7 +314,7 @@ if (!empty($dossiersImages)) {
 }
 }
 
-     //fonction recuperer donnee vehicule par id
+ // RECUPERER INFO VEHICULE PAR ID
     function getcars(PDO $pdo, int $limit = null) {
         $sql = 'SELECT * FROM VEHICULE ORDER BY id DESC';
         if ($limit) {
@@ -388,27 +327,41 @@ if (!empty($dossiersImages)) {
         $query->execute();
         return $query->fetchAll();
     }
-   //fonction nombre d'annonce de vehicules 
-function numberCars(PDO $adminpdo){
-try{
+//NOMBRE D'ANNONCES DE VEHICULES
+    function numberCars(PDO $adminpdo){
+    try{
     // Préparation de la requête SQL
     $query = $adminpdo->prepare("SELECT COUNT(*) AS total_cars FROM cars");
-
     // Exécution de la requête
     $query->execute();
-
     // Récupération du nombre total de produits
     $result = $query->fetch(PDO::FETCH_ASSOC);
     $totalCars = $result['total_cars'];
     return $totalCars;
-} catch (PDOException $e) {
+    } catch (PDOException $e) {
     // Gestion des erreurs de connexion à la base de données
     die('Erreur de connexion à la base de données : ' . $e->getMessage());
-}
-}
-    
+    }
+    }
+    //RECUPERER VALEUR MIN MAX DE RANGE
+function minMaxRange(PDO $adminpdo){
+    // Exemple de requête pour obtenir les valeurs minimales et maximales
+    $requete = "SELECT MIN(price) AS min_prix, MAX(price) AS max_prix, 
+    MIN(year) AS min_annee, MAX(year) AS max_annee,
+    MIN(km) AS min_km, MAX(km) AS max_km
+    FROM cars";
+    $resultat = $adminpdo->query($requete);
+    // Vérifier la réussite de la requête
+    if ($resultat) {
+    return  $resultat->fetch(PDO::FETCH_ASSOC);
+    } else {
+    // Gérer l'erreur de la requête
+    die("Erreur dans la requête : " . $adminpdo->errorInfo()[2]);
+    }
+    }
 
-    //GESTION HORAIRES
+
+            /*GESTION HORAIRES*/
 
 class Horaire
 {
@@ -435,11 +388,6 @@ class Horaire
             $this->heure_fin_pm = $heure_fin_pm;
         }
     
-    //public function getId(): int
-    //{
-    //   return $this->id;
-    //}
-
     public function getDay(): string
     {
         return $this->day;
@@ -484,25 +432,15 @@ class Horaire
         $this->heure_fin_pm = $heure_fin_pm;
     }
 }
-
-function getHoraire(PDO $adminpdo){
-
+//RECUPERER LES HORAIRES EN BDD     
+    function getHoraire(PDO $adminpdo){
     $getHoraire = $adminpdo->prepare("SELECT *, DATE_FORMAT(heure_debut_am,'%H/%i') FROM horaires ORDER BY id = :id");
     $getHoraire -> bindParam (':id',$id, PDO::PARAM_INT);
     $getHoraire->execute();
     return  $getHoraire->fetchAll();
 }
 
-/*function getHoraires(PDO $adminpdo)
-{
-    $adminpdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    $getHoraires = $adminpdo->prepare("SELECT * FROM horaires");
-    $getHoraires->execute();
-    return $getHoraires->fetchAll(PDO::FETCH_CLASS,'Horaire');
-}*/
-
-//GESTION MESSAGE
+                /* GESTION DES MESSAGES */
 class Message
 {
     private string $id;
@@ -548,7 +486,8 @@ class Message
     }  
     
 }
-//fonction recuperer message sans archivage
+
+//RECUPERER MESSAGES SANS ARCHIVAGE
 function getMessages(PDO $adminpdo) {
     $sql = "SELECT * FROM message WHERE archive = :archive ORDER BY id ";
     $archivage = '';
@@ -558,18 +497,17 @@ function getMessages(PDO $adminpdo) {
     return $sql->fetchAll();
     }
 
+// RECUPERER LES 5 DERNIERS MESSAGES
     function getLastMessage(PDO $adminpdo) {
-        $sql = "SELECT * FROM message ORDER BY id DESC LIMIT 0,5";
+        $sql = "SELECT * FROM message WHERE archive = '' ORDER BY id DESC LIMIT 0,5";
         $queryService = $adminpdo->prepare($sql);
         $queryService->execute();
-        return $lastMessage = $queryService->fetchAll();
+        return  $queryService->fetchAll();
         }
 
-        //fonction insertion message en BDD
+// INSERER LES MESSAGES EN BDD
 function insertMessage(PDO $adminpdo){
-
-        // Reecriture des variables
-        //$id = $_POST['id'];
+    // Reecriture des variables
         $name = $_POST["name"];
         $surname = $_POST["surname"];
         $email = $_POST["email"];
@@ -583,8 +521,6 @@ function insertMessage(PDO $adminpdo){
             "INSERT INTO `garageparrot`.`message` (name, surname, email, phone, message, date)
             VALUES (:name, :surname, :email, :phone, :message, :date)"
         );
-        // Bind parameters
-        //$sql->bindParam(':id', $id);
         $sql->bindParam(':name', $name);
         $sql->bindParam(':surname', $surname);
         $sql->bindParam(':email', $email);
@@ -592,8 +528,6 @@ function insertMessage(PDO $adminpdo){
         $sql->bindParam(':message', $message);
         $sql->bindParam(':date', $date);
         $sql->execute();
-    
-        // Check if the update was successful
         if (!$sql) {
             echo "La modification a échoué. ";
             }  else {
@@ -607,8 +541,9 @@ function insertMessage(PDO $adminpdo){
             echo 'Erreur lors de la modification de l\'Horaire : '.$e->getMessage();
         }
         }
-    //fonction afficher nombre de message 
-function numbermessage(PDO $adminpdo){
+
+//AFFICHER LE NOMBRE DE MESSAGE
+    function numbermessage(PDO $adminpdo){
     try{
         // Préparation de la requête SQL
         $query = $adminpdo->prepare("SELECT COUNT(*) AS total_message FROM message");
@@ -627,8 +562,8 @@ function numbermessage(PDO $adminpdo){
         }
     }
 
-//integrer la notion archivé en bdd des message
-function checkMessage($adminpdo){
+//INTEGRER NOTION ARCHIVE AU MESSAGE EN BDD
+    function checkMessage($adminpdo){
     if(isset($_POST['valider']) && isset($_POST['archive']))  {
         foreach ($_POST['archive'] as $id => $archive) {
             $id = $id + 1;
@@ -637,8 +572,7 @@ function checkMessage($adminpdo){
                 $sql->bindParam(':id', $id);
                 $sql->bindParam(':archive', $archive);
                 $sql->execute();
-               
-                // Vérifiez si la mise à jour a réussi
+            // Vérifiez si la mise à jour a réussi
                 if ($sql->rowCount() > 0) {
                     echo "<div class='alert alert-success'>
                         <h1>Requête validée !</h1>
@@ -648,35 +582,34 @@ function checkMessage($adminpdo){
                     echo "La modification a échoué pour l'ID : $id.";
                 }
             } catch (PDOException $e) {
-                // Gestion des erreurs de connexion à la base de données
+            // Gestion des erreurs de connexion à la base de données
                 die('Erreur de connexion à la base de données : ' . $e->getMessage());
             }
         }
     }
 }
 
-    //récuperer les messages archivés
+//RECUPERER LES MESSAGES ARCHIVES
     function messageArchive($adminpdo){
         try{
-            // Préparation de la requête SQL
+        // Préparation de la requête SQL
             $query = $adminpdo->prepare("SELECT * FROM `garageparrot`.`message` WHERE archive=:archive");
             $archiveValue = 'Y';
             $query->bindParam(':archive', $archiveValue);
-            
-            // Exécution de la requête
+        // Exécution de la requête
             $query->execute();
             $messageArchive = $query->fetchAll();
             return $messageArchive;
             
             } catch (PDOException $e) {
-                // Gestion des erreurs de connexion à la base de données
+        // Gestion des erreurs de connexion à la base de données
             die('Erreur de connexion à la base de données : ' . $e->getMessage());
             }
         }
 
-//gestion des avis
-//récuperation des avis avec validation
+        /*GESTION DES AVIS */
 
+//RECUPERATION DE TOUS LES AVIS ARCHIVES
 function checkComments($adminpdo){
     try{
     $sql = $adminpdo->prepare('SELECT * FROM comments WHERE archive =:archive');
@@ -690,46 +623,8 @@ function checkComments($adminpdo){
     die('Erreur de connexion à la base de données : ' . $e->getMessage());
     }
 } 
-//recuperation de tous les commentaires
-function getComments($adminpdo){
-    try{
-    $sql = $adminpdo->prepare('SELECT * FROM comments WHERE id' );
-    $sql->execute();
-    $comments = $sql->fetchAll(PDO::FETCH_ASSOC);
-    return $comments;
-    } catch (PDOException $e) {
-        // Gestion des erreurs de connexion à la base de données
-    die('Erreur de connexion à la base de données : ' . $e->getMessage());
-    }
-} 
 
-/*function insertCheck($adminpdo){
-    if(isset($_POST['valideComments']))  {
-        //foreach ($_POST['archive'] as $id => $archive){
-       //var_dump($archive);
-        try{
-        $sql = $adminpdo->prepare('UPDATE `garageparrot`.`comments` SET archive = :archive
-        WHERE id = :id' );
-        $sql->bindParam(':id', $allComment['id']);
-        $sql->bindParam(':archive', $allComment['archive']);
-        $sql->execute();
-       
-        // Check if the update was successful
-        if (!$sql) {
-            echo "La modification a échoué pour l'ID :.";
-            }  else {
-                echo "<div class='alert alert-success'>
-                <h1>Requête validée !</h1>
-                <p>La mise à jour a bien été effectuée !</p>
-            </div>"; 
-            }   
-        } catch (PDOException $e) {
-            // Gestion des erreurs de connexion à la base de données
-        die('Erreur de connexion à la base de données : ' . $e->getMessage());
-        }
-} 
-    }
-;*/
+//AJOUTER LA NOTION D'ARCHIVE POUR LES AVIS EN BDD
 function insertCheck($adminpdo){
     if(isset($_POST['valideComments']) && isset($_POST['archive']))  {
         foreach ($_POST['archive'] as $id => $archive) {
@@ -739,7 +634,6 @@ function insertCheck($adminpdo){
                 $sql->bindParam(':id', $id);
                 $sql->bindParam(':archive', $archive);
                 $sql->execute();
-               
                 // Vérifiez si la mise à jour a réussi
                 if ($sql->rowCount() > 0) {
                     echo "<div class='alert alert-success'>
@@ -756,3 +650,32 @@ function insertCheck($adminpdo){
         }
     }
 }
+//RECUPERATION DE TOUS LES AVIS
+function getComments($adminpdo){
+    try{
+    $sql = $adminpdo->prepare('SELECT * FROM comments WHERE id' );
+    $sql->execute();
+    $comments = $sql->fetchAll(PDO::FETCH_ASSOC);
+    return $comments;
+    } catch (PDOException $e) {
+        // Gestion des erreurs de connexion à la base de données
+    die('Erreur de connexion à la base de données : ' . $e->getMessage());
+    }
+} 
+//AFFICHER LE NOMBRE D'AVIS
+function numberComments(PDO $adminpdo){
+    try{
+        // Préparation de la requête SQL
+        $query = $adminpdo->prepare("SELECT COUNT(*) AS total_comments FROM comments");
+        // Exécution de la requête
+        $query->execute();
+        // Récupération du nombre total de produits
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        $totalcomments = $result['total_comments'];
+        return $totalcomments;
+        } catch (PDOException $e) {
+            // Gestion des erreurs de connexion à la base de données
+        die('Erreur de connexion à la base de données : ' . $e->getMessage());
+        }
+    }
+

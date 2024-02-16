@@ -6,6 +6,12 @@ include('../templates/headerEmployes.php');
 //Gestion des commentaires?>
 
 <h1 class=" ">GESTION DES AVIS</h1>
+<?php
+    $allComments = getComments($adminpdo);
+    foreach ($allComments as $allComment){
+    // Convertir la date SQL en format JJ/MM/AA
+    $dateFormatee = date("d-m-y", strtotime($allComment['date']));
+    $idCommentaire = $allComment['id']?>
 <form method="post" >
 <div class="comments">
 <table class="table">
@@ -17,12 +23,7 @@ include('../templates/headerEmployes.php');
             <th scope="col">Note</th>
         </tr>
     </thead>
-    <?php
-    $allComments = getComments($adminpdo);
-    foreach ($allComments as $allComment){
-    // Convertir la date SQL en format JJ/MM/AA
-    $dateFormatee = date("d-m-y", strtotime($allComment['date']));
-    $idCommentaire = $allComment['id']?>
+    
     <tbody>
         <tr>
             <th scope="row">
@@ -37,7 +38,7 @@ include('../templates/headerEmployes.php');
 </div>
 <?php }
 $dateFormatee = date("d-m-y", strtotime($allComment['date']));?>
-<div class="align-items-center">
+<div class="button">
     <button type = "submit" class="button" name="valideComments" >Valider modification</button>
 </div>
 </form>

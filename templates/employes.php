@@ -1,18 +1,19 @@
 <?php 
-include('../config/sessionStart.php');
+session_start();;
 include('../Session/variable.php');
 include('../config/configsql.php');
-include('../templates/headerEmployes.php');
+include('../templates/header.php');
 $totalCars = numberCars($adminpdo);
 $totalMessage = numbermessage($adminpdo);
+$totalComments = numberComments($adminpdo);
     //Page session employé
-    ?>
+    var_dump($_SESSION);?>
     <p> Bonjour <span class="textRed"><?php echo $_SESSION['surname'] . ' ' . $_SESSION['name'].', '; ?></span> vous êtes connecté en tant qu'<span class="textRed"><?php echo $_SESSION['role']?></span>. </p>
     <br>
 
-    <div class="menuEmploye">    
+    <div class="menu">    
     <nav>   
-            <div class=" menuAdmin">
+            <div class=" menuEmploye">
                 <ul class="list-group">
                     <a href="editCarPage.php">
                     <li class="list-group-item d-flex justify-content-between align-items-center" >Gestion des véhicules</li></a>
@@ -24,7 +25,6 @@ $totalMessage = numbermessage($adminpdo);
                     <li class="list-group-item d-flex justify-content-between align-items-center">Déconnexion</li></a><br>
                 </ul>
             </div>
-        <div> 
     </nav>
     
     <div class="tableauBord">
@@ -39,7 +39,7 @@ $totalMessage = numbermessage($adminpdo);
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
             Nombre d'avis
-                <span class="badge  rounded-pill m-2">1</span>
+                <span class="badge  rounded-pill m-2"><?php echo ($totalComments)?></span>
             </li>
             </ul>
     </div>
@@ -68,6 +68,5 @@ $totalMessage = numbermessage($adminpdo);
 </div>
 <?php }
 include '../templates/footer.php' ?>
-
 </html>
     
