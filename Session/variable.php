@@ -68,23 +68,12 @@ class User
             $_SESSION['name'] = $monUser['name'];
             $_SESSION['surname'] = $monUser['surname'];
             $_SESSION['email'] = $monUser['email'];
+            $_SESSION['role'] = $monUser['role'];
 
-        //recuperation des roles d'un utilisateur
-        $stmt = $pdo->prepare('SELECT roles.name 
-        FROM users
-        JOIN userroles ON users.id = userroles.userId 
-        JOIN roles ON roles.id = userroles.roleId 
-        WHERE users.id = :userId');
-        $stmt->bindValue(':userId', $_SESSION['user_id']);
-        $stmt->execute();
-        $roleName = $stmt->fetchColumn();
-
-        $_SESSION['role'] = $roleName;
-
-        if ($_SESSION['role'] === 'employe') {
+        if ($_SESSION['role'] === 'Employé') {
             header('location: ../templates/employes.php');
         } else {
-            $_SESSION['role'] = 'administrateur';
+            $_SESSION['role'] = 'Administrateur';
             header('location: ../templates/admin.php');
         }   
     //  cookie de session 
@@ -100,29 +89,26 @@ class User
     }
 }
 }
+//RECUPERATION DES UTILISATEURS
+function getUsers($adminpdo){
+try {
+    // Utilisation d'une requête préparée pour éviter les injections SQL
+        $statement= $adminpdo->prepare('SELECT * FROM users ');
+        $statement->setFetchMode(PDO::FETCH_CLASS,'User');
+        $statement->execute();
+    // Récupération des résultats
+    $bddUsers =  $statement->fetchAll(PDO::FETCH_ASSOC);
+    // Fermeture de la connexion à la base de données
+    //$adminpdo = null;
+    return $bddUsers;
 
-           /* if (in_array('administrateur', $roleNames)) {
-                $_SESSION['role'] = 'Administrateur';
-               // header('location: ../templates/admin.php');
-                setcookie('session',$email,
-                    ['expires' => time()+3600,
-                    'secure' => true,]);
-            } else {
-                    $_SESSION['role'] = 'Employé';
-                 //   header('location: ../templates/employes.php');
-                    setcookie('session',$email,
-                    ['expires' => time()+3600,
-                    'secure' => true,]);
-            }
-        } else
-        {
-        echo " Mot de passe incorrect";
-        } 
-    }
-    }
-}*/
+} catch (PDOException $e) {
+    // Gestion des erreurs de connexion à la base de données
+    die('Erreur de connexion à la base de données : ' . $e->getMessage());
+}
+}
     
-            /*GESTION SERVICES*/
+    /*GESTION SERVICES*/
 
 class Service
 {
@@ -360,7 +346,6 @@ function minMaxRange(PDO $adminpdo){
     }
     }
 
-
             /*GESTION HORAIRES*/
 
 class Horaire
@@ -437,7 +422,8 @@ class Horaire
     $getHoraire = $adminpdo->prepare("SELECT *, DATE_FORMAT(heure_debut_am,'%H/%i') FROM horaires ORDER BY id = :id");
     $getHoraire -> bindParam (':id',$id, PDO::PARAM_INT);
     $getHoraire->execute();
-    return  $getHoraire->fetchAll();
+    return $getHoraire->fetchAll();
+
 }
 
                 /* GESTION DES MESSAGES */
@@ -499,8 +485,9 @@ function getMessages(PDO $adminpdo) {
 
 // RECUPERER LES 5 DERNIERS MESSAGES
     function getLastMessage(PDO $adminpdo) {
-        $sql = "SELECT * FROM message WHERE archive = '' ORDER BY id DESC LIMIT 0,5";
+        $sql = "SELECT * FROM message WHERE archive = :archive ORDER BY id DESC LIMIT 0,5";
         $queryService = $adminpdo->prepare($sql);
+        $queryService->bindValue(':archive','');
         $queryService->execute();
         return  $queryService->fetchAll();
         }
@@ -546,8 +533,8 @@ function insertMessage(PDO $adminpdo){
     function numbermessage(PDO $adminpdo){
     try{
         // Préparation de la requête SQL
-        $query = $adminpdo->prepare("SELECT COUNT(*) AS total_message FROM message");
-        
+        $query = $adminpdo->prepare("SELECT COUNT(*) AS total_message FROM message WHERE archive = :archive");
+        $query -> bindValue(':archive','');
         // Exécution de la requête
         $query->execute();
         
@@ -563,23 +550,22 @@ function insertMessage(PDO $adminpdo){
     }
 
 //INTEGRER NOTION ARCHIVE AU MESSAGE EN BDD
-    function checkMessage($adminpdo){
-    if(isset($_POST['valider']) && isset($_POST['archive']))  {
-        foreach ($_POST['archive'] as $id => $archive) {
-            $id = $id + 1;
+function checkMessage($adminpdo){
+    if(isset($_POST['validerArchive']) && isset($_POST['archive']))  {
+            // Récupérer les ID des messages sélectionnés
+            foreach ($_POST['archive'] as $email => $archive) {
+                // Vérifier si la checkbox est cochée
+                if ($archive == 'Y') {
             try{
-                $sql = $adminpdo->prepare('UPDATE `garageparrot`.`message` SET archive = :archive WHERE id = :id');
-                $sql->bindParam(':id', $id);
-                $sql->bindParam(':archive', $archive);
+                $sql = $adminpdo->prepare('UPDATE `garageparrot`.`message` SET archive = :archive WHERE email = :email');
+                $sql->bindParam(':email', $email);
+                $sql->bindValue(':archive', 'Y');
                 $sql->execute();
             // Vérifiez si la mise à jour a réussi
                 if ($sql->rowCount() > 0) {
-                    echo "<div class='alert alert-success'>
-                        <h1>Requête validée !</h1>
-                        <p>La mise à jour a bien été effectuée pour l'ID : $id !</p>
-                    </div>"; 
+                    echo "L'archivage a été effectué";
                 } else {
-                    echo "La modification a échoué pour l'ID : $id.";
+                    echo "La modification a échoué pour l'ID : $email.";
                 }
             } catch (PDOException $e) {
             // Gestion des erreurs de connexion à la base de données
@@ -588,6 +574,7 @@ function insertMessage(PDO $adminpdo){
         }
     }
 }
+};
 
 //RECUPERER LES MESSAGES ARCHIVES
     function messageArchive($adminpdo){
@@ -609,7 +596,7 @@ function insertMessage(PDO $adminpdo){
 
         /*GESTION DES AVIS */
 
-//RECUPERATION DE TOUS LES AVIS ARCHIVES
+//RECUPERATION DE TOUTES LES AVIS ARCHIVES
 function checkComments($adminpdo){
     try{
     $sql = $adminpdo->prepare('SELECT * FROM comments WHERE archive =:archive');
@@ -624,25 +611,40 @@ function checkComments($adminpdo){
     }
 } 
 
+//RECUPERATION DES AVIS NOTE>4
+function ratingComments($adminpdo){
+    try{
+        $sql = $adminpdo->prepare('SELECT * FROM comments WHERE rating > :rating ORDER BY date DESC LIMIT 0,4');
+    $ratingValue = '3';
+    $sql->bindParam(':rating', $ratingValue);
+    $sql->execute();
+    $comments = $sql->fetchAll(PDO::FETCH_ASSOC);
+    return $comments;
+    } catch (PDOException $e) {
+        // Gestion des erreurs de connexion à la base de données
+    die('Erreur de connexion à la base de données : ' . $e->getMessage());
+    }
+} 
+
 //AJOUTER LA NOTION D'ARCHIVE POUR LES AVIS EN BDD
-function insertCheck($adminpdo){
-    if(isset($_POST['valideComments']) && isset($_POST['archive']))  {
-        foreach ($_POST['archive'] as $id => $archive) {
-            $id = $id + 1;
+function hideComments($adminpdo){
+    if(isset($_POST['valideComments']) && isset($_POST['action']))  {
+        foreach ($_POST['action'] as $idComment => $action){
+            //$_POST['action'] = $action;
+            // $allComment['id']= $idComment;
+            //$id = $id + 1;
             try{
-                $sql = $adminpdo->prepare('UPDATE `garageparrot`.`comments` SET archive = :archive WHERE id = :id');
-                $sql->bindParam(':id', $id);
-                $sql->bindParam(':archive', $archive);
+                $sql = $adminpdo->prepare('UPDATE `garageparrot`.`comments` SET publication = :publication WHERE id = :id');
+                $sql->bindParam(':id', $idComment);
+                $sql->bindValue(':publication', $action);
                 $sql->execute();
                 // Vérifiez si la mise à jour a réussi
                 if ($sql->rowCount() > 0) {
-                    echo "<div class='alert alert-success'>
-                        <h1>Requête validée !</h1>
-                        <p>La mise à jour a bien été effectuée pour l'ID : $id !</p>
-                    </div>"; 
-                } else {
-                    echo "La modification a échoué pour l'ID : $id.";
-                }
+                    echo ('La mise à jour a bien été effectuée');
+                    // Redirection après modification réussie
+                header("refresh:3; url=../templates/employe.php");
+                exit();
+            } 
             } catch (PDOException $e) {
                 // Gestion des erreurs de connexion à la base de données
                 die('Erreur de connexion à la base de données : ' . $e->getMessage());
@@ -653,7 +655,7 @@ function insertCheck($adminpdo){
 //RECUPERATION DE TOUS LES AVIS
 function getComments($adminpdo){
     try{
-    $sql = $adminpdo->prepare('SELECT * FROM comments WHERE id' );
+    $sql = $adminpdo->prepare('SELECT * FROM comments ORDER BY id' );
     $sql->execute();
     $comments = $sql->fetchAll(PDO::FETCH_ASSOC);
     return $comments;
@@ -678,4 +680,7 @@ function numberComments(PDO $adminpdo){
         die('Erreur de connexion à la base de données : ' . $e->getMessage());
         }
     }
+
+?>
+
 

@@ -16,30 +16,13 @@ foreach ($allMessages as $allMessage){
   $dateFormatee = date("d-m-y", strtotime($allMessage['date']));?>
 <form method="post">
   <div class="message">
-    <table class="table">
-    <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Date</th>
-      <th scope="col">Message</th>
-      <th scope="col">Email</th>
-      <th scope="col">Phone</th>
-    </tr>
-  </thead>
-      <tbody>
-        <tr>
-          <th scope="row">
-          <input type="checkbox" name="checkboxMessage" class="checkboxMessage"  value='Y'>
-          <input type="hidden" name="archive[]" id="archiveInput" class="archiveInput" value=''></th>
-          <th class="text-body-secondary "><?= ($dateFormatee).' '. ($allMessage['name']." ".($allMessage['surname'])) ?></a></thp>
-          <th><?= htmlspecialchars($allMessage['message']) ?></th>
-          <th><?= htmlspecialchars($allMessage['email']) ?></th>
-          <th><?= htmlspecialchars($allMessage['phone']) ?></th>
-        </tr>
-      </tbody>
-    </table >
-  </div>
-<?php }?>
+  <input type="checkbox" class="checkboxMessage m-3">
+
+  <p class="blog-post-meta fst-italic m-3"><?= ($dateFormatee).' '. ($allMessage['name']." ".($allMessage['surname'])) ?> </a></p>
+  <p class="blog-post-meta m-3 text-nowrap"><?= htmlspecialchars($allMessage['message']) ?> </a></p>
+  <p class="blog-post-meta m-3 text-nowrap"><?= 'Tel: '.htmlspecialchars($allMessage['phone']) ?></p>
+  <p class="blog-post-meta m-3 text-nowrap"><?='Mail: '.htmlspecialchars($allMessage['email']) ?></p>
+          <input type="hidden" name="archive[]" id="archiveInput" class="archiveInput" value=''></th></div>
 <hr>
 <h1 class=" ">Messages archivés</h1>
 <?php $archiveMessages = messageArchive($adminpdo);
