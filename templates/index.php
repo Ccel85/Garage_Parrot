@@ -1,7 +1,7 @@
 <?php 
-
+session_start();
 include('../Session/variable.php');
-include('../config/sessionStart.php');
+include('../config/configsql.php');
 include ('../templates/header.php');
 ?>
     <div>
@@ -25,25 +25,46 @@ include ('../templates/header.php');
         </div>
     </div>
     <div>
-        <h3>Avis client</h3>
-        <hr>
+    <hr>
+        <h3>Nos clients nous recommandent :</h3>
         <div>
-        <?php $comments = checkComments($adminpdo);
+        <?php 
+        $comments=ratingComments($adminpdo);
         foreach($comments as $comment){
-        $dateFormatee = date("d-m-y", strtotime($comment['date']));?>
-            <p class="blog-post-meta"><?= ($dateFormatee).' '. ($comment['pseudo']) ?></p>
-            <p><?= htmlspecialchars($comment['comments']) ?>
-            <span value="" id="rating">-Note : <?=htmlspecialchars($comment['rating']) ?></span>
+            $datePublication = strtotime($comment['date']);
+            // Date actuelle
+            $dateActuelle = time();
+            // Calcul de la différence en jours
+            $diffEnJours = floor(($dateActuelle - $datePublication) / (60 * 60 * 24));
+            // Calcul de la différence en semaines
+            $diffEnSemaines = floor($diffEnJours / 7);
+            // Affichage du message en fonction de la différence
+            if ($diffEnJours == 0) {
+                echo "Publié aujourd'hui";
+            } elseif ($diffEnJours == 1) {
+                echo "Publié hier";
+            } elseif ($diffEnJours < 7) {
+                echo "Publié il y a " . $diffEnJours . " jours";
+            } elseif ($diffEnSemaines == 1) {
+                echo "Publié il y a 1 semaine";
+            } else {
+                echo "Publié il y a " . $diffEnSemaines . " semaines";
+            }?>
+            <p class="blog-post-meta"><?=($comment['pseudo']) ?></p>
+            <p><?= htmlspecialchars($comment['comments']) ?></p>
+            <span value="" id="rating" class="rating" data-rating="<?=htmlspecialchars($comment['rating']) ?>">Note :</span>
             <span class="etoilesContainer"></span>
             <hr>
             <?php }?>
         </div>
     </div>
     <div>
-        <?php include '../templates/comments_create.php'?>
+    </div>
+    <div>
+    <?php include '../templates/comments_create.php'?>
     </div>
 <script>
-    // Définition de la fonction pour afficher les étoiles en fonction du nombre donné
+// Définition de la fonction pour afficher les étoiles en fonction du nombre donné
     function afficherEtoiles(nombre) {
         var etoiles = '';
         for (var i = 0; i < nombre; i++) {
@@ -51,14 +72,19 @@ include ('../templates/header.php');
         }
         return etoiles;
     }
-    // Sélectionnez tous les éléments ayant la classe "rating"
-    var ratings = document.querySelectorAll('.rating');
-    // Pour chaque élément, convertissez la valeur en étoiles
-    ratings.forEach(function(ratingElement) {
-        var rating = parseInt(ratingElement.textContent); // Convertit le contenu en nombre
-        var etoiles = afficherEtoiles(rating); // Convertit le nombre en étoiles en utilisant la fonction définie ci-dessus
-        var etoilesContainer = ratingElement.nextElementSibling; // Sélectionne l'élément suivant (qui est le conteneur des étoiles)
-        etoilesContainer.textContent = etoiles; // Affiche les étoiles dans le conteneur
+    document.addEventListener("DOMContentLoaded", function() {
+        // Sélectionnez tous les éléments ayant la classe "rating"
+        var ratings = document.querySelectorAll('.rating');
+        // Pour chaque élément, convertissez la valeur en étoiles
+        ratings.forEach(function(ratingElement) {
+            var rating = parseInt(ratingElement.dataset.rating); // Convertit le contenu en nombre
+            console.log(rating);
+            var etoiles = afficherEtoiles(rating); // Convertit le nombre en étoiles en utilisant la fonction définie ci-dessus
+            console.log(etoiles);
+            var etoilesContainer = ratingElement.nextElementSibling; // Sélectionne l'élément suivant (qui est le conteneur des étoiles)
+            etoilesContainer.textContent = etoiles; // Affiche les étoiles dans le conteneur
+            console.log(etoiles);
+        });
     });
 </script>
 <?php include 'footer.php' ?>

@@ -1,4 +1,5 @@
 <?php 
+session_start();
 include('../Session/variable.php');
 include('../config/configsql.php');
 include('../templates/header.php');
@@ -6,14 +7,9 @@ include('../templates/header.php');
 //Page modification des annonces voiture
 //recuperation des donnee service de BDD - editServicePage.php
 
-/*if (isset($_POST['creerService'])) {
-  header('Location=../templates/adminServices.php');
-}*/
-
 if(isset($_POST['modifierAnnonce'])) {
 
   // Réecriture des variables
-  //$service = new Services($_POST['title'], $_POST['description']);
   $id = $_POST['id'];
   $carModel = $_POST['modele'];
   $carEnergy = $_POST['energy'];
@@ -26,9 +22,18 @@ if(isset($_POST['modifierAnnonce'])) {
   $puissanceFiscale = $_POST['puissanceFiscale'];
   $puissance = $_POST['puissance'];
   $guarantie = $_POST['guarantie'];
-  $chassis = implode(',', $_POST['chassis']);
+  if (isset($_POST['chassis']) && !empty($_POST['chassis'])) {
+    $chassis = implode(',', $_POST['chassis']);
+} else {
+    $chassis = '';
+}
   $carColor = $_POST['carColor'];
-  $interieur = implode(',',$_POST['interieur']);
+  if (isset($_POST['interieur']) && !empty($_POST['interieur'])) {
+    $interieur = implode(',', $_POST['interieur']);
+} else {
+    $interieur = '';
+}
+ // $interieur = implode(',',$_POST['interieur']);
   $autre = $_POST['autre'];
   //$image_service=$_POST['image'];
 
@@ -86,10 +91,16 @@ if(isset($_POST['modifierAnnonce'])) {
     echo "<div class='alert alert-success'>
             <h1>Requête validée !</h1>
             <p>La mise à jour a bien été effectuée !</p>
-          </div>
-          <div class='button'>
+          </div>";
+  if ($_SESSION['role']=='administrateur') {
+          echo "<div class='button'>
           <a href='../templates/admin.php' class='button'>Retour Tableau de bord</a>
-          </div>"
-          ;
+          </div>";
+            } else {
+          echo"<div class='button'>
+          <a href='../templates/employes.php' class='button'>Retour Tableau de bord</a>
+          </div>";
+            }
+          
 }
 ?>

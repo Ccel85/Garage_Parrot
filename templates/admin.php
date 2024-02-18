@@ -8,10 +8,11 @@ include('../templates/header.php');
     $totalMessage = numbermessage($adminpdo);
     $totalComments = numberComments($adminpdo);
 
-//PAGE SESSION ADMIN
-var_dump($_SESSION);?>
+//PAGE SESSION ADMIN?>
+
 <div>
-    <p> Bonjour <span class="textRed"><?php echo $_SESSION['surname'] . ' ' . $_SESSION['name'].', '; ?></span> vous êtes connecté en tant qu'<span class="textRed"><?php echo $_SESSION['role']?></span>. </p>
+    <p class="text-center"> Bonjour <span class="textRed "><?php echo $_SESSION['surname'] . ' ' . $_SESSION['name'].', '; ?></span> vous êtes connecté en tant qu'<span class="textRed"><?php echo $_SESSION['role']?></span>. </p>
+    <br>
     <div class="menu">    
         <nav>   
             <div class=" menuAdmin">
@@ -21,11 +22,11 @@ var_dump($_SESSION);?>
                     <a href="../templates/editServicePage.php">
                     <li class="list-group-item d-flex justify-content-between align-items-center">Gestion des services</li></a>
                     <a href="../templates/adminHoraire.php">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">Gestion des infos</li></a>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">Gestion des horaires</li></a>
                     <a href="../templates/editCarPage.php">
                     <li class="list-group-item d-flex justify-content-between align-items-center">Gestion des véhicules</li></a>
                     <a href="../templates/messagePage.php">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">Message client</li></a>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">Gestion Message client</li></a>
                     <a href="../Session/deconnexion.php">
                     <li class="list-group-item d-flex justify-content-between align-items-center">Déconnexion</li></a><br>
                 </ul>
@@ -35,7 +36,7 @@ var_dump($_SESSION);?>
         <div class="tableauBord">
             <ul class="list-group">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                Nombre de message non Archivé
+                Nombre de message non lu
                     <span class="badge  rounded-pill m-2"><?php echo ($totalMessage)?></span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -50,20 +51,7 @@ var_dump($_SESSION);?>
         </div>
     </div>
 </div>
-<?php //}?>
-<?php /* } else { ?>
-    <h1>Bonjour <?php  ($_SESSION['nom']) ?></h1>
-<nav>
-    <ul>
-        <a href="#"><li>Gestion des vehicules</li></a>
-        <a href="#"><li>Gestion des avis</li></a>
-        <a href="#"><li>Message clients</li></a>
-        <a href="deconnection.php"><li>Déconnexion</li></a>
-        <p> Vous êtes connecté en tant qu'<?php echo $loggedUser?></p>
-    </ul>
-</nav>
-<?php }*/
-?>
-  <?php include '../templates/footer.php' ?>
+<br>
+<?php include '../templates/footer.php' ?>
 </html>
     

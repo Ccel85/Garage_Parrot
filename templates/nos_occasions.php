@@ -1,14 +1,19 @@
 <?php 
-include('../templates/header.php');
+session_start();
 include('../Session/variable.php');
 include('../config/configsql.php');
-include('../config/sessionStart.php');
+include('../templates/header.php');
 
 $cars = getCar($adminpdo);
 
 //fonction recupere valeur min et max en BDD des filtres
 $minMaxRange = minMaxRange($adminpdo);
 ?>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
+        <li class="breadcrumb-item"><a href="../templates/index.php">Accueil </a></li>
+        <li class="breadcrumb-item active" aria-current="page"></li>
+</nav>
   <div class="filtres">
     <h3>Filtres:</h3>
     <div class="filter">

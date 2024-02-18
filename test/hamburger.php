@@ -156,4 +156,3 @@ $carDetails = getCarById($adminpdo,$carId);}
 <?php include '../templates/footer.php' ?>
       
     
-      

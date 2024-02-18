@@ -1,7 +1,8 @@
 <?php  
+session_start();
 include('../Session/variable.php');
 include('../config/configsql.php');
-include('../templates/headerAdmin.php');
+include('../templates/header.php');
 
 //PAGES DE VISUALISATION ET MODIFICATION HORAIRE
 ?> 
@@ -11,20 +12,24 @@ include('../templates/headerAdmin.php');
     <table>
       <thead>
           <tr>
-          <th colspan="1">Jour</th>
+          <th colspan="1" >Jour</th>
             <th colspan="2" >Matin</th>
             <th colspan="2">Après-midi</th>
           </tr>
       </thead>
       <tbody>
       <?php $horaires = getHoraire($adminpdo);
-          foreach ($horaires as $horaire){?> 
+          foreach ($horaires as $horaire){ 
+                $heure_debut_am = date("H:i", strtotime($horaire['heure_debut_am']));
+                $heure_fin_am = date("H:i", strtotime($horaire['heure_fin_am']));
+                $heure_debut_pm = date("H:i", strtotime($horaire['heure_debut_pm']));
+                $heure_fin_pm = date("H:i", strtotime($horaire['heure_fin_pm']));?> 
           <tr>
             <td name = "day" type = "text" ><?php echo ($horaire['day']);?></td> 
-            <td name = "heure_debut_am" type = "text"><?php echo ($horaire['heure_debut_am']);?></td>                  
-            <td name = "heure_fin_am" type = "text"><?php echo ($horaire['heure_fin_am']);?></td>
-            <td name = "heure_debut_pm" type = "text"><?php echo ($horaire['heure_debut_pm']);?></td>
-            <td name = "heure_fin_pm" type = "text"><?php echo ($horaire['heure_fin_pm']);?><?php } ?>
+            <td name = "heure_debut_am" type = "text"><?php echo ($heure_debut_am);?></td>                  
+            <td name = "heure_fin_am" type = "text"><?php echo ($heure_fin_am);?></td>
+            <td name = "heure_debut_pm" type = "text"><?php echo ($heure_debut_pm);?></td>
+            <td name = "heure_fin_pm" type = "text"><?php echo ($heure_fin_pm);?><?php } ?>
           </tr>
           </tbody>
     </table>
@@ -33,7 +38,7 @@ include('../templates/headerAdmin.php');
     <table>
       <thead>
           <tr>
-          <th colspan="1">Jour</th>
+          <th colspan="1" >Jour</th>
             <th colspan="2" >Matin</th>
             <th colspan="2">Après-midi</th>
             <th></th>
@@ -41,7 +46,15 @@ include('../templates/headerAdmin.php');
       </thead>
       <tbody>
           <tr>
-            <td><input name="day" type="text" ></td> 
+            <td><select name="day" type="text" >
+              <option>Lundi</option>
+              <option>Mardi</option>
+              <option>Mercredi</option>
+              <option>Jeudi</option>
+              <option>Vendredi</option>
+              <option>Samedi</option>
+              </select>
+            </td> 
             <td><input name="heure_debut_am" type="time" ></td>                  
             <td><input name="heure_fin_am" type="time" ></td>
             <td><input name="heure_debut_pm" type="time" ></td>
@@ -49,7 +62,6 @@ include('../templates/headerAdmin.php');
           </tr>
       </tbody>
     </table>
-      <button type="submit"name="ajoutHoraire">Ajouter Horaire</button>
       <button type="submit" name="modifierHoraire">Valider la modification</button>
   </form>
   <?php include '../templates/footer.php' ?>

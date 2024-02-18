@@ -24,20 +24,24 @@
             </div>
             <div class="horaires ">
                 <p>Horaires d’ouverture:<br>
-                
-            <?php $horaires = getHoraire($adminpdo);
-            foreach ($horaires as $horaire){?> 
-                
+                <?php $horaires = getHoraire($adminpdo);
+                foreach ($horaires as $horaire){
+                $heure_debut_am = date("H:i", strtotime($horaire['heure_debut_am']));
+                $heure_fin_am = date("H:i", strtotime($horaire['heure_fin_am']));
+                $heure_debut_pm = date("H:i", strtotime($horaire['heure_debut_pm']));
+                $heure_fin_pm = date("H:i", strtotime($horaire['heure_fin_pm']));?> 
                 <?php echo($horaire['day']) ?>              
-                <?php echo($horaire['heure_debut_am']).' -' ?>            
-                <?php echo($horaire['heure_fin_am']).' \\' ?>
-                <?php echo($horaire['heure_debut_pm']).' -' ?>
-                <?php echo($horaire['heure_fin_pm']) ?><br>
-            <?php
-                } ?>
+                <?php echo($heure_debut_am).' -' ?>            
+                <?php echo($heure_fin_am).'-' ?>
+                <?php echo($heure_debut_pm).' -' ?>
+                <?php echo($heure_fin_pm) ?><br>
+                <?php } ?>
+                Dimanche:Fermé
                 </p>
             </div>
         </div>
+        <hr>
+    </div>
     </footer>
 </body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

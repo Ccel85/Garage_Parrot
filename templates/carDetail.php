@@ -1,7 +1,8 @@
 <?php 
-include('header.php');
-include('../config/sessionStart.php');
-include('../Session/variable.php');?>
+session_start();
+include('../Session/variable.php');
+include('../config/configsql.php');
+include('../templates/header.php');?>
 
 <?php 
 if (isset($_GET['id'])) {
@@ -12,8 +13,14 @@ $carDetails = getCarById($adminpdo,$carId);}
   if ($carDetails) {
   foreach ($carImages as $imageKey => $carImage) {
     if ($carDetails['id'] === $imageKey) { ?>
-<div class="container  announcement-container announcement-<?= $carDetails['id']?>" >
 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
+        <li class="breadcrumb-item"><a href="../templates/index.php">Accueil </a></li>
+        <li class="breadcrumb-item"><a href="../templates/nos_occasions.php">Nos occasions </a></li>
+        <li class="breadcrumb-item active" aria-current="page"></li>
+</nav>
+<div class="container  announcement-container announcement-<?= $carDetails['id']?>" >
     <!-- debut test caroussel-->
     <div id="myCarousel" class="carousel slide mb-6 pointer-event" data-bs-ride="carousel">
       <div class="carousel-indicators">
@@ -22,14 +29,16 @@ $carDetails = getCarById($adminpdo,$carId);}
         <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
       </div>
       <div class="carousel-inner">
-        <div class="carousel-item">
+      <?php foreach ($carImages as $key => $carImage){?>
+        <div class="carousel-item <?= $key === 0 ? 'active' : '' ?>">
           <img class="bd-placeholder-img card-img" width="60%" height="60%" src="<?= $carImage;?>" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></img>
         </div>
+        <?php }?>
         <div class="carousel-item active">
-          <img class="bd-placeholder-img card-img" width="60%" height="60%" src="../assets/img/2-audirs4/E113347647_STANDARD_1.jpg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></img>
+          <img class="bd-placeholder-img card-img" width="60%" height="60%" src="<?= $carImage;?>" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></img>
           </div>
         <div class="carousel-item">
-          <img class="bd-placeholder-img card-img" width="60%" height="60%" src="../assets/img/2-audirs4/E113347647_STANDARD_1.jpg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></img>
+          <img class="bd-placeholder-img card-img" width="60%" height="60%" src="<?= $carImage;?>" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></img>
           </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">

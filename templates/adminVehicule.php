@@ -1,7 +1,8 @@
-<?php //session_start(); 
+<?php 
+session_start();
 include('../Session/variable.php');
 include('../config/configsql.php');
-include('../templates/headerAdmin.php');
+include('../templates/header.php');
 //création annonce vehicule
 ?>
 

@@ -1,7 +1,8 @@
 <?php 
-include('header.php');
-include('../config/sessionStart.php');
-include('../Session/variable.php');?>
+session_start();
+include('../Session/variable.php');
+include('../config/configsql.php');
+include('../templates/header.php');?>
 <?php
 // Récupérer la valeur du sujet à partir de la variable POST
 $subject = isset($_POST['subject']) ? $_POST['subject'] : '';

@@ -160,6 +160,7 @@ hr{
     display: flex;
     align-items: center;
     justify-content: center;
+
 }
 /*page accueil*/
 a:hover{
@@ -191,10 +192,11 @@ a:hover{
     font-weight: bold;
     align-self: center;
     background-color:#be1e2d ;
-    width: 530px;
-    height: 130px;
-    margin: 20px;
+    width: 30rem;
+    height: 10rem;
+    margin: 1rem;
     color: white;
+    font-size: 2rem;
     }
 
 .button:hover {
@@ -358,7 +360,9 @@ div.cards{
     margin: 15px;
     text-align: center;
     align-items: center;
-   
+}
+.annonce{
+    width: 30rem ;
 }
 /*session*/
 .modalSession ,.footerOccasion{
@@ -384,6 +388,9 @@ tfoot {
 form {
     display: flex;
     flex-direction: column;
+}
+option{
+    color:#173258;
 }
 
 /*carDetail*/
@@ -447,6 +454,37 @@ vertical-align: top;
     justify-content: center;
     align-items: center;
 
+}
+.message{
+    display: flex!important;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+}
+.comments{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+.select{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+/* Menu Admin*/
+
+.formUser{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: space-around;
 }
 /* Ajouter une media query pour les écrans moyen */
 @media (max-width: 768px) {

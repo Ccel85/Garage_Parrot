@@ -1,10 +1,15 @@
 <?php 
-include('../templates/header.php');
+session_start();
 include('../Session/variable.php');
 include('../config/configsql.php');
-include('../config/sessionStart.php');
+include('../templates/header.php');
 ?>
 <!--Affichage de la page de service -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
+        <li class="breadcrumb-item"><a href="../templates/index.php">Accueil </a></li>
+        <li class="breadcrumb-item active" aria-current="page"></li>
+    </nav>
 <div>
   <?php $services = getservice($adminpdo);
     foreach ($services as $key => $service) {

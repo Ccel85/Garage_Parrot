@@ -28,7 +28,9 @@ require '../config/configsql.php';
                 echo "<div class='alert alert-success'>
                 <h1>Requête validée !</h1>
                 <p>La mise à jour a bien été effectuée !</p>
-            </div>";    
+            </div>";
+            header('location: ../templates/index.php');
+
             }
         } catch (PDOException $e) {
         

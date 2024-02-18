@@ -9,7 +9,8 @@ CREATE TABLE `garageparrot`.`users` (
     `email` VARCHAR(255) NOT NULL UNIQUE,
     `password` VARCHAR(255)NOT NULL
     );
-
+ALTER TABLE `garageparrot`.`users`ADD COLUMN (
+    `role` varchar(14));
 -- Création de l’utilisateur BDD
 CREATE USER 'user'@'localhost' IDENTIFIED BY '3f7zhhRn4NH69R';
 -- création utilisateu administrateur

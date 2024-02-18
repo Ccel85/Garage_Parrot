@@ -13,5 +13,7 @@
       <label for="rating" class="form-label">Laissez nous une note (de 1 à 5) </label>
       <input type="number" class="form-control" id="rating" name="rating" min="1" max="5" step="1" />
   </div>
-  <button type="submit" class="button">Envoyer</button>
+  <div class="button">
+  <a type="submit" class="button">Envoyer</a>
+  </div>
 </form>

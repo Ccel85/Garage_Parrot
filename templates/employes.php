@@ -3,14 +3,14 @@ session_start();
 include('../Session/variable.php');
 include('../config/configsql.php');
 include('../templates/header.php');
+
 $totalCars = numberCars($adminpdo);
 $totalMessage = numbermessage($adminpdo);
 $totalComments = numberComments($adminpdo);
     //Page session employé
    ?>
-    <p> Bonjour <span class="textRed"><?php echo $_SESSION['surname'] . ' ' . $_SESSION['name'].', '; ?></span> vous êtes connecté en tant qu'<span class="textRed"><?php echo $_SESSION['role']?></span>. </p>
+    <p class="text-center"> Bonjour <span class="textRed"><?php echo $_SESSION['surname'] . ' ' . $_SESSION['name'].', '; ?></span> vous êtes connecté en tant qu' <span class="textRed"><?php echo $_SESSION['role']?></span>. </p>
     <br>
-
     <div class="menu">    
     <nav>   
             <div class=" menuEmploye">
@@ -66,6 +66,7 @@ $totalComments = numberComments($adminpdo);
         </a>
     </div>
 </div>
+<br>
 <?php }
 include '../templates/footer.php' ?>
 </html>

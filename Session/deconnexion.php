@@ -1,6 +1,7 @@
 <?php
-//include('../Session/variable.php');
-//include('../config/configsql.php');
+session_start();
+include('../Session/variable.php');
+include('../config/configsql.php');
 
 // Clear all session variables
 session_unset();

@@ -3,7 +3,6 @@ session_start();
 include('../Session/variable.php');
 include('../config/configsql.php');
 
-
 // Page de connexion utilisateur
 
 // Récupération des valeurs du formulaire

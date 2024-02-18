@@ -1,10 +1,10 @@
 <?php
 session_start();
 include('../config/configsql.php');
-include('../templates/header.php');
-include('../Session/variable.php');?>
+include('../Session/variable.php');
+include('../templates/header.php');?>
       <div>
-        <h1 class="fw-bold mb-0 fs-2">Connection</h1>
+        <h1 class="fw-bold mb-0 fs-2">Connexion</h1>
         <form class="modalSession" method="POST" action="../Session/connexion.php">
           <div class="">
             <label for="email">Email</label>
