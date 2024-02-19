@@ -1,5 +1,6 @@
 <?php
 session_start();
+include('../config/sessionStop.php');
 include('../config/configsql.php');
 include('../Session/variable.php');
 include('../templates/header.php');?>

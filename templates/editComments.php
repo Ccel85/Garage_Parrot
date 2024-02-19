@@ -1,5 +1,6 @@
 <?php  
 session_start();
+include('../config/sessionStop.php');
 include('../Session/variable.php');
 include('../config/configsql.php');
 include('../templates/header.php');
@@ -61,9 +62,12 @@ include('../templates/header.php');
     </div>
     <hr>
     <?php } ?> 
-    <div class="button">
-        <button type = "submit" class="button" name="valideComments" >Valider les modifications</button>
-    </div>
+        <div class="button">
+        <button type = "submit" class="button p-3 " name="valideComments" >Valider les modifications</button>
+        </div>
+        <div class="button">
+        <a type = "submit" class="button p-3" name="tableauBord" href="../templates/employes.php">Tableau de bord</a>
+        </div>
 </form>
     <?php //insertion de la valeur archivé en BDD
         hideComments($adminpdo);

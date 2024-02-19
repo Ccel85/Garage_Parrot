@@ -1,5 +1,6 @@
 <?php 
 session_start();
+include('../config/sessionStop.php');
 include('../Session/variable.php');
 include('../config/configsql.php');
 include('../templates/header.php');
@@ -33,9 +34,7 @@ if(isset($_POST['modifierAnnonce'])) {
 } else {
     $interieur = '';
 }
- // $interieur = implode(',',$_POST['interieur']);
   $autre = $_POST['autre'];
-  //$image_service=$_POST['image'];
 
   // Requête de modification d'enregistrement
   $sth= $adminpdo->prepare ("UPDATE `garageparrot`.`cars` SET 
@@ -92,14 +91,14 @@ if(isset($_POST['modifierAnnonce'])) {
             <h1>Requête validée !</h1>
             <p>La mise à jour a bien été effectuée !</p>
           </div>";
-  if ($_SESSION['role']=='administrateur') {
-          echo "<div class='button'>
-          <a href='../templates/admin.php' class='button'>Retour Tableau de bord</a>
-          </div>";
+  if ($_SESSION['role']=='Administrateur') {
+           // Redirection après modification réussie
+          header("refresh:2; url=../templates/admin.php");
+          exit();
             } else {
-          echo"<div class='button'>
-          <a href='../templates/employes.php' class='button'>Retour Tableau de bord</a>
-          </div>";
+           // Redirection après modification réussie
+          header("refresh:2; url=../templates/employes.php");
+          exit();
             }
           
 }

@@ -28,8 +28,6 @@ if(isset($_POST['modifierService'])) {
   $sth->execute();
 
   } elseif (isset($_POST['supprimerService'])){
-    // Réecriture des variables
-  //$service = new Services($_POST['title'], $_POST['description']);
 
   $id = $_POST['id'];
   $titre_service = $_POST['title'];

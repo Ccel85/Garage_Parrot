@@ -630,9 +630,6 @@ function ratingComments($adminpdo){
 function hideComments($adminpdo){
     if(isset($_POST['valideComments']) && isset($_POST['action']))  {
         foreach ($_POST['action'] as $idComment => $action){
-            //$_POST['action'] = $action;
-            // $allComment['id']= $idComment;
-            //$id = $id + 1;
             try{
                 $sql = $adminpdo->prepare('UPDATE `garageparrot`.`comments` SET publication = :publication WHERE id = :id');
                 $sql->bindParam(':id', $idComment);
@@ -640,9 +637,10 @@ function hideComments($adminpdo){
                 $sql->execute();
                 // Vérifiez si la mise à jour a réussi
                 if ($sql->rowCount() > 0) {
-                    echo ('La mise à jour a bien été effectuée');
-                    // Redirection après modification réussie
-                header("refresh:3; url=../templates/employe.php");
+                    echo "<div class='alert alert-success'>
+                    <h1>Requête validée !</h1>
+                    <p>La mise à jour a bien été effectuée !</p>
+                </div>";                    
                 exit();
             } 
             } catch (PDOException $e) {
