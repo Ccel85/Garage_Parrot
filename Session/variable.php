@@ -238,17 +238,17 @@ function getCar(PDO $adminpdo){
     return $getcar->fetchAll();
 }
 //RECUPERATION D'UNE ANNONCE VOITURES
-function getCarById(PDO $adminpdo,$carId){
+function getCarById(PDO $adminpdo,$id){
         try {
             // Utilisation d'une requête préparée pour éviter les injections SQL
             $query = "SELECT * FROM cars WHERE id = :id";
             $statement = $adminpdo->prepare($query);
-            $statement->bindParam(':id', $carId, PDO::PARAM_INT);
+            $statement->bindParam(':id', $id, PDO::PARAM_INT);
             $statement->execute();    
             // Récupération des résultats
             $carDetails = $statement->fetch(PDO::FETCH_ASSOC);
             // Fermeture de la connexion à la base de données
-            $pdo = null;
+            $adminpdo = null;
 
             return $carDetails;
 
@@ -277,27 +277,27 @@ $carImages = getCarImages([
 //RECUPERER LE FICHIER IMAGE
 
     // Chemin du répertoire où se trouvent les images
-function getImages($fichiersImages){
-$cheminRepertoire = '../assets/img';
-    // Liste des fichiers et dossiers dans le répertoire
-$contenuRepertoire = scandir($cheminRepertoire);
-    // Filtrer les résultats pour ne conserver que les dossiers (en excluant . et ..)
-$dossiersImages = array_filter($contenuRepertoire, function ($element) use ($cheminRepertoire) {
-    return is_dir($cheminRepertoire . '/' . $element) && !in_array($element, ['.', '..']);
-});
-    // Afficher le tableau des dossiers
-if (!empty($dossiersImages)) {
-    foreach ($dossiersImages as $dossier) {
-        echo '<h2>Dossier : ' . $dossier . '</h2>';
-    // Obtenir la liste des fichiers dans le dossier
-        $cheminDossier = $cheminRepertoire . '/' . $dossier;
-        $contenuDossier = scandir($cheminDossier);
-        // Filtrer les résultats pour ne conserver que les fichiers (en excluant . et ..)
-        $fichiersImages = array_filter($contenuDossier, function ($element) use ($cheminDossier) {
-            return is_file($cheminDossier . '/' . $element) && !in_array($element, ['.', '..']);
-        });
+function getImages($cheminRepertoire){
+    $cheminRepertoire = '../assets/img';
+        // Liste des fichiers et dossiers dans le répertoire
+    $contenuRepertoire = scandir($cheminRepertoire);
+        // Filtrer les résultats pour ne conserver que les dossiers (en excluant . et ..)
+    $dossiersImages = array_filter($contenuRepertoire, function ($element) use ($cheminRepertoire) {
+        return is_dir($cheminRepertoire . '/' . $element) && !in_array($element, ['.', '..']);
+    });
+     //Afficher le tableau des dossiers
+    if (!empty($dossiersImages)) {
+        foreach ($dossiersImages as $dossier) {
+            echo '<h2>Dossier : ' . $dossier . '</h2>';
+        // Obtenir la liste des fichiers dans le dossier
+            $cheminDossier = $cheminRepertoire . '/' . $dossier;
+            $contenuDossier = scandir($cheminDossier);
+            // Filtrer les résultats pour ne conserver que les fichiers (en excluant . et ..)
+            $fichiersImage = array_filter($contenuDossier, function ($element) use ($cheminDossier) {
+                return is_file($cheminDossier . '/' . $element) && !in_array($element, ['.', '..']);
+            });
+        }
     }
-}
 }
 
  // RECUPERER INFO VEHICULE PAR ID

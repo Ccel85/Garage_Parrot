@@ -1,7 +1,7 @@
 
 
 <?php 
-session_start();
+//session_start();
 include('../config/sessionStop.php');
 include('../Session/variable.php');
 include('../config/configsql.php');
