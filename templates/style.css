@@ -364,6 +364,12 @@ div.cards{
 .annonce{
     width: 30rem ;
 }
+
+.imgcarousel{
+    
+    align-items: center;
+    width:100%;
+}
 /*session*/
 .modalSession ,.footerOccasion{
     display: flex;

@@ -8,11 +8,9 @@ include('../templates/header.php');?>
 if (isset($_GET['id'])) {
   $carId = $_GET['id'];
   // Utiliser l'ID pour récupérer les détails de l'annonce depuis la base de données
-$carDetails = getCarById($adminpdo,$carId);}
+  $carDetails = getCarById($adminpdo,$carId);}
   // Vérifier si l'annonce existe
-  if ($carDetails) {
-  //foreach ($carImages as $imageKey => $carImage) {
-    //if ($carDetails['id'] === $imageKey) { ?>
+  if ($carDetails) {?>
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
@@ -20,52 +18,46 @@ $carDetails = getCarById($adminpdo,$carId);}
         <li class="breadcrumb-item"><a href="../templates/nos_occasions.php">Nos occasions </a></li>
         <li class="breadcrumb-item active" aria-current="page"></li>
 </nav>
-<div class="container  announcement-container announcement-<?= $carDetails['id']?>" >
-  
+<div class="container  announcement-container announcement-<?= $carDetails['id']?>" >  
     <div id="myCarousel" class="carousel slide mb-6 pointer-event" data-bs-ride="carousel">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class="active" aria-current="true"></button>
         <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
       </div>
-
 <?php
 $idVehicule = $carId;
 // Chemin vers le dossier d'images du véhicule
 $cheminDossierImagesVehicule = '../assets/img/';
-
 // Liste des fichiers d'images dans le dossier du véhicule
 $fichiersImagesVehicule = scandir($cheminDossierImagesVehicule);
-
 // Filtrer les résultats pour ne conserver que les dossiers (en excluant . et ..)
 $dossiersImages = array_filter($fichiersImagesVehicule, function ($element) use ($cheminDossierImagesVehicule) {
     return is_dir($cheminDossierImagesVehicule . '/' . $element) && !in_array($element, ['.', '..']);
 });
 $idVehicule  =$_GET['id'] + 1;
-    // Utilisez cet index pour récupérer le nom du dossier image correspondant
+// Utilisez cet index pour récupérer le nom du dossier image correspondant
 if (!empty($dossiersImages)) {
   $nomDossierImage = $dossiersImages[$idVehicule];
   $cheminDossier = $cheminDossierImagesVehicule . '/' . $nomDossierImage;
   $contenuDossier = scandir($cheminDossier);
-
-  // Filtrer les résultats pour ne conserver que les fichiers (en excluant . et ..)
+// Filtrer les résultats pour ne conserver que les fichiers (en excluant . et ..)
     $fichiersImages = array_filter($contenuDossier, function ($element) use ($cheminDossier) {
     return is_file($cheminDossier . '/' . $element) && !in_array($element, ['.', '..']);
       });
       }
-  // Afficher le carrousel seulement s'il y a des images dans ce dossier
+// Afficher le carrousel seulement s'il y a des images dans ce dossier
   if (!empty($fichiersImages)) {
       echo '<div class="carrousel">';
       echo '<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">';
-      echo '<div class="carousel-inner">';
+      echo '<div class="carousel-inner text-center ">';
       foreach ($fichiersImages as $index => $fichierImage) {
-        echo '<div class="carousel-item' . ($index === 2 ? ' active' : '') . '">';
-        echo '<img src="' . $cheminDossier . '/' . $fichierImage . '" alt="' . $fichierImage . '">';
+        echo '<div class="carousel-item imgcarousel' . ($index === 2 ? ' active' : '') . '">';
+        echo '<img class="imgcarousel" src="' . $cheminDossier . '/' . $fichierImage . '" alt="' . $fichierImage . '">';
         echo '</div>';
       }
       echo '</div>';
-
-    // Boutons de contrôle pour passer à l'image suivante ou précédente
+// Boutons de contrôle pour passer à l'image suivante ou précédente
     echo '<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">';
     echo '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
     echo '<span class="visually-hidden">Previous</span>';
@@ -74,51 +66,18 @@ if (!empty($dossiersImages)) {
     echo '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
     echo '<span class="visually-hidden">Next</span>';
     echo '</button>';
-
-    echo '</div>'; // Fermer la balise div pour carousel
-    echo '</div>'; // Fermer la balise div pour carrousel
-  
-} else {
-    echo "Aucune image trouvée dans le dossier $dossier.";
-}
-    
+    echo '</div>';
+    echo '</div>'; 
+    } else {
+        echo "Aucune image trouvée dans le dossier $dossier.";
+    }
 } else {
     echo "Aucun dossier d'images trouvé.";
 }
-
-
-
 // Supposons que $carId contient l'ID du véhicule
-$idVehicule  =$_GET['id'] + 1;
-    // Utilisez cet index pour récupérer le nom du dossier image correspondant
-    $nomDossierImage = $dossiersImages[$idVehicule];
-    
-?>
-
-      <!--<div class="carousel-inner">
-      <?//php foreach ($carImages as $key => $carImage){?>
-        <div class="carousel-item <?//= $key === 2 ? 'active' : '' ?>">
-          <img class="bd-placeholder-img card-img" width="60%" height="60%" src="<?//= $carImage;?>" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></img>
-        </div>
-        <?//php }?>
-        <div class="carousel-item active">
-          <img class="bd-placeholder-img card-img" width="60%" height="60%" src="<?//= $carImage;?>" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></img>
-          </div>
-        <div class="carousel-item">
-          <img class="bd-placeholder-img card-img" width="60%" height="60%" src="<?//= $carImage;?>" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></img>
-          </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Précédent</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Suivant</span>
-      </button>
-    </div>
-
-  <img class="img-top" alt="Image véhicule" src="<?//= $carImage;?>">--><br>
+  $idVehicule  =$_GET['id'] + 1;
+  // Utilisez cet index pour récupérer le nom du dossier image correspondant
+  $nomDossierImage = $dossiersImages[$idVehicule];?>
   <div>
   <h1 class="carTitle"><?=$carDetails['modele']; ?></h1>
     <br>
