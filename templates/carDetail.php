@@ -20,11 +20,6 @@ if (isset($_GET['id'])) {
 </nav>
 <div class="container  announcement-container announcement-<?= $carDetails['id']?>" >  
     <div id="myCarousel" class="carousel slide mb-6 pointer-event" data-bs-ride="carousel">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class="active" aria-current="true"></button>
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
-      </div>
 <?php
 $idVehicule = $carId;
 // Chemin vers le dossier d'images du véhicule
@@ -53,7 +48,7 @@ if (!empty($dossiersImages)) {
       echo '<div class="carousel-inner text-center ">';
       foreach ($fichiersImages as $index => $fichierImage) {
         echo '<div class="carousel-item imgcarousel' . ($index === 2 ? ' active' : '') . '">';
-        echo '<img class="imgcarousel" src="' . $cheminDossier . '/' . $fichierImage . '" alt="' . $fichierImage . '">';
+        echo '<img class="card-img imgcarousel" src="' . $cheminDossier . '/' . $fichierImage . '" alt="' . $fichierImage . '">';
         echo '</div>';
       }
       echo '</div>';

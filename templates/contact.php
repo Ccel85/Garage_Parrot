@@ -10,16 +10,14 @@ $subject = isset($_POST['subject']) ? $_POST['subject'] : '';
 // Utiliser cette valeur dans l'attribut value de l'élément input
 ?>
 <div class="contact" >
-    <div class="cardInfo">
+    <div class=" w-40 m-3 cardInfo">
         <p>Vous pouvez nous contacter :<br>
             <span class="infoContact">par mail: garageparrot@gmail.com<br>
             Tel:  09.66.34.56.12</span><br>
             ou à l’aide du formulaire de contact. </p>
     </div>
-<form  method="POST" 
-    style="width: 400px;"
->
-<div class="formulaire">
+<form  method="POST">
+<div class="w-40 m-3 formulaire">
     <div class="form-group">
         <label for="exampleFormControlInput1" class="form-label">Votre nom </label>
         <input type="text" class="form-control" name="name" id="exampleFormControlInput1" placeholder="DOE">

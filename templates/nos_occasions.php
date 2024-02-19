@@ -37,8 +37,6 @@ $minMaxRange = minMaxRange($adminpdo);
   </div>
   <div class="cards">  
   <?php 
-  //if (isset($_POST['prix'])) {
-    //getFilteredVehicles($adminpdo, $minPrix, $maxPrix, $minAnnee, $maxAnnee, $minKm, $maxKm);
 
   foreach ($cars as $carKey => $car) { 
     foreach ($carImages as $imageKey => $carImage) {

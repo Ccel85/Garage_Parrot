@@ -37,16 +37,16 @@ include('../templates/header.php');
         <div class="tableauBord">
             <ul class="list-group">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                Nombre de message non lu
+                <a href = "../templates/messagePage.php">Nombre de message non lu</a>
                     <span class="badge  rounded-pill m-2"><?php echo ($totalMessage)?></span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                Nombre d'annonce en ligne
+                <a href = "../templates/editCarPage.php">Nombre d'annonce en ligne</a>
                     <span class="badge  rounded-pill m-2"><?php echo ($totalCars)?></span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                Nombre d'avis
-                    <span class="badge  rounded-pill m-2"><?php echo ($totalComments)?></span>
+                <a href = "../templates/messagePage.php">Nouveaux avis </a>
+                    <span href = "../templates/editComments.php"class="badge  rounded-pill m-2"><?php echo ($totalComments)?></span>
                 </li>
             </ul>
         </div>

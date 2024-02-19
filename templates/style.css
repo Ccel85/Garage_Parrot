@@ -212,6 +212,7 @@ a:hover{
     display: flex;
     flex-direction: row;
     align-items: center;
+    flex-wrap: wrap;
     margin: 50px;
 }
 
@@ -234,7 +235,7 @@ font-weight: bold;
 
 .cardInfo,form{
     border: 4px solid #173258;
-    padding: 2rem;
+    padding: 1rem;
     line-height: 50px;
 }
 
@@ -242,6 +243,7 @@ font-weight: bold;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    flex-wrap: wrap;
     font-size: 20px;
     margin: 40px;
 }
@@ -503,6 +505,7 @@ vertical-align: top;
         grid-template-rows: auto;
         align-items: start;
         text-align: justify;
+        justify-content: center;
     }
     .horaires {
         text-align: center;
@@ -521,8 +524,27 @@ vertical-align: top;
 		height: 35px;
 		padding-right: 15px;
 	}
+    .menuAccueil{
+        display:none;
+    }
+    .cards{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: space-around;
+    align-items: flex-start;
+    }
+    div.cards{
+    
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        /* grid-gap: 10px; */
+    
+}
       
 }
+
 
 /* Ajouter une media query pour les écrans plus petits */
 @media (max-width: 576px) {
@@ -535,6 +557,7 @@ vertical-align: top;
         "horaires";
         grid-template-columns: auto;
         grid-template-rows: auto;
+        justify-content: center;
     }
     .footerPhone {
         grid-area: "footerPhone";
@@ -559,6 +582,17 @@ vertical-align: top;
     .navFooter {
         display:none;
     }
+    .menuAccueil{
+        display:none;
+    }
+    .cards{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        justify-content: space-around;
+        align-items: flex-start;
+        }
 }
 /*@media (max-width: 700px) {
 	.menuAccueil {
