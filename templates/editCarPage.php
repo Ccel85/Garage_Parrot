@@ -12,13 +12,25 @@ include('../templates/header.php');
 foreach ($cars as $car){?> 
 
 <form action="../Session/editCars.php" method="POST" enctype="multipart/form-data">
-<h2 name="">Modification d'annonce N°: <?php echo $car['id'] ?></h2> 
+<h2>Modification d'annonce N°: <?php echo $car['id'] ?></h2> 
 <input type="hidden" value="<?= $car['id']; ?>" name="id"/>
     <div class="formulaire">
-                <!--<div enctype="multipart/form-data" class="form-group">
-                    <label for="image" >Image</label>
-                    <input class="form-control" type="file" name="image" id="exampleFormControlInput1" >
-                </div>-->
+    <div class="form-group">
+            <label for="fileInput1">Image 1 :</label>
+            <input type="file" name="fileInput[]" id="fileInput1" accept="image/*">
+        </div>
+        <div class="form-group">
+            <label for="fileInput2">Image 2 :</label>
+            <input type="file" name="fileInput[]" id="fileInput2" accept="image/*">
+        </div>
+        <div class="form-group">
+            <label for="fileInput3">Image 3 :</label>
+            <input type="file" name="fileInput[]" id="fileInput3" accept="image/*">
+        </div>
+        <div class="form-group">
+            <label for="fileInput4">Image 4 :</label>
+            <input type="file" name="fileInput[]" id="fileInput4" accept="image/*">
+        </div>
         <div class="annonce">
         <div class="form-group">
             <label for="modele" >Modele</label>

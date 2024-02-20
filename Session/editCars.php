@@ -6,9 +6,21 @@ include('../config/configsql.php');
 include('../templates/header.php');
 
 //Page modification des annonces voiture
-//recuperation des donnee service de BDD - editServicePage.php
+//recuperation des donnee service de BDD - editCarPage.php
 
 if(isset($_POST['modifierAnnonce'])) {
+
+  if(isset($_FILES['fileInput'])) {
+    $uploadedFiles  = $_FILES['fileInput'];
+    $fileDestinations = [];
+    foreach ($uploadedFiles['tmp_name'] as $index => $tmpName) {
+        $fileName = $uploadedFiles['name'][$index];
+        $fileDestination = '../uploads/' . $fileName;
+        if (move_uploaded_file($tmpName, $fileDestination)) {
+            $fileDestinations[] = $fileDestination;
+        }
+    }
+}
 
   // Réecriture des variables
   $id = $_POST['id'];
@@ -35,6 +47,7 @@ if(isset($_POST['modifierAnnonce'])) {
     $interieur = '';
 }
   $autre = $_POST['autre'];
+  $fileDestinations;
 
   // Requête de modification d'enregistrement
   $sth= $adminpdo->prepare ("UPDATE `garageparrot`.`cars` SET 
@@ -52,7 +65,11 @@ if(isset($_POST['modifierAnnonce'])) {
   color = :color,
   chassis = :chassis,
   interieur = :interieur,
-  autre = :autre
+  autre = :autre,
+  img1 = :img1,
+  img2 = :img2,
+  img3 = :img3,
+  img4 = :img4
   WHERE id = :id");
 
   $sth->bindParam (':id',$id);
@@ -71,16 +88,18 @@ if(isset($_POST['modifierAnnonce'])) {
   $sth->bindParam (':interieur',$interieur);
   $sth->bindParam(':chassis', $chassis);
   $sth->bindParam (':autre',$autre);
+  $sth->bindParam(':img1',$fileDestinations[0]);
+  $sth->bindParam(':img2',$fileDestinations[1]);
+  $sth->bindParam(':img3',$fileDestinations[2]);
+  $sth->bindParam(':img4',$fileDestinations[3]);
   $annonce=$sth->execute();
 
   } elseif (isset($_POST['supprimerAnnonce'])){
-    // Réecriture des variables
 
     $id = $_POST['id'];
-  //$image_service=$_POST['image'];
 
   // Requête de modification d'enregistrement
-  $sth= $adminpdo->prepare ("DELETE * FROM cars WHERE id = :id");
+  $sth= $adminpdo->prepare ("DELETE FROM cars WHERE id = :id");
   $sth->bindParam (':id',$id);
   $sth->execute();
   }

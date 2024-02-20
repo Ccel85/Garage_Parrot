@@ -39,12 +39,12 @@ $minMaxRange = minMaxRange($adminpdo);
   <?php 
 
   foreach ($cars as $carKey => $car) { 
-    foreach ($carImages as $imageKey => $carImage) {
-      if ($car['id'] === $imageKey) { 
+    //foreach ($carImages as $imageKey => $carImage) {
+      //if ($car['id'] === $imageKey) { 
               include('../templates/cars.php'); 
       }
-      }
-    }
+      //}
+    //}
   
   ?>
 </div>  

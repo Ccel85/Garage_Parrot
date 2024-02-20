@@ -175,9 +175,10 @@ class Car
         private string $year;
         private string $carContent;
         private int $price;
+        private array $files;
         
             
-        public function __construct($modele='',$energy='',$km='',$year='',$carContent='',$price='')
+        public function __construct($modele='',$energy='',$km='',$year='',$carContent='',$price='',array $files=[])
         {
         $this->modele = $modele;
         $this->energy = $energy;
@@ -185,6 +186,7 @@ class Car
         $this->year = $year;
         $this->carContent = $carContent;
         $this->price = $price;
+        $this->files = $files;
         }
         public function getId() : string
         {
@@ -237,6 +239,10 @@ class Car
         public function getPrice(): int
         {
             return $this->price ;
+        }  
+        public function getFile(): array
+        {
+            return $this->files ;
         }  
 }
 //RECUPERER LES ANNONCES VOITURES
