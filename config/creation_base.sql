@@ -63,13 +63,20 @@ ALTER TABLE `garageparrot`.`cars`ADD COLUMN (
     `chassis` varchar(250),
     `autre` varchar(250));
 
+    ALTER TABLE `garageparrot`.`cars`ADD COLUMN (
+    `img1` varchar(250),
+    `img2` varchar(250),
+    `img3` varchar(250),
+    `img4` varchar(250),
+    `img5` varchar(250)      
+    );
 
 CREATE TABLE `garageparrot`.`services`(
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
     `title` VARCHAR(20) NOT NULL,
     `servicesContent` VARCHAR(250) NOT NULL,
-    `servicesPicture` BLOB NOT NULL
-    ) 
+    `servicesPicture` VARCHAR(250)
+    );
     ENGINE = MyISAM;
     CREATE TABLE `garageparrot`.`message` (
     `id` INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY ,

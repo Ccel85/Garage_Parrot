@@ -9,14 +9,16 @@ include('../templates/header.php');
 $services = getservice($adminpdo);
 
 foreach ($services as $service){?>  
-        <form action="../Session/editservice.php" method="POST">
-            <h2 name="">Modification de services N°: <?php echo $service['id'] ?></h2> 
+        <form action="../Session/editservice.php" enctype= "multipart/form-data" method="POST">
+            <h2>Modification de services N°: <?php echo $service['id'] ?></h2> 
             <input type="hidden" value="<?= $service['id']; ?>" name="id"/>
             <div class="formulaire">
-                <!--<div enctype="multipart/form-data" class="form-group">
-                    <label for="image" >Image</label>
-                    <input class="form-control" type="file" name="image" id="exampleFormControlInput1" >
-                </div>-->
+                <div class="form-group">
+                    <label for="fileInput">Choisir un fichier :</label>
+                    <input type="file" name="fileInput" id="fileInput" accept="image/*" onchange="previewImage()">
+                    <br><br>
+                    <img id="imagePreview" src="#" alt="Aperçu de l'image" style="max-width: 300px; max-height: 300px;">
+                </div>
                 <div class="form-group">
                     <label for="title" class="form-label" >Entrée titre du service</label>
                     <input class="form-control" type="text" name="title" value=<?php echo ($service['title']);?>>
@@ -35,6 +37,23 @@ foreach ($services as $service){?>
         <form  action="../templates/adminServices.php" method="POST" style="display:flex; justify-content:center">
             <button  type="submit" name="creerService">Créer un service</button>
         </form>
+<script>
+    function previewImage() {
+        var fileInput = document.getElementById('fileInput');
+        var imagePreview = document.getElementById('imagePreview');
+
+    // Vérifie si un fichier a été sélectionné
+        if (fileInput.files && fileInput.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+    // Affiche l'aperçu de l'image
+        imagePreview.src = e.target.result;
+        }
+    // Lit le contenu du fichier sélectionné
+        reader.readAsDataURL(fileInput.files[0]);
+            }
+        }
+    </script>
         <?php include '../templates/footer.php' ?>
 </html>
     

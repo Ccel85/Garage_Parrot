@@ -115,12 +115,14 @@ class Service
     private string $id;
     private string $title;
     private string $content;
+    private string $serviceFile;
         
-    public function __construct($id='',$title='',$content='')
+    public function __construct($title='',$content='',$serviceFile)
     {
-    $this->id = $id;
+    
     $this->title = $title;
     $this->content = $content;
+    $this->serviceFile = $serviceFile;
     }
 
     public function getId() : string
@@ -142,7 +144,15 @@ class Service
     public function setContent(string $content): void
     {
         $this->content = $content;
-    }  
+    } 
+    public function getFile() : string
+    {
+        return $this->serviceFile;
+    }   
+    public function setFile(string $serviceFile): void
+    {
+        $this->serviceFile = $serviceFile;
+    } 
 }
 //RECUPERER DONNEES SERVICES
 function getservice(PDO $adminpdo) {
