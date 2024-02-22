@@ -117,7 +117,7 @@ class Service
     private string $content;
     private string $serviceFile;
         
-    public function __construct($title='',$content='',$serviceFile)
+    public function __construct($title,$content,$serviceFile)
     {
     
     $this->title = $title;

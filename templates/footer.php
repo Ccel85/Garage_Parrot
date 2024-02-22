@@ -11,7 +11,7 @@
             </div>
             <nav class="navFooter">
                 <ul>
-                <li class="nav-item"><a href="index.php" >Accueil</a></li>
+                <li class="nav-item"><a href="accueil.php" >Accueil</a></li>
                 <li class="nav-item"><a href="nos_services.php" >Nos services</a></li>
                 <li class="nav-item"><a href="nos_occasions.php" >Nos occasions</a></li>
                 <li class="nav-item"><a href="contact.php" >Contact</a></li>

@@ -12,7 +12,7 @@ session_destroy();
 setcookie('session', '', time() - 3600, '/');
 
 // Redirect to the index page
-header('location:../templates/index.php');
+header('location:../templates/accueil.php');
 ?>
 
 

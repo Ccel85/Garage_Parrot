@@ -29,7 +29,7 @@ require '../config/configsql.php';
                 <h1>Requête validée !</h1>
                 <p>La mise à jour a bien été effectuée !</p>
             </div>";
-            header('location: ../templates/index.php');
+            header('location: ../templates/accueil.php');
 
             }
         } catch (PDOException $e) {

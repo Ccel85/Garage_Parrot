@@ -20,7 +20,7 @@ if (isset($_GET['id'])) {
 ?>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
-                <li class="breadcrumb-item"><a href="../templates/index.php">Accueil </a></li>
+                <li class="breadcrumb-item"><a href="../templates/accueil.php">Accueil </a></li>
                 <li class="breadcrumb-item"><a href="../templates/nos_occasions.php">Nos occasions </a></li>
                 <li class="breadcrumb-item active" aria-current="page"></li>
             </ol>

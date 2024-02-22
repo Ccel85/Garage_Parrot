@@ -20,7 +20,7 @@
         </div>
         <nav class="menuHeader ">
           <div class="menuAccueil container ">
-            <a id="home" href="../templates/index.php">Accueil</a>
+            <a id="home" href="../templates/accueil.php">Accueil</a>
             <a id="nosServices" href="../templates/nos_services.php">Nos services</a>
             <a id="nosOccasions" href="../templates/nos_occasions.php">Nos Occasions</a>
             <a id="contact" href="../templates/contact.php">Contact</a>
@@ -31,7 +31,7 @@
             <img class="connection" src="../assets/img/connection.png" alt="connection">
             </a>
             <ul class="dropdown-menu text-small">
-              <li><a class="dropdown-item" href="../templates/index.php">Accueil</a></li>
+              <li><a class="dropdown-item" href="../templates/accueil.php">Accueil</a></li>
               <li><a class="dropdown-item" href="../templates/nos_services.php">Nos services</a></li>
               <li><a class="dropdown-item" href="../templates/nos_occasions.php">Nos occasions</a></li>
               <li><a class="dropdown-item" href="../templates/contact.php">Contact</a></li>
@@ -47,7 +47,7 @@
             <ul class="dropdown-menu text-small">
               <li><a class="dropdown-item" href="../templates/admin.php">Menu Administrateur</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="../templates/index.php">Accueil</a></li>
+              <li><a class="dropdown-item" href="../templates/accueil.php">Accueil</a></li>
               <li><a class="dropdown-item" href="../templates/nos_services.php">Nos services</a></li>
               <li><a class="dropdown-item" href="../templates/nos_occasions.php">Nos occasions</a></li>
               <li><a class="dropdown-item" href="../templates/contact.php">Contact</a></li>
@@ -63,7 +63,7 @@
             <ul class="dropdown-menu text-small">
               <li><a class="dropdown-item" href="../templates/employes.php">Menu Employé</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="../templates/index.php">Accueil</a></li>
+              <li><a class="dropdown-item" href="../templates/accueil.php">Accueil</a></li>
               <li><a class="dropdown-item" href="../templates/nos_services.php">Nos services</a></li>
               <li><a class="dropdown-item" href="../templates/nos_occasions.php">Nos occasions</a></li>
               <li><a class="dropdown-item" href="../templates/contact.php">Contact</a></li>
