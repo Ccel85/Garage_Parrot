@@ -1,49 +1,81 @@
-GARAGE V PARROT est une application web fournit une large gamme de voitures et les services nécessaires pour vos véhicules. 
 
-Version en ligne :
+# Projet GARAGE V.PARROT
 
-Prérequis
-Pour exécuter cette application en local, vous aurez besoin de :
+Le projet consiste a créer une application web vitrine pour un le garage V.PARROT afin de présenter les différents services proposés ainsi que de présenter à la vente des véhicules d’occasions.
+Il sera nécessaire de créer  trois types d’utilisateurs qui sont :employés,administrateur et visiteur.
 
-Git
-Serveur WAMP ou autres
-PHP 8.1.26 ou supérieur
-Un système de gestion de bases de données comme MySQL
-Installation
-Suivez ces étapes pour installer et exécuter le projet en local :
+Description:
 
-Cloner le dépôt : git clone 
+L’application nécessite de créer une solution de connexion avec deux types de comptes distinct:
+-administrateur
+-employé
 
-Aller dans le répertoire du projet : cd GARAGE_PARROT
+Ces rôles disposent de droit et accès différents.
+L’administrateur va devoir :
+Gérer la gestion des utilisateurs 
+Gérer affichage et l’alimentation des services proposés
+Gérer l’affichage des horaires et les modifier
 
-Configurer votre environnement local en modifiant le fichier .env ou en créant un fichier .env.local :
+Les employés pourront:
+Gérer les messages reçu 
+Gérer les annonces véhicules en les créant,modifiant ou supprimant celle ci.
+Gérer les avis
 
-Définissez la variable DATABASE_URL avec les informations de connexion à la base de données
+Les visiteurs pourront:
+Naviguer sur le site et s’informer des services
+Voir ,filtrer les annonces en présentation succinctes et détaillées
+Poser un avis
+Faire une demande d’information sur un véhicule
+Envoyer un message aux employés
+ 
 
 
-Création d'un compte administrateur local
-Connectez-vous à la base de données;
-login: root
-password: 3f7zhhRn4NH69R
+## Prérequis
 
-Accédez à la table "users". Cette table contient six colonnes : "id", "name", "username","email", "password" et "role";
+- Spécifications techniques
 
-Pour créer un nouvel administrateur, ajoutez une nouvelle ligne dans cette table. Choisissez un "name", "username", "email", "password" et "role" pour le nouvel administrateur. Pour la colonne "role","Administrateur;
+-PHP 8 ou supérieur
 
-Une fois le compte administrateur créé, vous pouvez vous connecter au back-office en utilisant le nom d'utilisateur et le mot de passe que vous avez définis;
+-Docker / XAMP / WAMP ou autres
 
-Suivez ces étapes pour vous connecter :
+-MySql pour l'écriture de la base de données
 
-CONNEXION AU BACK-OFFICE
-Cliquez sur le BOUTTON CONNEXION sous l'icone du menu deroulant en haut à gauche .
-Entrez le nom d'utilisateur et le mot de passe precedement créé.
-Vous êtes maintenant connecté en tant qu'administrateur et pouvez gérer les employées, les véhicules et les avis des clients, etc;
-DECONNEXION
-Pour vous déconnecter de l'administration, cliquez simplement sur le BOUTTON DECONNEXION dans le menu déroulant.
 
-L'administrateur peut:
--Gérer les utilisateurs (role:employé ou adlinistrateur);
--Gérer les annonces
--Gérer les avis
--Gérer les services proposés
--Gérer l'affichage des horaires
+## Installation
+
+Aller dans le dossier de destination
+
+cd 'mondossier'
+
+Cloner le projet:
+```bash
+  git clone https://github.com/Ccel85/Garage_Parrot
+```
+Aller dans le dossier projet
+
+```bash
+  cd Garage_Parrot
+
+  Installer la base de donnée en executant les differentes requêtes du fichier se trouvant en 
+  config\creation_base.sql
+
+```
+ ## Utilisation du Serveur wamp64
+
+ Pour un usage sur WAMP le projet doit être cloner dans le dossier 
+ C:\wamp64\www
+
+Lancer le serveur wamp64 
+
+puis acceder au site par le lien ci dessous:
+
+http://localhost/Garage_Parrot/
+
+
+```
+
+
+## Authors
+
+- [@ccel85](https://www.github.com/octokatherine)
+
