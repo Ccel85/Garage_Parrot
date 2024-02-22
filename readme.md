@@ -55,16 +55,34 @@ Aller dans le dossier projet
 
 ```bash
   cd Garage_Parrot
+```
 
-  Installer la base de donnée en executant les differentes requêtes du fichier se trouvant en 
+ ## Installation de la base de donnée
+
+   Installer la base de donnée en executant les differentes requêtes du fichier se trouvant en 
   config\creation_base.sql
 
+1-Commencer par créer la base 
+
+2-Creation d'un utilisateur de la table pour la création d'un utilisateur admin de l'application.
+Lancer la requête:
+```bash
+CREATE USER 'user'@'localhost' IDENTIFIED BY '3f7zhhRn4NH69R';
 ```
+cela créera le login de connection à la bdd:   user  
+password: 3f7zhhRn4NH69R
+
+3-Lancer toutes les requetes de la table présentes dans le fichier 
+```bash
+    creation_base.sql
+```
+
  ## Utilisation du Serveur wamp64
 
  Pour un usage sur WAMP le projet doit être cloner dans le dossier 
+ ```bash
  C:\wamp64\www
-
+```
 Lancer le serveur wamp64 
 
 puis acceder au site par le lien ci dessous:

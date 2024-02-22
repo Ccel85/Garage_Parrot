@@ -3,9 +3,18 @@ CREATE DATABASE `garageparrot`
   CHARACTER SET utf8
   COLLATE utf8_general_ci;
 
--- Création de l’utilisateur BDD
+-- Création de l’utilisateur BDD backoffice pour la création de compte
   CREATE USER 'user'@'localhost' IDENTIFIED BY '3f7zhhRn4NH69R';
 
+  -- Attribution des droits sur la table "users"
+GRANT SELECT, INSERT, UPDATE, DELETE ON garageparrot.users TO 'user'@'localhost';
+
+--création de compte utilisateur BDd tous privilèges 
+  CREATE USER 'root'@'localhost' IDENTIFIED BY '';
+
+  GRANT ALL PRIVILEGES ON * . * TO 'root'@'localhost';
+ 
+-- Création des tables et insertion de données
 CREATE TABLE `garageparrot`.`users` (
     `id` INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY ,
     `name` VARCHAR(100),`surname` VARCHAR(100),
@@ -19,8 +28,6 @@ INSERT INTO `users` (`id`, `name`, `surname`, `email`, `password`, `role`) VALUE
 (1, 'Parrot', 'Vincent', 'vparrot@mail.com', '3f7zhhRn4NH69', 'Administrateur'),
 (2, 'Martin', 'jean', 'jmartin@mail.com', '$2y$10$pGJL9cmOdZBV8E6LmgsUP.r129Gt0KHW.eM5DzYQM2VnGAh.p7VCK', 'Employé');
 
--- Attribution des droits sur la table "users"
-GRANT SELECT, INSERT, UPDATE, DELETE ON garageparrot.users TO 'user'@'localhost';
 
 CREATE TABLE `garageparrot`.`cars` (
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
