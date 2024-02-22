@@ -44,12 +44,7 @@ CREATE TABLE `garageparrot`.`cars` (
     ) ENGINE = MyISAM;
 ALTER TABLE `garageparrot`.`cars` ADD COLUMN 
     `price` VARCHAR(6) NOT NULL;
-ALTER TABLE `garageparrot`.`cars`ADD COLUMN 
-    `firstPicture` BLOB NOT NULL;
-ALTER TABLE `garageparrot`.`cars`ADD COLUMN (
-    `secondPicture` BLOB NOT NULL,
-    `ThirdPicture` BLOB NOT NULL
-  );
+
   ALTER TABLE `garageparrot`.`cars`ADD COLUMN (
     `carBoite` varchar(10),
     `color` varchar(20),
@@ -67,8 +62,7 @@ ALTER TABLE `garageparrot`.`cars`ADD COLUMN (
     `img1` varchar(250),
     `img2` varchar(250),
     `img3` varchar(250),
-    `img4` varchar(250),
-    `img5` varchar(250)      
+    `img4` varchar(250)      
     );
 
 CREATE TABLE `garageparrot`.`services`(
@@ -89,13 +83,7 @@ CREATE TABLE `garageparrot`.`services`(
     );
     ALTER TABLE `garageparrot`.`message`ADD COLUMN (
     `archive` varchar(1));
-CREATE TABLE `garageparrot`.`serviceFile` ( 
-    `fileId` INT AUTO_INCREMENT PRIMARY KEY, 
-    `name` VARCHAR(100),
-    `size` INT(11),
-    `type` VARCHAR(20),
-    `img` BLOB
-  );
+
 CREATE TABLE `garageparrot`.`horaires` (
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `day` VARCHAR (25) NOT NULL,
@@ -110,7 +98,7 @@ CREATE TABLE `garageparrot`.`horaires` (
     `date` DATE NOT NULL,
     `pseudo` VARCHAR (25) ,
     `comments` VARCHAR (255) NOT NULL,
-    `rating` INT NOT NULL);
+    `rating` INT );
 
     ALTER TABLE `garageparrot`.`comments`ADD COLUMN (
     `archive` varchar(1));
