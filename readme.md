@@ -95,5 +95,9 @@ http://localhost/Garage_Parrot/
 
 ## Authors
 
-- [@ccel85](https://www.github.com/octokatherine)
+- [@ccel85](
+
+## Authors
+
+- [@ccel85](https://www.github.com/Ccel85))
 
