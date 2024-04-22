@@ -1,5 +1,5 @@
 <?php 
-include('../config/sessionStop.php');
+include('../config/sessionStart.php');
 include('../Session/variable.php');
 include('../config/configsql.php');
 include('../templates/header.php');?>

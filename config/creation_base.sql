@@ -81,7 +81,7 @@ INSERT INTO `services` (`id`, `title`, `servicesContent`, `servicesPicture`) VAL
     `id` INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY ,
     `name` VARCHAR(100),
     `surname` VARCHAR(100),
-    `email` VARCHAR(255) NOT NULL UNIQUE,
+    `email` VARCHAR(255) NOT NULL,
     `phone` VARCHAR(15)NOT NULL,
     `message` VARCHAR(255)NOT NULL,
     `date` DATE NOT NULL

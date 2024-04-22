@@ -48,8 +48,8 @@ class User
     // CONNECTION ,VERIFICATION MDP ET ROLE
     public static function connect(PDO $pdo,string $email,string $password) 
     {
-    session_start();
-    //Recuperation des donnees de la table Users
+    //session_start();
+    //Recuperation des données de la table Users
         $statement= $pdo->prepare('SELECT * FROM users WHERE email=:email');
         $statement->setFetchMode(PDO::FETCH_CLASS,'User');
         $statement->bindValue(':email',$email);
@@ -442,7 +442,7 @@ class Horaire
 
 }
 
-                /* GESTION DES MESSAGES */
+/* GESTION DES MESSAGES */
 class Message
 {
     private string $id;
@@ -517,12 +517,12 @@ function insertMessage(PDO $adminpdo){
         $phone = $_POST["phone"];
         $message = $_POST["message"];
         $date =date('Y-m-d');
-        
+        $archive = '';
         try{
         // requete mise à jour donnée
         $sql = $adminpdo->prepare(
-            "INSERT INTO `garageparrot`.`message` (name, surname, email, phone, message, date)
-            VALUES (:name, :surname, :email, :phone, :message, :date)"
+            "INSERT INTO `garageparrot`.`message` (name, surname, email, phone, message, date, archive)
+            VALUES (:name, :surname, :email, :phone, :message, :date, :archive)"
         );
         $sql->bindParam(':name', $name);
         $sql->bindParam(':surname', $surname);
@@ -530,18 +530,19 @@ function insertMessage(PDO $adminpdo){
         $sql->bindParam(':phone', $phone);
         $sql->bindParam(':message', $message);
         $sql->bindParam(':date', $date);
+        $sql->bindParam(':archive', $archive);
         $sql->execute();
         if (!$sql) {
             echo "La modification a échoué. ";
             }  else {
                 echo "<div class='alert alert-success'>
-                <h1>Requête validée !</h1>
-                <p>La mise à jour a bien été effectuée !</p>
+                <h1>Le message a bien été envoyé, nous vous répondrons rapidement!</h1>
+                
             </div>";    
             }
         } catch (PDOException $e) {
         
-            echo 'Erreur lors de la modification de l\'Horaire : '.$e->getMessage();
+            echo 'Erreur lors de la modification : '.$e->getMessage();
         }
         }
 
@@ -610,7 +611,7 @@ function checkMessage($adminpdo){
             }
         }
 
-        /*GESTION DES AVIS */
+/*GESTION DES AVIS */
 
 //RECUPERATION DE TOUTES LES AVIS ARCHIVES
 function checkComments($adminpdo){

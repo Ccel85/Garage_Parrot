@@ -1,6 +1,5 @@
 <?php
-//session_start();
-include('../config/sessionStop.php');
+include('../config/sessionStart.php');
 include('../Session/variable.php');
 include('../config/configsql.php');
 
@@ -13,6 +12,7 @@ setcookie('session', '', time() - 3600, '/');
 
 // Redirect to the index page
 header('location:../templates/accueil.php');
+exit();
 ?>
 
 
