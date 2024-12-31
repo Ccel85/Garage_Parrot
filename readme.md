@@ -2,7 +2,7 @@
 # Projet GARAGE V.PARROT
 
 Le projet consiste a créer une application web vitrine pour un le garage V.PARROT afin de présenter les différents services proposés ainsi que de présenter à la vente des véhicules d’occasions.
-Il sera nécessaire de créer  trois types d’utilisateurs qui sont :employés,administrateur et visiteur.
+Il sera nécessaire de créer  trois types d’utilisateurs qui sont : employés,administrateur et visiteur.
 
 Description:
 
